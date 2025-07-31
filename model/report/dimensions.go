@@ -37,7 +37,7 @@ type Dimensions struct {
 	// Placement 投放版位，详见枚举值-广告管理-版位
 	Placement enum.Placement `json:"placement,omitempty"`
 	// Platform 受众操作系统，详见枚举值-广告管理-受众操作系统
-	Platform enum.OperationgSystem `json:"platform,omitempty"`
+	Platform enum.OperatingSystem `json:"platform,omitempty"`
 	// ContextualTag 内容相关定向标签
 	ContextualTag string `json:"contextual_tag,omitempty"`
 }

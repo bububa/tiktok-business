@@ -11,3 +11,15 @@ const (
 	// UnknownGender
 	UnknownGender Gender = "NONE"
 )
+
+// GENDER  性别
+type GENDER string
+
+const (
+	// GENDER_FEMALE
+	GENDER_FEMALE GENDER = "GENDER_FEMALE"
+	// GENDER_MALE
+	GENDER_MALE GENDER = "GENDER_MALE"
+	// GENDER_UNLIMITED。
+	GENDER_UNLIMITED GENDER = "GENDER_UNLIMITED"
+)

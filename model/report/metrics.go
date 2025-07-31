@@ -78,7 +78,7 @@ type Metrics struct {
 	BillingEvent enum.BillingEvent `json:"billing_event,omitempty"`
 	// BidStrategy 竞价策略
 	// 广告组、广告层级支持。
-	BidStrategy enum.BidType `json:"bid_strategy,omitempty"`
+	BidStrategy enum.BidStrategy `json:"bid_strategy,omitempty"`
 	// Bid 出价
 	// 广告组、广告层级支持。
 	Bid model.Float64 `json:"bid,omitempty"`

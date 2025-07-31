@@ -4,7 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"strconv"
+	"strings"
 	"time"
+
+	"github.com/bububa/tiktok-business/util"
 )
 
 // Uint64 support string quoted number in json
@@ -147,53 +150,47 @@ func (b Bool) String() string {
 
 const dateFormat = "2006-01-02 15:04:04"
 
-type UnixTime time.Time
-
-func (t UnixTime) IsZero() bool {
-	return t.Time().IsZero()
-}
-
-func (t UnixTime) Time() time.Time {
-	return time.Time(t)
-}
-
-func (t UnixTime) MarshalJSON() ([]byte, error) {
-	return json.Marshal(time.Time(t).Format(dateFormat))
-}
-
-func (t *UnixTime) UnmarshalJSON(data []byte) error {
-	var timestamp int64
-	if err := json.Unmarshal(data, &timestamp); err != nil {
-		return err
-	}
-
-	*t = UnixTime(time.Unix(timestamp, 0))
-	return nil
-}
-
 type DateTime time.Time
 
-func (t DateTime) IsZero() bool {
-	return t.Time().IsZero()
+func (d DateTime) IsZero() bool {
+	return d.Time().IsZero()
 }
 
-func (t DateTime) Time() time.Time {
-	return time.Time(t)
+func (d DateTime) Time() time.Time {
+	return time.Time(d)
+}
+
+func (d DateTime) String() string {
+	return time.Time(d).UTC().Format(dateFormat)
 }
 
 func (d DateTime) MarshalJSON() ([]byte, error) {
-	return json.Marshal(time.Time(d).Format(dateFormat))
+	return []byte(util.StringsJoin(`"`, d.String(), `"`)), nil
 }
 
 func (d *DateTime) UnmarshalJSON(data []byte) error {
-	var dateStr string
+	s := strings.TrimSpace(string(data))
 
-	err := json.Unmarshal(data, &dateStr)
-	if err != nil {
-		return err
+	// Try to parse as an integer (timestamp)
+	if len(s) > 0 && s[0] >= '0' && s[0] <= '9' { // Quick check if it could be a number
+		if timestamp, err := strconv.ParseInt(s, 10, 64); err == nil {
+			// Check for common timestamp lengths (seconds vs milliseconds)
+			// If it's a very large number, it's likely milliseconds
+			if timestamp > 1000000000000 { // Roughly > year 2001 in milliseconds
+				*d = DateTime(time.UnixMilli(timestamp)) // Treat as milliseconds
+			} else {
+				*d = DateTime(time.Unix(timestamp, 0)) // Treat as seconds
+			}
+			return nil
+		}
+	}
+	// Try to parse as a string (YYYY-MM-DD HH:MM:SS)
+	// Remove quotes if present
+	if strings.HasPrefix(s, `"`) && strings.HasSuffix(s, `"`) {
+		s = strings.Trim(s, `"`)
 	}
 
-	parsed, err := time.Parse(dateFormat, dateStr)
+	parsed, err := time.ParseInLocation(dateFormat, s, time.UTC)
 	if err != nil {
 		return err
 	}

@@ -80,10 +80,10 @@ type GetFilter struct {
 	SecondaryStatus enum.SecondaryStatus `json:"secondary_status,omitempty"`
 	// CreationFilterStartTime 推广系列最早创建时间，格式：YYYY-MM-DD HH:MM:SS（UTC时区）。创建时间晚于此时间的推广系列会被返回。
 	// 建议：为了让任务成功执行及任务速度不受影响，创建时间的范围建议在6个月以内。
-	CreationFilterStartTime string `json:"creation_filter_start_time,omitempty"`
+	CreationFilterStartTime model.DateTime `json:"creation_filter_start_time,omitzero"`
 	// CreationFilterEndTime 推广系列最晚创建时间，格式：YYYY-MM-DD HH:MM:SS（UTC时区）。创建时间先于此时间的推广系列会被返回。
 	// 建议：为了让任务成功执行及任务速度不受影响，创建时间的范围建议在6个月以内。
-	CreationFilterEndTime string `json:"creation_filter_end_time,omitempty"`
+	CreationFilterEndTime model.DateTime `json:"creation_filter_end_time,omitzero"`
 	// IsSmartPerformanceCampaign 按是否为自动化类型的推广系列筛选。
 	// 支持的值：
 	// true：推广系列为 Smart+ 推广系列或智能效果网站推广系列。
@@ -100,7 +100,7 @@ type GetFilter struct {
 	// CATALOG ：商品库。
 	// STORE：TikTok Shop 店铺，或 TikTok 橱窗。
 	// 若您传入本字段，返回结果仅包含推广目标为商品销量的推广系列（objective_type=PRODUCT_SALES）。若您同时传入筛选字段objective_type，则objective_type仅可设置为PRODUCT_SALES。
-	CamtpaignProductSource enum.CampaignProductSource `json:"campaign_product_source,omitempty"`
+	CamtpaignProductSource enum.ProductSource `json:"campaign_product_source,omitempty"`
 	// OptimizationGoal 优化目标。枚举值见枚举值-优化目标。
 	OptimizationGoal enum.OptimizationGoal `json:"optimization_goal,omitempty"`
 	// GMVMaxPromotionTypes GMV Max 推广系列类型。

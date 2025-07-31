@@ -95,7 +95,7 @@ type Campaign struct {
 	// 枚举值：SALES（销量）。
 	//
 	// 使用本字段创建推广目标为销量的推广系列，该目标合并了网站转化量目标和商品销量目标。了解销量目标的详情，参见销量目标。
-	VirtetualObjectiveType string `json:"virtual_objective_type,omitempty"`
+	VirtetualObjectiveType enum.VirtualObjectiveType `json:"virtual_objective_type,omitempty"`
 	// SalesDestination 销售目标页面，即想要推动销售的渠道。
 	// 枚举值：
 	// TIKTOK_SHOP：TikTok Shop。推动 TikTok Shop 上的销售。
@@ -107,7 +107,7 @@ type Campaign struct {
 	// 枚举值：
 	// CATALOG ：商品库。
 	// STORE：TikTok Shop 店铺，或 TikTok 橱窗。
-	CampaignProductSource enum.CampaignProductSource `json:"campaign_product_source,omitempty"`
+	CampaignProductSource enum.ProductSource `json:"campaign_product_source,omitempty"`
 	// BudgetOptimizeOn 仅为开启了推广系列预算优化的推广系列返回本字段。
 	// 是否开启推广系列预算优化。
 	// 枚举值：true（开启）。
@@ -125,9 +125,9 @@ type Campaign struct {
 	// IsNewStructure 该推广系列是否为新结构（推广系列与其下广告组及广告结构相同）te。
 	IsNewStructure bool `json:"is_new_structure,omitempty"`
 	// CreateTime 推广系列创建时间
-	CreateTime string `json:"create_time,omitempty"`
+	CreateTime model.DateTime `json:"create_time,omitzero"`
 	// ModifyTime 推广系列修改时te间
-	ModifyTime string `json:"modify_time,omitempty"`
+	ModifyTime model.DateTime `json:"modify_time,omitzero"`
 	// IsAdvancedDedicatedCampaign 该推广系列是否为高级专属推广系列。高级专属推广系列采用捕捉实时信号的高级投放模型。
 	// 枚举值：true，false。
 	IsAdvancedDedicatedCampaign bool `json:"is_advanced_dedicated_campaign,omitempty"`
@@ -143,7 +143,7 @@ type Campaign struct {
 	BidAlignType enum.BidAlignType `json:"bid_atlign_type,omitempty"`
 	// CampaignAppProfilePageState 下载中间页使用情况。
 	// 枚举值：INVALID，UNSET，ON，OFF。
-	CampaignAppProfilePageState string `tjson:"campaign_app_profile_page_state,omitempty"`
+	CampaignAppProfilePageState enum.AppProfilePageState `json:"campaign_app_profile_page_state,omitempty"`
 	// SpecialIndustries 特殊广告分类。
 	// 枚举值:
 	// HOUSING：房地产，房屋保险，抵押贷款或相关的广告。
@@ -152,11 +152,11 @@ type Campaign struct {
 	// 注意：
 	// 在推广系列商品来源为商品库和推广系列商品来源非商品库的购物广告中使用特殊广告分类目前为单独的白名单功能。如需使用这些功能，请联系您的TikTok销售代表。
 	// 本字段对于注册地为美国或加拿大的广告主已全量。若您是注册地非美国或加拿大的广告主且想在定向美国或加拿大的广告中使用特殊广告分类，您需申请额外的白名单。
-	SpecialIndustries []string `json:"special_industries,omitempty"`
+	SpecialIndustries []enum.SpecialIndustry `json:"special_industries,omitempty"`
 	// RfCampaignType 仅当推广目标（objective_type）设置为RF_REACH时，可根据本字段判断具体的合约推广系列类型。
 	// 枚举值：
 	// STANDARD：覆盖和频次推广系列。
 	// PULSE：TikTok Pulse 推广系列。
 	// TOPVIEW： TopView 推广系列。
-	RfCampaignType string `json:"rf_campaign_type,omitempty"`
+	RfCampaignType enum.RfCampaignType `json:"rf_campaign_type,omitempty"`
 }

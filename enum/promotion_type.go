@@ -53,4 +53,6 @@ const (
 	// PromotionType_PSA_PRODUCT 仅当shopping_ads_type 设置为PRODUCT_SHOPPING_ADS 时生效。
 	// 通过购物中心和搜索流量推广商品。
 	PromotionType_PSA_PRODUCT PromotionType = "PSA_PRODUCT"
+	// PromotionType_EXTERNAL_OR_DISPLAY
+	PromotionType_EXTERNAL_OR_DISPLAY PromotionType = "EXTERNAL_OR_DISPLAY"
 )

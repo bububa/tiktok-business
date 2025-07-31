@@ -1,13 +1,13 @@
 package enum
 
 // OperatingSystem 受众操作系统
-type OperationgSystem string
+type OperatingSystem string
 
 const (
 	// ANDROID Android
-	ANDROID OperationgSystem = "ANDROID"
+	ANDROID OperatingSystem = "ANDROID"
 	// IOS iOS
-	IOS OperationgSystem = "IOS"
+	IOS OperatingSystem = "IOS"
 	// PC 已废弃 PC
-	PC OperationgSystem = "PC"
+	PC OperatingSystem = "PC"
 )
