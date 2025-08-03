@@ -12,6 +12,4 @@ const (
 	IdentityType_TT_USER IdentityType = "TT_USER"
 	//  IdentityType_BC_AUTH_TT（已添加到商务中心的TikTok用户）
 	IdentityType_BC_AUTH_TT IdentityType = "BC_AUTH_TT"
-	// IdentityType_CUSTOMIZED_USER
-	IdentityType_CUSTOMIZED_USER IdentityType = "CUSTOMIZED_USER"
 )

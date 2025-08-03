@@ -26,5 +26,8 @@ func (r *GetRequest) Encode() string {
 
 type GetResponse struct {
 	model.BaseResponse
-	Data *Campaign `json:"data,omitempty"`
+	Data struct {
+		// List Smart+ 推广系列或智能效果网站推广系列列表
+		List []Campaign `json:"list,omitempty"`
+	} `json:"data"`
 }

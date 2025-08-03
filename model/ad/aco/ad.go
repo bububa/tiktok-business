@@ -62,6 +62,8 @@ type MediaInfo struct {
 	// VideoInfo 仅当素材类型为视频时返回。
 	// 视频信息。
 	VideoInfo *VideoInfo `json:"video_info,omitempty"`
+	// MusicInfo 音乐信息
+	MusicInfo *MusicInfo `json:"music_info,omitempty"`
 	// MediaInfo 创意信息
 	MediaInfo *MediaInfo `json:"media_info,omitempty"`
 }
@@ -82,6 +84,12 @@ type VideoInfo struct {
 	// FileName 使用/ad/aco/create/创建智能创意广告时指定的用于生成广告名称的视频名称。
 	// 若您创建智能创意广告时未在video_info对象中传入file_name，本字段的值将为空字符串。
 	FileName string `json:"file_name,omitempty"`
+}
+
+// MusicInfo 音乐信息
+type MusicInfo struct {
+	// MusicID 用于自动生成的商品库轮播广告的音乐的 ID
+	MusicID string `json:"music_id,omitempty"`
 }
 
 // Title 广告文案
@@ -138,6 +146,12 @@ type Card struct {
 type LandingPageURL struct {
 	// LandingPageURL 落地页URL
 	LandingPageURL string `json:"landing_page_url,omitempty"`
+	// VideoID 当推广系列使用多落地页模式时返回。
+	// 视频 ID。
+	VideoID string `json:"video_id,omitempty"`
+	// TiktokItemID 当推广系列使用多落地页模式时返回。
+	// 用作 Spark Ads 的 TikTok 帖子 ID。
+	TiktokItemID string `json:"tiktok_item_id,omitempty"`
 }
 
 // CommonMaterial 常用素材

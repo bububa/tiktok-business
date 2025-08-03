@@ -3,6 +3,7 @@ package spc
 import (
 	"github.com/bububa/tiktok-business/enum"
 	"github.com/bububa/tiktok-business/model"
+	"github.com/bububa/tiktok-business/model/ad/aco"
 )
 
 // Campaign 推广系列
@@ -291,5 +292,38 @@ type Campaign struct {
 	AppDownloadURL string `json:"app_download_url,omitempty"`
 	// AppName 应用名称
 	AppName string `json:"app_name,omitempty"`
-	// MediaInfoList
+	// MediaInfoList 媒体信息列表
+	MediaInfoList []aco.MediaInfo `json:"media_info_list,omitempty"`
+	// CatalogCreativeToggle 是否启用商品库素材的自动选择。
+	//  支持的值：true，false。
+	// 若本字段设置为 true，系统将使用可用的广告样式（商品库视频、商品库轮播和单视频）自动生成广告。
+	CatalogCreativeToggle bool `json:"catalog_creative_toggle,omitempty"`
+	// TitleList 广告文案列表。广告文案作为您的广告素材一部分向受众展示，传递您想传达的信息
+	TitleList []aco.Title `json:"title_list,omitempty"`
+	// CallToActionList 行动引导文案列表
+	CallToActionList []aco.CallToAction `json:"call_to_action,omitempty"`
+	// CallToActionID 行动引导文案素材包 ID
+	CallToActionID string `json:"call_to_action_id,omitempty"`
+	// CardList 卡片ID列表。长度范围：[0,1]
+	CardList []aco.Card `json:"card_list,omitempty"`
+	// AutomaticAddOnEnabled 是否启用创新互动样式的自动选择。
+	// 支持的值：true，false。
+	//  若本字段设置为 true，系统将在广告中自动应用最合适的创新互动样式。
+	AutomaticAddOnEnabled bool `json:"automatic_add_on_enabled,omitempty"`
+	// PageList 页面 ID 列表
+	PageList []aco.Page `json:"page_list,omitempty"`
+	// DeeplinkType 深度链接类型
+	DeeplinkType enum.DeeplinkType `json:"deeplink_type,omitempty"`
+	// Deeplink 深度链接，用户下载应用后点击链接跳转至的特定页面
+	Deeplink string `json:"deeplink,omitempty"`
+	// LandingPageURLs 落地页URL列表
+	LandingPageURLs []aco.LandingPageURL `json:"landing_page_urls,omitempty"`
+	// ImpressionTrackingURL 默认展示监测 URL
+	ImpressionTrackingURL string `json:"impression_tracking_url,omitempty"`
+	// ClickTrackingURL 点击监测 URL
+	ClickTrackingURL string `json:"click_tracking_url,omitempty"`
+	// CreateTime 推广系列的创建时间，格式为YYYY-MM-DD HH:MM:SS（UTC+0）
+	CreateTime model.DateTime `json:"create_time,omitzero"`
+	// ModifyTime 推广系列的修改时间，格式为YYYY-MM-DD HH:MM:SS（UTC+0）
+	ModifyTime model.DateTime `json:"modify_time,omitzero"`
 }
