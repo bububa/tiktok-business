@@ -15,6 +15,17 @@ type Dimensions struct {
 	AdgroupID string `json:"adgroup_id,omitempty"`
 	// AdID 广告ID。当dimensions包含 ad_id 时返回
 	AdID string `json:"ad_id,omitempty"`
+	// MaterialID 素材 ID
+	MaterialID string `json:"material_id,omitempty"`
+	// ImageID 图片 ID
+	ImageID string `json:"image_id,omitempty"`
+	// VideoID 视频 ID
+	VideoID string `json:"video_id,omitempty"`
+	// Source 素材来源。枚举值见：枚举值 - 素材来源
+	Source enum.MaterialSource `json:"source,omitempty"`
+	// CatalogID 仅当 material_type 为 SPC_CATALOG_VIDEO 或SPC_CATALOG_CAROUSEL 时返回。
+	// 商品库 ID。
+	CatalogID string `json:"catalog_id,omitempty"`
 	// StatTimeDay 消耗发生的时间（天）。格式：2020-01-01 00:00:00
 	StatTimeDay model.DateTime `json:"stat_time_day,omitzero"`
 	// StatTimeHour 消耗发生的时间（小时）。格式：2020-01-01 10:00:00

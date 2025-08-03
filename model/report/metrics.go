@@ -44,6 +44,35 @@ type Metrics struct {
 	// AdgroupID 广告组ID
 	// 仅广告层级支持。
 	AdgroupID string `json:"adgroup_id,omitempty"`
+	// VideoID 仅当material_type设置为SPC_VIDEO时返回本字段。
+	// 视频 ID。
+	VideoID string `json:"video_id,omitempty"`
+	// FileName 仅当material_type设置为SPC_VIDEO时返回本字段。
+	// 视频名称。
+	FileName string `json:"file_name,omitempty"`
+	// IsRemovedFromSpc 仅当 material_type 为 SPC_VIDEO， SPC_AD_TEXT 或 SPC_SPARK 时返回。
+	// 视频是否已从 Smart+ 推广系列广告中移除。
+	// 枚举值：
+	// "1"：是。
+	// "0"：否。
+	IsRemovedFromSpc model.Int `json:"is_removed_from_spc,omitempty"`
+	// IdentityID 仅当material_type设置为SPC_SPARK时返回本字段。
+	// 认证身份 ID。
+	IdentityID string `json:"identity_id,omitempty"`
+	// TiktokItemID 仅当material_type设置为SPC_SPARK时返回本字段。
+	// 用作 Spark Ads 的 TikTok 帖子 ID。
+	TiktokItemID string `json:"tiktok_item_id,omitempty"`
+	// TiktokName 仅当material_type设置为SPC_SPARK时返回本字段。
+	// TikTok 账户昵称。
+	// 注意：目前，Smart+ 推广系列支持 identity_type 为 AUTH_CODE 或 TT_USER的 TikTok 帖子。 关于认证身份的更多信息，请访问认证身份。
+	TiktokName string `json:"tiktok_name,omitempty"`
+	// CatalogName 仅当 material_type 设置为SPC_CATALOG_VIDEO 或 SPC_CATALOG_CAROUSEL 时返回本字段。
+	// 商品库名称。
+	CatalogName string `json:"catalog_name,omitempty"`
+	// CatalogModifyTime 仅当 material_type 设置为SPC_CATALOG_VIDEO 或 SPC_CATALOG_CAROUSEL 时返回本字段。
+	// 商品库最近一次修改的时间，格式为YYYY-MM-DD HH:MM:SS（UTC+0）。
+	// 示例：2024-00-01 00:00:00。
+	CatalogModifyTime model.DateTime `json:"catalog_modify_time,omitzero"`
 	// PlacementType 版位类型
 	// 广告组、广告层级支持。
 	PlacementType enum.Placement `json:"placement_type,omitempty"`

@@ -8,4 +8,6 @@ const (
 	CreativeMaterialMode_CUSTOM CreativeMaterialMode = "CUSTOM"
 	// CreativeMaterialMode_SMART_CREATIVE（智能创意）。
 	CreativeMaterialMode_SMART_CREATIVE CreativeMaterialMode = "SMART_CREATIVE"
+	// CreativeMaterialMode_DYNAMIC 程序化
+	CreativeMaterialMode_DYNAMIC CreativeMaterialMode = "DYNAMIC"
 )

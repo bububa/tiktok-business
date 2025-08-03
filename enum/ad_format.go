@@ -14,4 +14,6 @@ const (
 	AdFormat_LIVE_CONTENT AdFormat = "LIVE_CONTENT"
 	// AdFormat_CAROUSEL_ADS 多图轮播，支持TikTok版位。
 	AdFormat_CAROUSEL_ADS AdFormat = "CAROUSEL_ADS"
+	// AdFormat_CATALOG_CAROUSEL（视频购物类型的轮播广告）
+	AdFormat_CATALOG_CAROUSEL AdFormat = "CATALOG_CAROUSEL"
 )

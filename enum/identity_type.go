@@ -4,6 +4,8 @@ package enum
 type IdentityType string
 
 const (
+	// IdentityType_CUSTOMIZED_USER (自定义用户）
+	IdentityType_CUSTOMIZED_USER IdentityType = "CUSTOMIZED_USER"
 	//  IdentityType_AUTH_CODE (授权码认证)
 	IdentityType_AUTH_CODE IdentityType = "AUTH_CODE"
 	// IdentityType_TT_USER (TikTok商务用户)
