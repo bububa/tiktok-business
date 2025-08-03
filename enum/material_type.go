@@ -4,6 +4,12 @@ package enum
 type MaterialType string
 
 const (
+	// MaterialType_VIDEO
+	MaterialType_VIDEO MaterialType = "VIDEO"
+	// MaterialType_IMAGE
+	MaterialType_IMAGE MaterialType = "IMAGE"
+	// MaterialType_INSTANT_PAGE
+	MaterialType_INSTANT_PAGE MaterialType = "INSTANT_PAGE"
 	// MaterialType_SPC_VIDEO
 	MaterialType_SPC_VIDEO MaterialType = "SPC_VIDEO"
 	// MaterialType_SPC_AD_TEXT

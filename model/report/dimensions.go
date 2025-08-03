@@ -17,6 +17,12 @@ type Dimensions struct {
 	AdID string `json:"ad_id,omitempty"`
 	// MaterialID 素材 ID
 	MaterialID string `json:"material_id,omitempty"`
+	// ImageID 图片 ID
+	ImageID string `json:"image_id,omitempty"`
+	// VideoID 视频 ID
+	VideoID string `json:"video_id,omitempty"`
+	// Source 素材来源。枚举值见：枚举值 - 素材来源
+	Source enum.MaterialSource `json:"source,omitempty"`
 	// CatalogID 仅当 material_type 为 SPC_CATALOG_VIDEO 或SPC_CATALOG_CAROUSEL 时返回。
 	// 商品库 ID。
 	CatalogID string `json:"catalog_id,omitempty"`
