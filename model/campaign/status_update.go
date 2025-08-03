@@ -62,7 +62,7 @@ type StatusUpdateResult struct {
 	CampaignList []UpdatedCampaign `json:"campaign_list,omitempty"`
 }
 
-// UpdateCampaign 所指定的推广系列的相关信息
+// UpdatedCampaign 所指定的推广系列的相关信息
 type UpdatedCampaign struct {
 	// CampaignID 推广系列ID
 	CampaignID string `json:"campaign_id,omitempty"`
