@@ -1,4 +1,4 @@
-package adgroup
+package ad
 
 import (
 	"strconv"
@@ -8,20 +8,17 @@ import (
 	"github.com/bububa/tiktok-business/util"
 )
 
-// GetRequest 获取广告组列表 API Request
+// GetRequest 获取广告 API Request
 type GetRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID string `json:"advertiser_id,omitempty"`
-	// Fields 希望返回的字段集合。
-	// 不传时，默认返回所有字段。
-	// 传入时则仅返回指定字段。枚举值参见返回数据中list下的字段。
+	// Fields 返回字段。查看返回中list下的字段，获取您可以指定的字段。如果您不传入该字段，系统将默认返回所有字段。
 	Fields []string `json:"fields,omitempty"`
 	// ExcludeFieldTypesInResponse 想要从返回中移除的字段种类。
 	// 允许的枚举值：
 	// NULL_FIELD: 值为null的字段。
 	ExcludeFieldTypesInResponse []enum.ExcludeFieldType `json:"exclude_field_types_in_response,omitempty"`
-	// Filtering 筛选条件。
-	// 示例： filtering={"objective_type":"APP_PROMOTION"}
+	// Filtering 筛选条件
 	Filtering *GetFilter `json:"filtering,omitempty"`
 	// Page 当前页数。
 	// 默认值: 1。
@@ -30,13 +27,12 @@ type GetRequest struct {
 	// PageSize 分页大小。
 	// 默认值: 10。
 	// 取值范围：1-1,000。
-	// 注意：若您在筛选字段 buying_types 使用了枚举值RESERVATION_TOP_VIEW，则本字段允许的最大值为 100。
 	PageSize int `json:"page_size,omitempty"`
 }
 
-// GetFilter 筛选条件。
+// GetFilter 筛选条件
 type GetFilter struct {
-	// CampaignIDs 推广系列的id列表，支持筛选指定推广系列下的广告组，允许数量范围：1-100。
+	// CampaignIDs 推广系列 ID，允许数量范围: 1-100
 	CampaignIDs []string `json:"campaign_ids,omitempty"`
 	// CampaignSystemOrigins 推广系列来源。
 	// 枚举值：
@@ -56,8 +52,8 @@ type GetFilter struct {
 	CampaignSystemOrigins []enum.CampaignSystemOrigin `json:"campaign_system_origins,omitempty"`
 	// AdgroupIDs 广告组id列表，支持筛选指定的广告组，允许数量范围：1-100
 	AdgroupIDs []string `json:"adgroup_ids,omitempty"`
-	// AdgroupName 广告组名字，支持广告组名字的模糊搜索
-	AdgroupName string `json:"adgroup_name,omitempty"`
+	// AdIDs 广告 ID 列表，允许数量范围: 1-100
+	AdIDs []string `json:"ad_ids,omitempty"`
 	// PrimaryStatus 一级状态。枚举值详见 枚举值 - 一级状态
 	// 默认值：STATUS_NOT_DELETE，返回除STATUS_DELETE外所有状态的广告组。如果您想获得包括STATUS_DELETE在内的所有状态的广告组，请使用STATUS_ALL。
 	PrimaryStatus enum.PrimaryStatus `json:"primary_status,omitempty"`
@@ -83,38 +79,28 @@ type GetFilter struct {
 	BuyingTypes []enum.BuyingType `json:"buying_types,omitempty"`
 	// OptimizationGoal 优化目标。枚举值见枚举值-优化目标。
 	OptimizationGoal enum.OptimizationGoal `json:"optimization_goal,omitempty"`
-	// PromotionType 您想要筛选的推广对象类型（优化位置）。
-	// 枚举值：
-	// APP：应用。
-	// WEBSITE：落地页。
-	// INSTANT_FORM ：线索表单（即时表单）。
-	// LEAD_GEN_CLICK_TO_TT_DIRECT_MESSAGE：TikTok 私信。
-	// LEAD_GEN_CLICK_TO_SOCIAL_MEDIA_APP_MESSAGE：社交媒体应用。
-	// LEAD_GEN_CLICK_TO_CALL：电话通话。
-	//
-	// 注意：
-	//
-	// 本筛选字段不同于用于创建广告组的promotion_type字段，即本接口返回的promotion_type字段。promotion_type 作为筛选字段同样支持在同步基础报表和同步DSA报表中使用。
-	// 请查看不同推广对象类型之间的映射 ，了解如何使用本字段筛选出用于广告组创建的推广对象类型。
-	PromotionType enum.PromotionType `json:"promotion_type,omitempty"`
-	// BidStrategy 竞价策略。 枚举值：BID_STRATEGY_COST_CAP, BID_STRATEGY_BID_CAP, BID_STRATEGY_MAX_CONVERSION 和 BID_STRATEGY_LOWEST_COST
-	BidStrategy enum.BidStrategy `json:"bid_strategy,omitempty"`
 	// CreativeMaterialMode 创意投放方式。
-	// 枚举值: CUSTOM（自定义），SMART_CREATIVE（智能创意）。
+	// 枚举值: CUSTOM（自定义）、DYNAMIC（程序化）、SMART_CREATIVE（智能创意）
 	CreativeMaterialMode enum.CreativeMaterialMode `json:"creative_material_mode,omitempty"`
-	// BillingEvents 计费事件，按照计费事件筛选。
-	// 枚举值：详见枚举值-计费事件 。
-	BillingEvents []enum.BillingEvent `json:"billing_events,omitempty"`
-	// CreationFilterStartTime 广告组最早创建时间，格式：YYYY-MM-DD HH:MM:SS（UTC时区）。创建时间晚于此时间的广告组会被返回。
-	// 建议：为了让任务成功执行及任务速度不受影响，创建时间的范围建议在6个月以内。
+	// Destination 目标页类型。
+	// 枚举值：
+	// APP：所推广 App 在Google Play 或 Apple Store 的下载页面。广告对应的广告组中promotion_type 设置为APP_ANDROID 或 APP_IOS。
+	// TIKTOK_INSTANT_PAGE: TikTok 即时体验页面，包括自定义页面、线索表单（即时体验表单）、应用介绍页和即时体验商品页面。广告中指定了TikTok即时体验页面的页面 ID（page_id）。
+	// WEBSITE：网站页面。广告中指定了落地页（landing_page_url）。
+	// SOCIAL_MEDIA_APP：社交媒体 URL。若想了解支持将目标页面设置为社交媒体 URL 的广告类型，请查看创建推广对象类型为即时通讯应用的线索广告。
+	// PHONE_CALL：电话号码。若想了解支持将目标页面设置为电话号码的广告类型，请查看创建推广对象类型为电话通话的线索广告。
+	//
+	// 若您同时指定了objective_type ，请查看推广目标下支持筛选的目标页面类型，了解本字段可以设置的值。
+	Destination enum.Destination `json:"destination,omitempty"`
+	// CreationFilterStartTime 筛选创建时间晚于某一时间的广告，格式为 YYYY-MM-DD HH:MM:SS（UTC 时区）。
+	// 建议：为确保任务的成功执行及速度，创建时间的筛选范围建议不超过 6 个月。
 	CreationFilterStartTime model.DateTime `json:"creation_filter_start_time,omitzero"`
-	// CreationFilterEndTime 广告组最晚创建时间，格式：YYYY-MM-DD HH:MM:SS（UTC时区）。创建时间先于此时间的广告组会被返回。
-	// 建议：为了让任务成功执行及任务速度不受影响，创建时间的范围建议在6个月以内。
+	// CreationFilterEndTime 筛选创建时间早于某一时间的广告，格式为 YYYY-MM-DD HH:MM:SS（UTC 时区）。
+	// 建议：为确保任务的成功执行及速度，创建时间的筛选范围建议不超过 6 个月。
 	CreationFilterEndTime model.DateTime `json:"creation_filter_end_time,omitzero"`
-	// SplitTestEnabled 按广告组是否启用了拆分对比测试筛选。
-	// true：仅获取已启用拆分对比测试的广告组，false：仅获取未启用拆分对比测试的广告组。
-	// 注意： 若您不填写该字段，则将获取所有广告组。
-	SplitTestEnabled *bool `json:"split_test_enabled,omitempty"`
+	// ModifiedAfter 筛选修改时间晚于某一时间的广告，格式为 YYYY-MM-DD HH:MM:SS（UTC 时区）。
+	// 建议：为确保任务的成功执行及速度，修改时间的筛选范围建议不超过 6 个月。
+	ModifiedAfter model.DateTime `json:"modified_after,omitzero"`
 }
 
 // Encode implements GetRequest interface
@@ -141,15 +127,16 @@ func (r *GetRequest) Encode() string {
 	return ret
 }
 
-// GetResponse 获取广告组列表 API Response
+// GetResponse 获取广告 API Response
 type GetResponse struct {
 	model.BaseResponse
 	Data *GetResult `json:"data,omitempty"`
 }
 
 type GetResult struct {
-	// List 符合条件的广告组列表，请求参数未设置fields字段或者fields中包含以下子字段时会返回相关字段
-	List []Adgroup `json:"list,omitempty"`
+	// List 符合条件的广告列表，请求参数未设置fields字段或者fields中包含以下子字段时会返回相关字段
+	// 注意：返回中不包含通过 TikTok Shop 创建的商品总交易额最大化广告（Product GMV max ads）和直播总交易额最大化广告（LIVE GMV max ads）。通过 API 或 TikTok 广告管理平台创建的购物广告则不受影响。
+	List []Ad `json:"list,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
