@@ -33,7 +33,7 @@ type AccessToken struct {
 	// AccessToken 用于权限验证的长期访问令牌。
 	AccessToken string `json:"access_token,omitempty"`
 	// AdvertiserID 该访问令牌可以访问的广告账号列表。
-	AdvertiserIDs []uint64 `json:"advertiser_ids,omitempty"`
+	AdvertiserIDs []string `json:"advertiser_ids,omitempty"`
 	// Scope 该访问令牌所拥有的权限。
 	// 您可查看权限范围了解权限范围 ID（scope的值）对应的权限。
 	Scope []int64 `json:"scope,omitempty"`
