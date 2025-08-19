@@ -78,7 +78,7 @@ type Campaign struct {
 	// OperationStatus 推广系列的操作状态。
 	// ENABLE：推广系列处于启用（“开”）状态。
 	// DISABLE：推广系列处于未启用（“关”）状态。
-	OpeterationStatus enum.OperationStatus `json:"operation_status,omitempty"`
+	OperationStatus enum.OperationStatus `json:"operation_status,omitempty"`
 	// Objective 推广类型（应用或落地页），枚举值: APP(应用)，LANDING_PAGE(落地页) 。
 	Objective enum.Objective `json:"objective,omitempty"`
 	// ObjectiveType 推广目标，获取枚举值，参阅 枚举值-推广目标。
