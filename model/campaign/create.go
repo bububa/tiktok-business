@@ -157,7 +157,7 @@ type CreateRequest struct {
 	// 对于覆盖和频次推广系列，需将operation_status设置为ENABLE，或不传入operation_status，请不要将operation_status设置为DISABLE。
 	// 默认值：ENABLE。
 	// 若想在推广系列创建后更新其启用/关闭状态，请使用/campaign/status/update/接口。
-	OpeterationStatus enum.OperationStatus `json:"operation_status,omitempty"`
+	OperationStatus enum.OperationStatus `json:"operation_status,omitempty"`
 	// PostbackWindowMode 选定的模式决定您想要确保能接收到的 SKAN (SKAdNetwork) 4.0 回传。
 	// 本字段支持在创建暂停状态的推广系列时指定，或在通过/campaign/status/update/接口暂停现有推广系列时指定。推荐做法为在暂停现有推广系列时指定本字段。
 	// 选定的模式决定您想要确保能接收到的 SKAN (SKAdNetwork) 4.0 回传。对应的窗口期较长的回传需要更多时间接收回传，推广系列配额释放的时间也相应较长。

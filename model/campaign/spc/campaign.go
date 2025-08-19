@@ -15,7 +15,7 @@ type Campaign struct {
 	// OperationStatus 推广系列的操作状态。
 	// ENABLE：推广系列处于启用（“开”）状态。
 	// DISABLE：推广系列处于未启用（“关”）状态。
-	OpeterationStatus enum.OperationStatus `json:"operation_status,omitempty"`
+	OperationStatus enum.OperationStatus `json:"operation_status,omitempty"`
 	// CampaignSecondaryStatus 广告状态（二级状态）。
 	// 枚举值见枚举值-二级状态。
 	// 对应/campaign/get/接口返回的secondary_status。
