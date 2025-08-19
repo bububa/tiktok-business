@@ -55,7 +55,7 @@ type StatusUpdateResponse struct {
 
 type StatusUpdateResult struct {
 	// CampaignIDs 修改的推广系列 ID列表
-	CampaignIDs []uint64 `json:"campaign_ids,omitempty"`
+	CampaignIDs []string `json:"campaign_ids,omitempty"`
 	// Status 已执行的操作，枚举值：DELETE，DISABLE，ENABLE。
 	Status enum.OperationStatus `json:"status,omitempty"`
 	// CampaignList 所指定的推广系列的相关信息
