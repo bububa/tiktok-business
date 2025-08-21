@@ -195,7 +195,7 @@ type Metrics struct {
 	GrossImpressions model.Int64 `json:"gross_impressions,omitempty"`
 	// Clicks 点击量（目标页面）
 	// 您的广告获得的跳转到指定目标页面的点击次数。
-	Clicks model.Float64 `json:"clicks,omitempty"`
+	Clicks model.Int64 `json:"clicks,omitempty"`
 	// CTR 点击率（目标页面）
 	// 促成目标页面点击的展示次数占总展示次数的百分比。
 	CTR model.Float64 `json:"ctr,omitempty"`
