@@ -270,7 +270,7 @@ type IntegratedGetResult struct {
 	// TotalMetrics 所有请求指标的汇总数据。 当您在请求中开启 enable_total_metrics 参数时，返回此对象。
 	TotalMetrics *Metrics `json:"total_metrics,omitempty"`
 	// List 数据列表
-	List []Stat `json:"report,omitempty"`
+	List []Stat `json:"list,omitempty"`
 	// PageInfo 分页信息
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 }
