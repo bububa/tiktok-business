@@ -173,7 +173,7 @@ type UpdateRequest struct {
 	// 注意:
 	// 该字段仅支持竞价广告。参考推广目标了解详情。
 	// 该字段仅支持美国TikTok版位。
-	HouseholdIncome enum.HouseholdIncome `json:"household_income,omitempty"`
+	HouseholdIncome []enum.HouseholdIncome `json:"household_income,omitempty"`
 	// AudienceIDs 受众 ID 列表。
 	// 通过/dmp/custom_audience/list/接口进行管理
 	AudienceIDs []string `json:"audience_ids,omitempty"`

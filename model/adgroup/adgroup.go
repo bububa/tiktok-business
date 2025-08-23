@@ -238,7 +238,7 @@ type Adgroup struct {
 	// SpendingPower 消费能力。枚举值：ALL, HIGH。如果设为HIGH，您就可以定向和普通用户相比 TikTok 广告投入支出通常更多的高消费能力用户。
 	SpendingPower enum.SpendingPower `json:"spending_power,omitempty"`
 	// HouseholdIncome 您想定向的收入群体。枚举值：TOP5(家庭收入群体的前5%)， TOP10(家庭收入群体的前10%)，TOP10_25(家庭收入群体的前10-25%)， TOP25_50(家庭收入群体的前25-50%)。
-	HouseholdIncome enum.HouseholdIncome `json:"household_income,omitempty"`
+	HouseholdIncome []enum.HouseholdIncome `json:"household_income,omitempty"`
 	// AudienceIDs 受众 ID 列表。
 	AudienceIDs []string `json:"audience_ids,omitempty"`
 	// SmartAudienceEnabled 是否已启用智能受众。
