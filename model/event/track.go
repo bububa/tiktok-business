@@ -26,6 +26,8 @@ type TrackRequest struct {
 	// 当event_source设置为crm时，需通过本字段指定 CRM 事件组 ID。
 	// 若要获取 CRM 事件组 ID，请使用 /crm/list/。
 	EventSourceID string `json:"event_source_id,omitempty"`
+	// TesetEventCode
+	TestEventCode string `json:"test_event_code,omitempty"`
 	// Data 您要报告的事件的对象数组。
 	// 若只发送单个事件，请在本对象数组中传递一个对象。
 	// 若要在单个有效负载中批量发送多个事件，则单个请求中的本对象数组最多可包含 1,000 个事件。

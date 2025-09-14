@@ -112,7 +112,7 @@ type Ad struct {
 	// AdText 广告文案，将作为广告创意的一部分展示给您的受众，向他们传达您想要推广的信息。关键词匹配类型为精确匹配
 	AdText string `json:"ad_text,omitempty"`
 	// AdTexts 广告文案列表
-	AdTexts string `json:"ad_texts,omitempty"`
+	AdTexts []string `json:"ad_texts,omitempty"`
 	// CallToAction 行动引导文案，见 枚举值-行动引导文案
 	CallToAction enum.CallToAction `json:"call_to_action,omitempty"`
 	// CallToActionID 行动引导文案素材包ID。行动引导文案素材包指的是一组自动优化的行动引导文案。如果本字段和call_to_action都传入，call_to_action会被忽略。关于动态优选CTA的更多信息，请参见智能推荐CTA > 动态优选CTA。

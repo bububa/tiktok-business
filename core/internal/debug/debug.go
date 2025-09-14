@@ -1,6 +1,7 @@
 package debug
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
 	"log"
@@ -82,23 +83,20 @@ func PrintPostMultipartRequest(url string, mp map[string]string, debug bool) {
 }
 
 // DecodeJSONHttpResponse decode json response with debug
-func DecodeJSONHttpResponse(r io.Reader, v any, debug bool) ([]byte, error) {
-	buf := util.NewBuffer()
-	defer util.ReleaseBuffer(buf)
-	tee := io.TeeReader(r, buf)
+func DecodeJSONHttpResponse(r io.Reader, w *bytes.Buffer, v any, debug bool) error {
+	tee := io.TeeReader(r, w)
 	if err := json.NewDecoder(tee).Decode(v); err != nil {
-		return buf.Bytes(), err
+		return err
 	}
 	if !debug {
-		return nil, nil
+		return nil
 	}
-	bs := buf.Bytes()
 	debugBuf := util.NewBuffer()
 	defer util.ReleaseBuffer(debugBuf)
-	if err := json.Indent(debugBuf, bs, "", "\t"); err != nil {
-		return bs, err
+	if err := json.Indent(debugBuf, w.Bytes(), "", "\t"); err != nil {
+		return err
 	}
 
 	log.Println(util.StringsJoin("[TIKTOK] [RESP] http response body:\n", debugBuf.String()))
-	return nil, nil
+	return nil
 }
