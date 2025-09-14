@@ -21,7 +21,7 @@ var (
 	httpClient *http.Client
 )
 
-func defaultHttpClient() *http.Client {
+func defaultHTTPClient() *http.Client {
 	onceInit.Do(func() {
 		transport := http.DefaultTransport.(*http.Transport).Clone()
 		transport.MaxIdleConns = 100
@@ -50,7 +50,7 @@ func NewSDKClient(appID string, secret string) *SDKClient {
 	return &SDKClient{
 		appID:  appID,
 		secret: secret,
-		client: defaultHttpClient(),
+		client: defaultHTTPClient(),
 	}
 }
 
@@ -67,8 +67,8 @@ func (c *SDKClient) SetDebug(debug bool) {
 	c.debug = debug
 }
 
-// SetHttpClient 设置http.Client
-func (c *SDKClient) SetHttpClient(client *http.Client) {
+// SetHTTPClient 设置http.Client
+func (c *SDKClient) SetHTTPClient(client *http.Client) {
 	c.client = client
 }
 
@@ -134,8 +134,8 @@ func (c *SDKClient) post(ctx context.Context, base string, gw string, req model.
 	if req != nil {
 		reqBytes = req.Encode()
 	}
-	reqUrl := util.StringsJoin(base, gw)
-	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, reqUrl, bytes.NewReader(reqBytes))
+	reqURL := util.StringsJoin(base, gw)
+	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, reqURL, bytes.NewReader(reqBytes))
 	if err != nil {
 		return err
 	}
@@ -143,17 +143,17 @@ func (c *SDKClient) post(ctx context.Context, base string, gw string, req model.
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
 	}
-	debug.PrintJSONRequest("POST", reqUrl, httpReq.Header, reqBytes, c.debug)
+	debug.PrintJSONRequest("POST", reqURL, httpReq.Header, reqBytes, c.debug)
 	return c.fetch(httpReq, resp)
 }
 
 func (c *SDKClient) get(ctx context.Context, base string, gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	reqUrl := util.StringsJoin(base, gw)
+	reqURL := util.StringsJoin(base, gw)
 	if req != nil {
-		reqUrl = util.StringsJoin(reqUrl, "?", req.Encode())
+		reqURL = util.StringsJoin(reqURL, "?", req.Encode())
 	}
-	debug.PrintGetRequest(reqUrl, c.debug)
-	httpReq, err := http.NewRequestWithContext(ctx, http.MethodGet, reqUrl, nil)
+	debug.PrintGetRequest(reqURL, c.debug)
+	httpReq, err := http.NewRequestWithContext(ctx, http.MethodGet, reqURL, nil)
 	if err != nil {
 		return err
 	}
@@ -197,9 +197,9 @@ func (c *SDKClient) upload(ctx context.Context, base string, gw string, req mode
 		}
 	}
 	mw.Close()
-	reqUrl := util.StringsJoin(base, gw)
-	debug.PrintPostMultipartRequest(reqUrl, mp, c.debug)
-	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, reqUrl, buf)
+	reqURL := util.StringsJoin(base, gw)
+	debug.PrintPostMultipartRequest(reqURL, mp, c.debug)
+	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, reqURL, buf)
 	if err != nil {
 		return err
 	}
@@ -230,16 +230,17 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	if resp == nil {
 		resp = &model.BaseResponse{}
 	}
-	body, err := debug.DecodeJSONHttpResponse(httpResp.Body, resp, c.debug)
-	if httpResp.ContentLength <= 0 {
-		httpResp.ContentLength = int64(len(body))
-	}
-	if err != nil {
+	buf := util.NewBuffer()
+	defer util.ReleaseBuffer(buf)
+	if err := debug.DecodeJSONHttpResponse(httpResp.Body, buf, resp, c.debug); err != nil {
 		debug.PrintError(err, c.debug)
 		return errors.Join(err, model.BaseResponse{
 			Code:    httpResp.StatusCode,
-			Message: string(body),
+			Message: buf.String(),
 		})
+	}
+	if httpResp.ContentLength <= 0 {
+		httpResp.ContentLength = int64(buf.Len())
 	}
 	// if throttle := httpResp.Header.Get("X-Tt-Ads-Throttle"); throttle != "" {
 	//
@@ -247,7 +248,7 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	if httpResp.StatusCode < 200 || httpResp.StatusCode >= 300 {
 		return errors.Join(err, model.BaseResponse{
 			Code:    httpResp.StatusCode,
-			Message: string(body),
+			Message: buf.String(),
 		})
 	}
 	if resp.IsError() {
