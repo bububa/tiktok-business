@@ -232,8 +232,16 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	}
 	buf := util.NewBuffer()
 	defer util.ReleaseBuffer(buf)
-	if err := debug.DecodeJSONHttpResponse(httpResp.Body, buf, resp, c.debug); err != nil {
+	err = debug.DecodeJSONHttpResponse(httpResp.Body, buf, resp, c.debug)
+	if resp.IsError() {
+		return resp
+	} else if err != nil {
 		debug.PrintError(err, c.debug)
+		return errors.Join(err, model.BaseResponse{
+			Code:    httpResp.StatusCode,
+			Message: buf.String(),
+		})
+	} else if httpResp.StatusCode < 200 || httpResp.StatusCode >= 300 {
 		return errors.Join(err, model.BaseResponse{
 			Code:    httpResp.StatusCode,
 			Message: buf.String(),
@@ -241,18 +249,6 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 	}
 	if httpResp.ContentLength <= 0 {
 		httpResp.ContentLength = int64(buf.Len())
-	}
-	// if throttle := httpResp.Header.Get("X-Tt-Ads-Throttle"); throttle != "" {
-	//
-	// }
-	if httpResp.StatusCode < 200 || httpResp.StatusCode >= 300 {
-		return errors.Join(err, model.BaseResponse{
-			Code:    httpResp.StatusCode,
-			Message: buf.String(),
-		})
-	}
-	if resp.IsError() {
-		return resp
 	}
 	return nil
 }
