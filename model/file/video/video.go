@@ -1,6 +1,9 @@
 package video
 
-import "github.com/bububa/tiktok-business/enum"
+import (
+	"github.com/bububa/tiktok-business/enum"
+	"github.com/bububa/tiktok-business/model"
+)
 
 // Video 视频信息
 type Video struct {
@@ -22,7 +25,7 @@ type Video struct {
 	// 若想了解本预览链接的过期时间，请查看preview_url_expire_time。
 	PreviewURL string `json:"preview_url,omitempty"`
 	// PreviewURLExpireTime 视频预览链接过期时间，格式为YYYY-MM-DD HH:MM:SS(UTC+0)
-	PreviewURLExpireTime string `json:"preview_url_expire_time,omitempty"`
+	PreviewURLExpireTime model.DateTime `json:"preview_url_expire_time,omitzero"`
 	// Duration 视频时长，单位秒
 	Duration float64 `json:"duration,omitempty"`
 	// Signature 视频文件MD5
@@ -40,9 +43,9 @@ type Video struct {
 	// FileName 视频名称
 	FileName string `json:"file_name,omitempty"`
 	// CreateTime 创建时间。UTC 时间，格式：2020-06-10T07:39:14Z
-	CreateTime string `json:"create_time,omitempty"`
+	CreateTime model.DateTime `json:"create_time,omitzero"`
 	// ModifyTime 修改时间。UTC 时间，格式：2020-06-10T07:39:14Z
-	ModifyTime string `json:"modify_time,omitempty"`
+	ModifyTime model.DateTime `json:"modify_time,omitzero"`
 	// FixTaskID 仅在请求中flaw_detect和 auto_fix_enabled都设置为true，且检测到视频中的问题时返回。
 	// 修复任务 ID。
 	// 若想获取修复后的视频，可使用以下方法之一：
