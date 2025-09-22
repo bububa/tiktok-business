@@ -88,6 +88,9 @@ func (r *AdUploadRequest) Encode() []model.UploadField {
 		Key:   "advertiser_id",
 		Value: r.AdvertiserID,
 	}, model.UploadField{
+		Key:   "upload_type",
+		Value: string(enum.UPLOAD_BY_FILE),
+	}, model.UploadField{
 		Key:   "file_name",
 		Value: r.FileName,
 	}, model.UploadField{
