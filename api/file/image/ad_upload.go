@@ -2,6 +2,7 @@ package image
 
 import (
 	"context"
+	"errors"
 
 	"github.com/bububa/tiktok-business/core"
 	"github.com/bububa/tiktok-business/enum"
@@ -12,6 +13,9 @@ import (
 func AdUpload(ctx context.Context, clt *core.SDKClient, req *image.AdUploadRequest, accessToken string) (*image.Image, error) {
 	var ret image.AdUploadResponse
 	if req.UploadType == enum.UPLOAD_BY_FILE {
+		if req.ImageFile == nil {
+			return nil, errors.New("missing image_file")
+		}
 		if err := clt.Upload(ctx, "v1.3/file/image/ad/upload", req, &ret, accessToken); err != nil {
 			return nil, err
 		}

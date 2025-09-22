@@ -1,6 +1,8 @@
 package image
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"io"
 
 	"github.com/bububa/tiktok-business/enum"
@@ -53,14 +55,29 @@ func (r *AdPostUploadRequest) Encode() []byte {
 
 // Encode implements UploadRequest interface
 func (r *AdUploadRequest) Encode() []model.UploadField {
+	var reader io.Reader
+	if r.ImageSignature == "" {
+		buf := util.NewBuffer()
+		defer util.ReleaseBuffer(buf)
+		io.Copy(buf, r.ImageFile)
+		h := md5.New()
+		h.Write(buf.Bytes())
+		r.ImageSignature = hex.EncodeToString(h.Sum(nil))
+		reader = buf
+	} else {
+		reader = r.ImageFile
+	}
 	return []model.UploadField{{
 		Key:   "advertiser_id",
 		Value: r.AdvertiserID,
 	}, {
+		Key:   "upload_type",
+		Value: string(enum.UPLOAD_BY_FILE),
+	}, {
 		Key:   "file_name",
 		Value: r.FileName,
 	}, {
-		Reader: r.ImageFile,
+		Reader: reader,
 		Key:    "image_file",
 		Value:  r.FileName,
 	}, {
