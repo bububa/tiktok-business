@@ -108,7 +108,7 @@ type Campaign struct {
 	// CUSTOMIZED_PRODUCTS：选择自定义数量的特定商品
 	ProductSpecificType enum.ProductSpecificType `json:"product_specific_type,omitempty"`
 	// ProductSetID 商品系列 ID
-	ProductSetID string `json:"prodduct_seit_id,omitempty"`
+	ProductSetID string `json:"prodduct_set_id,omitempty"`
 	// ProductIDs 商品库商品的商品 ID 列表
 	ProductIDs []string `json:"product_ids,omitempty"`
 	// PromotionType 推广对象类型（优化位置）。您可以使用该字段决定在哪里投放广告。
