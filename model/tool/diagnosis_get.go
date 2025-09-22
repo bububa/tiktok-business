@@ -57,6 +57,7 @@ type DiagnosisGetResult struct {
 	// AdgroupName 广告组名称
 	AdgroupName string `json:"adgroup_name,omitempty"`
 	// Diagnosis 该广告组的诊断信息
+	Diagnosis *Diagnosis `json:"diagnosis,omitempty"`
 }
 
 // Diagnosis 广告组的诊断信息
