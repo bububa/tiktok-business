@@ -2,7 +2,9 @@ package model
 
 import (
 	"bytes"
+	"encoding/binary"
 	"encoding/json"
+	"errors"
 	"strconv"
 	"strings"
 	"time"
@@ -206,6 +208,24 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// MarshalBinary encodes time as Unix nanoseconds
+func (d DateTime) MarshalBinary() ([]byte, error) {
+	buf := make([]byte, 8)
+	// encode UnixNano as int64
+	binary.BigEndian.PutUint64(buf, uint64(d.Time().UnixNano()))
+	return buf, nil
+}
+
+// UnmarshalBinary decodes time from Unix nanoseconds
+func (d *DateTime) UnmarshalBinary(data []byte) error {
+	if len(data) != 8 {
+		return errors.New("invalid length for Time")
+	}
+	nano := int64(binary.BigEndian.Uint64(data))
+	*d = DateTime(time.Unix(0, nano))
+	return nil
+}
+
 // TimeLocation is a custom type to handle JSON marshaling/unmarshaling of time.Location.
 type TimeLocation time.Location
 
@@ -242,6 +262,20 @@ func (l TimeLocation) MarshalJSON() ([]byte, error) {
 	}
 	// Marshal the location's name back to a JSON string.
 	return json.Marshal(loc.String())
+}
+
+func (l TimeLocation) MarshalBinary() ([]byte, error) {
+	return []byte(l.String()), nil
+}
+
+func (l *TimeLocation) UnmarshalBinary(data []byte) error {
+	name := string(data)
+	loc, err := time.LoadLocation(name)
+	if err != nil {
+		return err
+	}
+	*l = TimeLocation(*loc)
+	return nil
 }
 
 // PageInfo 分页信息
