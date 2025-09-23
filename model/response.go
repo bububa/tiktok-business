@@ -16,7 +16,7 @@ type Response interface {
 	APIRequestID() string
 }
 
-// Response shared api response data fields
+// BaseResponse shared api response data fields
 type BaseResponse struct {
 	// Message 返回信息
 	Message string `json:"message"`

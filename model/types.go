@@ -27,7 +27,7 @@ func (u64 *Uint64) UnmarshalJSON(b []byte) (err error) {
 		i, _ = strconv.ParseUint(string(b), 10, 64)
 	}
 	*u64 = Uint64(i)
-	return
+	return err
 }
 
 func (u64 Uint64) Value() uint64 {
@@ -54,7 +54,7 @@ func (i64 *Int64) UnmarshalJSON(b []byte) (err error) {
 		i, _ = strconv.ParseInt(string(b), 10, 64)
 	}
 	*i64 = Int64(i)
-	return
+	return err
 }
 
 func (i64 Int64) Value() int64 {
@@ -81,7 +81,7 @@ func (i *Int) UnmarshalJSON(b []byte) (err error) {
 		v, _ = strconv.Atoi(string(b))
 	}
 	*i = Int(v)
-	return
+	return err
 }
 
 func (i Int) Value() int {
@@ -102,7 +102,7 @@ func (f64 *Float64) UnmarshalJSON(b []byte) (err error) {
 	}
 	i, _ := strconv.ParseFloat(string(b), 64)
 	*f64 = Float64(i)
-	return
+	return err
 }
 
 func (f64 Float64) Value() float64 {
@@ -135,21 +135,23 @@ func (bl *Bool) UnmarshalJSON(b []byte) (err error) {
 		ret = true
 	}
 	*bl = Bool(ret)
-	return
+	return err
 }
 
-func (b Bool) Value() bool {
-	return bool(b)
+func (bl Bool) Value() bool {
+	return bool(bl)
 }
 
-func (b Bool) String() string {
-	if b {
+func (bl Bool) String() string {
+	if bl {
 		return "true"
 	}
 	return "false"
 }
 
-const dateFormat = "2006-01-02 15:04:04"
+const (
+	dateFormat = "2006-01-02 15:04:05"
+)
 
 type DateTime time.Time
 
@@ -190,8 +192,12 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 	if strings.HasPrefix(s, `"`) && strings.HasSuffix(s, `"`) {
 		s = strings.Trim(s, `"`)
 	}
+	layout := dateFormat
+	if strings.Contains(s, "Z") {
+		layout = time.RFC3339
+	}
 
-	parsed, err := time.ParseInLocation(dateFormat, s, time.UTC)
+	parsed, err := time.ParseInLocation(layout, s, time.UTC)
 	if err != nil {
 		return err
 	}
