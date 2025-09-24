@@ -37,7 +37,7 @@ type Pixel struct {
 	AssetOwnership *AssetOwnership `json:"asset_ownership,omitempty"`
 	// Events Pixel 事件列表。
 	// Pixel 事件数据每 2-4 小时刷新一次。如果事件在四小时内发生，本字段的值可能为空列表（[]）。您可以在四小时后重试，以获取这些事件的数据。
-	Events []Event `json:"event,omitempty"`
+	Events []Event `json:"events,omitempty"`
 }
 
 // AdvancedMatchingFields 高级匹配设置
