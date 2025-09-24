@@ -20,6 +20,20 @@ const (
 	GT FilterOperator = "GT"
 	// LT（小于）
 	LT FilterOperator = "LT"
+	// LTE: 小于或等于。
+	LTE FilterOperator = "LTE"
+	// GTE: 大于或等于。
+	GTE FilterOperator = "GTE"
+	// CONTAIN: 包含。
+	CONTAIN FilterOperator = "CONTAIN"
+	// NOT_CONTAIN: 不包含。
+	NOT_CONTAIN FilterOperator = "NOT_CONTAIN"
+	// START_WITH: 开头是。
+	START_WITH FilterOperator = "START_WITH"
+	// EQUAL: 等于。
+	EQUAL FilterOperator = "EQUAL"
+	// NOT_EQUAL: 不等于。
+	NOT_EQUAL FilterOperator = "NOT EQUAL"
 )
 
 // FilterValue 筛选字段值
