@@ -81,7 +81,7 @@ type Event struct {
 	// EventType 仅当事件为标准网站事件（Pixel 事件）时返回。
 	// 标准网站事件类型。
 	// 本字段的枚举值参见Pixel 事件类型- Pixel 事件小节中的“用于广告创编的事件名称”列。
-	EventType enum.EventType `json:"event_type,omitempty"`
+	EventType enum.OptimizationEvent `json:"event_type,omitempty"`
 	// OptimizationEvent 标准网站事件（event_type）对应的转化事件类型。您可在使用/adgroup/create/创建广告组时将转化事件传入optimization_event字段。
 	// 本字段的枚举值参见Pixel 事件类型- Pixel 事件小节中的“用于广告创编的事件名称”列。
 	// 注意：标准网站事件PAGE_VIEW 不可用于优化。因此， event_type 为 PAGE_VIEW 时，本字段值将为 null。
