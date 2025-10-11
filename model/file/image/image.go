@@ -23,6 +23,8 @@ type Image struct {
 	Format string `json:"format,omitempty"`
 	// URL 图片 URL，1小时有效期，过期后需重新获取
 	URL string `json:"url,omitempty"`
+	// ImageURL 图片 URL，1小时有效期，过期后需重新获取
+	ImageURL string `json:"image_url,omitempty"`
 	// Signature 图片MD5
 	Signature string `json:"signature,omitempty"`
 	// Size 图片大小，单位byte
