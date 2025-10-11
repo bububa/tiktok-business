@@ -16,12 +16,12 @@ func AdUpload(ctx context.Context, clt *core.SDKClient, req *image.AdUploadReque
 		if req.ImageFile == nil {
 			return nil, errors.New("missing image_file")
 		}
-		if err := clt.Upload(ctx, "v1.3/file/image/ad/upload", req, &ret, accessToken); err != nil {
+		if err := clt.Upload(ctx, "v1.3/file/image/ad/upload/", req, &ret, accessToken); err != nil {
 			return nil, err
 		}
 	} else {
 		postReq := image.AdPostUploadRequest(*req)
-		if err := clt.Post(ctx, "v1.3/file/image/ad/upload", &postReq, &ret, accessToken); err != nil {
+		if err := clt.Post(ctx, "v1.3/file/image/ad/upload/", &postReq, &ret, accessToken); err != nil {
 			return nil, err
 		}
 	}

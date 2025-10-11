@@ -43,7 +43,7 @@ type InstantPageEventResponse struct {
 // InstantPageEvent 即时体验页面转化事件
 type InstantPageEvent struct {
 	// BusinessType 业务类型。枚举值：TIKTOK_INSTANT_PAGE
-	BusinessType string `json:"business_type,omitempty"`
+	BusinessType enum.BusinessType `json:"business_type,omitempty"`
 	// InstantPageEvents 即时体验页面转化事件
 	InstantPageEvents struct {
 		// ObjectiveTypes 推广目标列表
