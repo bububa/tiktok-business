@@ -1,6 +1,9 @@
 package product
 
-import "github.com/bububa/tiktok-business/enum"
+import (
+	"github.com/bububa/tiktok-business/enum"
+	"github.com/bububa/tiktok-business/model"
+)
 
 // EcomProduct 电商商品
 type EcomProduct struct {
@@ -44,7 +47,7 @@ type EcomProduct struct {
 	// 图片规格必须大于等于500x500像素，否则图片将被过滤，商品无法通过审核。详细信息请参考商品图片要求。
 	// 所有图片应为 JPG 或 PNG 格式。
 	// 示例：["https://www.tiktok.com/t_shirt_image_002.jpg","https://www.tiktok.com/t_shirt_image_003.jpg"] 。
-	AdditionalImageURLs CSVStringList `json:"additional_image_urls,omitempty" csv:"additional_image_link"`
+	AdditionalImageURLs model.CSVStringList `json:"additional_image_urls,omitempty" csv:"additional_image_link"`
 	// VideoURL 广告所使用视频的 URL。
 	// 建议宽高比：9:16（竖版）；
 	// 建议用于 TikTok 的分辨率：≥720*1280；

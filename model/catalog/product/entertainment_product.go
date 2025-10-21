@@ -1,6 +1,9 @@
 package product
 
-import "github.com/bububa/tiktok-business/enum"
+import (
+	"github.com/bububa/tiktok-business/enum"
+	"github.com/bububa/tiktok-business/model"
+)
 
 // EntertainmentProduct 娱乐商品
 type EntertainmentProduct struct {
@@ -27,12 +30,12 @@ type EntertainmentProduct struct {
 	// 图片规格必须大于等于500x500像素，否则图片将被过滤，商品无法通过审核。详细信息请参考商品图片要求。
 	// 所有图片应为 JPG 或 PNG 格式。
 	// 示例：["https://www.tiktok.com/entertainment_image_002.jpg","https://www.tiktok.com/entertainment_image_003.jpg"] 。
-	AdditionalImageURLs CSVStringList `json:"additional_image_urls" csv:"additional_image_link"`
+	AdditionalImageURLs model.CSVStringList `json:"additional_image_urls" csv:"additional_image_link"`
 	// Genres 媒体标题项的类型。
 	// 若想获取本字段的允许值，请查看下文的“ genres可选值”小节。
 	// 最大数量：2。
 	// 示例： TEEN。
-	Genres CSVStringList `json:"genres,omitempty" csv:"genres"`
+	Genres model.CSVStringList `json:"genres,omitempty" csv:"genres"`
 	// QID 该媒体标题项在维基数据（Wikidata）上的唯一标识符 QID（或Q号码），由字母“Q”及其后的一个或多个数字组成。
 	// 长度限制：150 字符。
 	// 示例： Q48938223。

@@ -1,6 +1,9 @@
 package product
 
-import "github.com/bububa/tiktok-business/enum"
+import (
+	"github.com/bububa/tiktok-business/enum"
+	"github.com/bububa/tiktok-business/model"
+)
 
 // DestinationProduct 目的地商品
 type DestinationProduct struct {
@@ -24,7 +27,7 @@ type DestinationProduct struct {
 	// 图片规格必须大于等于500x500像素，否则图片将被过滤，商品无法通过审核。详细信息请参考商品图片要求。
 	// 所有图片应为 JPG 或 PNG 格式。
 	// 示例：["https://www.tiktok.com/destination_image_002.jpg","https://www.tiktok.com/destination_image_003.jpg"] 。
-	AdditionalImageURLs CSVStringList `json:"additional_image_urls,omitempty" csv:"additional_image_link"`
+	AdditionalImageURLs model.CSVStringList `json:"additional_image_urls,omitempty" csv:"additional_image_link"`
 	// VideoURL 广告所使用视频的 URL。
 	// 建议宽高比：9:16（竖版）；
 	// 建议用于 TikTok 的分辨率：≥720*1280；
@@ -51,7 +54,7 @@ type DestinationProduct struct {
 	// Types 目的地的类型。
 	// 您可为目的地指定一个或多个类型。例如，对于目的地纽约市，您可以将本字段设置为 ["city","sightseeing"]。
 	// 最大数量：20。
-	Types CSVStringList `json:"types,omitempty" csv:"types"`
+	Types model.CSVStringList `json:"types,omitempty" csv:"types"`
 	// PriceInfo 价格信息
 	PriceInfo *PriceInfo `json:"price_info,omitempty" csv:""`
 	// LandingPage 落地页信息

@@ -1,6 +1,9 @@
 package product
 
-import "github.com/bububa/tiktok-business/enum"
+import (
+	"github.com/bububa/tiktok-business/enum"
+	"github.com/bububa/tiktok-business/model"
+)
 
 // MiniSeriesProduct 短剧商品
 type MiniSeriesProduct struct {
@@ -42,9 +45,9 @@ type MiniSeriesRecharge struct {
 	// QUARTERLY: 按季度订阅。
 	// YEARLY: 按年订阅。
 	// 当 recharge_type 为 BY_EPISODES，需指定一个或多个数字字符串，字符串代表的数字不可大于总集数。
-	PurchaseUnit CSVStringList `json:"purchase_unit,omitempty" csv:"purchase_unit"`
+	PurchaseUnit model.CSVStringList `json:"purchase_unit,omitempty" csv:"purchase_unit"`
 	// Cost 级别、订阅周期或集数对应的价格。
-	Cost CSVFloatList `json:"cost,omitempty" csv:"cost"`
+	Cost model.CSVFloatList `json:"cost,omitempty" csv:"cost"`
 }
 
 // MiniSeriesProductDetail 短剧的其他信息
@@ -142,19 +145,19 @@ type MiniSeriesProductDetail struct {
 	// Characters 短剧的角色列表。
 	// 最大数量：3。
 	// 枚举值参见 characters 的可选值。
-	Characters CSVStringList `json:"characters,omitempty" csv:"characters"`
+	Characters model.CSVStringList `json:"characters,omitempty" csv:"characters"`
 	// Genres 短剧的类别，通常基于主线剧情或情节。
 	// 最大数量：3。
 	// 枚举值参见 genres 的可选值。
-	Genres CSVStringList `json:"genres,omitempty" csv:"genres"`
+	Genres model.CSVStringList `json:"genres,omitempty" csv:"genres"`
 	// HistoricalContext 短剧的时代背景或设定。
 	// 最大数量：3。
 	// 枚举值参见 historical_context 的可选值。
-	HistoricalContext CSVStringList `json:"historical_context,omitempty" csv:"historical_context"`
+	HistoricalContext model.CSVStringList `json:"historical_context,omitempty" csv:"historical_context"`
 	// Actors 短剧中的演员的名字。
 	// 最大数量：20。
 	// 每个名字的长度限制：100 个字符。
-	Actors CSVStringList `json:"actors,omitempty" csv:"actors"`
+	Actors model.CSVStringList `json:"actors,omitempty" csv:"actors"`
 }
 
 func (p MiniSeriesProduct) CatalogType() enum.CatalogType {
