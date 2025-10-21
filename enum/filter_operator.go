@@ -34,6 +34,14 @@ const (
 	EQUAL FilterOperator = "EQUAL"
 	// NOT_EQUAL: 不等于。
 	NOT_EQUAL FilterOperator = "NOT EQUAL"
+
+	RNG FilterOperator = "RNG" 
+	WILDCARD FilterOperator = "WILDCARD"
+	NOT_WILDCARD FilterOperator = "NOT_WILDCARD" 
+	PREFIX FilterOperator = "PREFIX"
+	EXISTS FilterOperator = "EXISTS"
+	IN FilterOperator = "IN"
+	NOT_IN FilterOperator = "NOT_IN"
 )
 
 // FilterValue 筛选字段值
