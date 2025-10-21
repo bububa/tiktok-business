@@ -1,6 +1,6 @@
 package enum
 
-	// MiniSeriesTargetAudience 短剧的目标受众。
+// MiniSeriesTargetAudience 短剧的目标受众。
 type MiniSeriesTargetAudience string
 
 const (
