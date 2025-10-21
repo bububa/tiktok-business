@@ -311,4 +311,6 @@ type Filter struct {
 	Operatior enum.FilterOperator `json:"operator,omitempty"`
 	// Value 筛选字段值。获得枚举值，可参阅枚举值-筛选字段值
 	Value enum.FilterValue `json:"value,omitempty"`
+	// CaseSensitive 是否大小写敏感
+	CaseSensitive *bool `json:"case_sensitive,omitempty"`
 }

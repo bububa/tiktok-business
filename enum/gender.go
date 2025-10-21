@@ -8,6 +8,8 @@ const (
 	FEMALE Gender = "FEMALE"
 	// MALE
 	MALE Gender = "MALE"
+	// UNISEX 中性
+	UNISEX Gender = "UNISEX"
 	// UnknownGender
 	UnknownGender Gender = "NONE"
 )
