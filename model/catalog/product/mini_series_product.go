@@ -21,7 +21,7 @@ type MiniSeriesProduct struct {
 	// Recharge 短剧收费详情
 	Recharge []MiniSeriesRecharge `json:"recharge,omitempty" csv:"recharge"`
 	// ProductDetail 短剧的其他信息
-	ProductDetail *MiniSeriesProductDetail `json:"mini_series_product_detail,omitempty" csv:""`
+	ProductDetail *MiniSeriesProductDetail `json:"mini_series_product_detail,omitempty" csv:",inline"`
 }
 
 // MiniSeriesRecharge 短剧收费详情
