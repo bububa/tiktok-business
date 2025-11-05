@@ -196,7 +196,7 @@ func (c *SDKClient) upload(ctx context.Context, base string, gw string, req mode
 			return err
 		}
 	}
-	mw.Close()
+	_ = mw.Close()
 	reqURL := util.StringsJoin(base, gw)
 	debug.PrintPostMultipartRequest(reqURL, mp, c.debug)
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, reqURL, buf)
