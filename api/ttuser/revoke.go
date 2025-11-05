@@ -1,15 +1,15 @@
-package oauth
+package ttuser
 
 import (
 	"context"
 
 	"github.com/bububa/tiktok-business/core"
-	"github.com/bububa/tiktok-business/model/oauth"
+	"github.com/bububa/tiktok-business/model/ttuser"
 )
 
-// TTUserRevoke 撤销短期访问令牌
-func TTUserRevoke(ctx context.Context, clt *core.SDKClient, accessToken string) error {
-	req := oauth.TTUserRevokeRequest{
+// Revoke 撤销短期访问令牌
+func Revoke(ctx context.Context, clt *core.SDKClient, accessToken string) error {
+	req := ttuser.RevokeRequest{
 		ClientID:     clt.AppID(),
 		ClientSecret: clt.Secret(),
 		AccessToken:  accessToken,

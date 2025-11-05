@@ -1,15 +1,16 @@
-package oauth
+package ttuser
 
 import (
 	"context"
 
 	"github.com/bububa/tiktok-business/core"
 	"github.com/bububa/tiktok-business/model/oauth"
+	"github.com/bububa/tiktok-business/model/ttuser"
 )
 
-// TTUserToken 获取短期访问令牌
-func TTUserToken(ctx context.Context, clt *core.SDKClient, code string, redirectURI string) (*oauth.AccessToken, error) {
-	req := oauth.TTUserTokenRequest{
+// Token 获取短期访问令牌
+func Token(ctx context.Context, clt *core.SDKClient, code string, redirectURI string) (*oauth.AccessToken, error) {
+	req := ttuser.TokenRequest{
 		ClientID:     clt.AppID(),
 		ClientSecret: clt.Secret(),
 		AuthCode:     code,

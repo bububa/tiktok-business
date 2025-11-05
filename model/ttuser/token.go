@@ -1,9 +1,9 @@
-package oauth
+package ttuser
 
 import "github.com/bububa/tiktok-business/util"
 
-// TTUserTokenRequest 获取短期访问令牌
-type TTUserTokenRequest struct {
+// TokenRequest 获取创作者访问令牌 API Request
+type TokenRequest struct {
 	// ClientID 开发者应用 ID
 	ClientID string `json:"client_id,omitempty"`
 	// ClientSecret 开发者应用密钥
@@ -22,6 +22,6 @@ type TTUserTokenRequest struct {
 }
 
 // Encode implement PostRequest interface
-func (r *TTUserTokenRequest) Encode() []byte {
+func (r *TokenRequest) Encode() []byte {
 	return util.JSONMarshal(r)
 }

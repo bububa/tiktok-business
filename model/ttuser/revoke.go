@@ -1,9 +1,9 @@
-package oauth
+package ttuser
 
 import "github.com/bububa/tiktok-business/util"
 
-// TTUserRevokeRequest 撤销短期访问令牌
-type TTUserRevokeRequest struct {
+// RevokeRequest 撤销创作者访问令牌 API Request
+type RevokeRequest struct {
 	// ClientID 开发者应用 ID
 	ClientID string `json:"client_id,omitempty"`
 	// ClientSecret 开发者应用密钥
@@ -13,6 +13,6 @@ type TTUserRevokeRequest struct {
 }
 
 // Encode implement PostRequest interface
-func (r *TTUserRevokeRequest) Encode() []byte {
+func (r *RevokeRequest) Encode() []byte {
 	return util.JSONMarshal(r)
 }
