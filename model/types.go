@@ -288,6 +288,10 @@ type PageInfo struct {
 	TotalNumber int `json:"total_number,omitempty"`
 	// TotalPage 总页数
 	TotalPage int `json:"total_page,omitempty"`
+	// HasMore 是否还有更多
+	HasMore bool `json:"has_more,omitempty"`
+	// Cursor 下一个光标的值
+	Cursor int64 `json:"cursor,omitempty"`
 }
 
 type KV struct {
