@@ -16,4 +16,10 @@ const (
 	ReportType_BC ReportType = "BC"
 	// ReportType_TT_SHOP：最大成交额广告报表。
 	ReportType_TT_SHOP ReportType = "TT_SHOP"
+	// ReportType_VIDEO_INSIGHT 为一个或多个广告账号生成的视频洞察报表
+	ReportType_VIDEO_INSIGHT ReportType = "VIDEO_INSIGHT"
+	// ReportType_AD AD即将废弃：提供广告秒级表现数据的报表。
+	ReportType_AD ReportType = "AD"
+	// ReportType_VIDEO VIDEO：视频素材的视频洞察报表。
+	ReportType_VIDEO ReportType = "VIDEO"
 )

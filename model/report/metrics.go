@@ -259,16 +259,29 @@ type Metrics struct {
 	// CostPerSecondaryGoalResult 深层漏斗成效平均成本
 	// 广告获得单次深层漏斗成效的平均成本。
 	CostPerSecondaryGoalResult model.Float64 `json:"cost_per_secondary_goal_result,omitempty"`
-
 	// SecondaryGoalResultRate 深层漏斗成效率
 	// 深层漏斗成效数占广告获得的总曝光数的百分比。
 	SecondaryGoalResultRate model.Float64 `json:"secondary_goal_result_rate,omitempty"`
+	// SkanResult 成效 (SKAN)
+	SkanResult model.Int64 `json:"skan_result,omitempty"`
+	// SkanCostPerResult 单次成效费用 (SKAN)
+	SkanCostPerResult model.Float64 `json:"skan_cost_per_result,omitempty"`
+	// SkanResultRate 成效率 (SKAN)
+	SkanResultRate model.Float64 `json:"skan_result_rate,omitempty"`
+	// SkanConversion 转化数 (SKAN)
+	SkanConversion model.Int64 `json:"skan_conversion,omitempty"`
+	// SkanCostPerConversion 转化成本 (SKAN)
+	SkanCostPerConversion model.Float64 `json:"skan_cost_per_conversion,omitempty"`
+	// SkanConversionRateV2 转化率（SKAN，展示）
+	SkanConversionRateV2 model.Float64 `json:"skan_conversion_rate_v2,omitempty"`
 	//
 	//互动指标
 	// 互动指标衡量受众与您的广告的互动
 	// VideoPlayActions 视频播放量
 	// 视频开始播放的次数。每次视频展示的播放次数会单独统计，且不包括重播次数。
 	VideoPlayActions model.Int64 `json:"video_play_actions,omitempty"`
+	// OrganicVideoViews 自然流量视频播放量
+	OrganicVideoViews model.Int64 `json:"organic_video_views,omitempty"`
 	// VideoWatched2s 视频播放 2 秒次数
 	// 视频至少播放 2 秒的次数。每次视频展示的播放次数会单独统计，且不包括重播次数。
 	VideoWatched2s model.Int64 `json:"video_watched_2s,omitempty"`
@@ -390,6 +403,15 @@ type Metrics struct {
 	// TtPlaylistVisitRate 播放列表页面访问率
 	// 付费广告在推广期间带来的播放列表页面访问数占广告展示数的比率。
 	TtPlaylistVisitRate model.Float64 `json:"tt_playlist_visit_rate,omitempty"`
+	// EarnedPageVideoViews 获得的页面视频播放量
+	// 用户在单个 TikTok 应用会话中观看您的广告后，您所设置的 TikTok 页面中的视频开始播放的次数。每次视频展示的播放次数会单独统计，且不包括重播次数。
+	EarnedPageVideoViews model.Int64 `json:"earned_page_video_views,omitempty"`
+	// EarnedPageVideoViewsP100 获得的页面播放完成次数
+	// 用户在单个 TikTok 应用会话 中观看您的广告后，您所设置的 TikTok 页面中的视频完整播放的次数。每次视频展示的播放次数会单独统计，且不包括重播次数。
+	EarnedPageVideoViewsP100 model.Int64 `json:"earned_page_video_views_p100,omitempty"`
+	// EarnedPageClicks 获得的页面点击量（全部）
+	// 用户在单个 TikTok 应用会话中观看您的广告后，您所设置的 TikTok 页面获得的点击次数。此项包括了出于社交和互动目的进行的点击。
+	EarendPageClicks model.Int64 `json:"earned_page_clicks,omitempty"`
 	//
 	// 直播指标
 	// 直播指标衡量直播期间观众的参与度，包括播放量和点击数等指标。
