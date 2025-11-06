@@ -104,27 +104,27 @@ func (c *SDKClient) Copy() *SDKClient {
 
 // Post post api
 func (c *SDKClient) Post(ctx context.Context, gw string, req model.PostRequest, resp model.Response, accessToken string) error {
-	base := BASE_URL
+	base := BaseURL
 	if c.sandbox {
-		base = SANDBOX_URL
+		base = SandboxURL
 	}
 	return c.post(ctx, base, gw, req, resp, accessToken)
 }
 
 // Get get api
 func (c *SDKClient) Get(ctx context.Context, gw string, req model.GetRequest, resp model.Response, accessToken string) error {
-	base := BASE_URL
+	base := BaseURL
 	if c.sandbox {
-		base = SANDBOX_URL
+		base = SandboxURL
 	}
 	return c.get(ctx, base, gw, req, resp, accessToken)
 }
 
 // Upload multipart/form-data post
 func (c *SDKClient) Upload(ctx context.Context, gw string, req model.UploadRequest, resp model.Response, accessToken string) error {
-	base := BASE_URL
+	base := BaseURL
 	if c.sandbox {
-		base = SANDBOX_URL
+		base = SandboxURL
 	}
 	return c.upload(ctx, base, gw, req, resp, accessToken)
 }

@@ -152,7 +152,8 @@ func (bl Bool) String() string {
 }
 
 const (
-	dateFormat = "2006-01-02 15:04:05"
+	datetimeFormat = "2006-01-02 15:04:05"
+	dateFormat     = "2006-01-02"
 )
 
 type DateTime time.Time
@@ -166,7 +167,7 @@ func (d DateTime) Time() time.Time {
 }
 
 func (d DateTime) String() string {
-	return time.Time(d).UTC().Format(dateFormat)
+	return time.Time(d).UTC().Format(datetimeFormat)
 }
 
 func (d DateTime) MarshalJSON() ([]byte, error) {
@@ -194,9 +195,11 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 	if strings.HasPrefix(s, `"`) && strings.HasSuffix(s, `"`) {
 		s = strings.Trim(s, `"`)
 	}
-	layout := dateFormat
+	layout := datetimeFormat
 	if strings.Contains(s, "Z") {
 		layout = time.RFC3339
+	} else if !strings.Contains(s, ":") {
+		layout = dateFormat
 	}
 
 	parsed, err := time.ParseInLocation(layout, s, time.UTC)
