@@ -13,5 +13,5 @@ func URL(clt *core.SDKClient, redirectURI string, state string) string {
 	if state != "" {
 		values.Set("state", state)
 	}
-	return util.StringsJoin(core.BASE_OAUTH_URL, "?", values.Encode())
+	return util.StringsJoin(core.BaseOAuthURL, "?", values.Encode())
 }

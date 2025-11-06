@@ -41,11 +41,11 @@ type EntertainmentProduct struct {
 	// 示例： Q48938223。
 	QID string `json:"qid,omitempty" csv:"qid"`
 	// PriceInfo 价格信息
-	PriceInfo *PriceInfo `json:"price_info,omitempty" csv:""`
+	PriceInfo *PriceInfo `json:"price_info,omitempty" csv:",inline"`
 	// LandingPage 落地页信息
-	LandingPage *LandingPage `json:"landing_page,omitempty" csv:""`
+	LandingPage *LandingPage `json:"landing_page,omitempty" csv:",inline"`
 	// ExtraInfo 其他信息
-	ExtraInfo *ExtraInfo `json:"extra_info,omitempty" csv:""`
+	ExtraInfo *ExtraInfo `json:"extra_info,omitempty" csv:",inline"`
 }
 
 func (p EntertainmentProduct) CatalogType() enum.CatalogType {

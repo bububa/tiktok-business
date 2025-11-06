@@ -41,6 +41,8 @@ type Dimensions struct {
 	// InterestCategoryV2 新版一级兴趣分类
 	// 使用/tool/interest_category/接口获取兴趣分类完整列表
 	InterestCategoryV2 string `json:"interest_category_v2,omitempty"`
+	// Location 2个字母的国家或地区代码
+	Location string `json:"location,omitempty"`
 	// Gender 受众性别。枚举值: FEMALE，MALE，NONE
 	Gender enum.Gender `json:"gender,omitempty"`
 	// Language 受众语言。详见枚举值-广告管理-受众语言

@@ -56,11 +56,11 @@ type DestinationProduct struct {
 	// 最大数量：20。
 	Types model.CSVStringList `json:"types,omitempty" csv:"types"`
 	// PriceInfo 价格信息
-	PriceInfo *PriceInfo `json:"price_info,omitempty" csv:""`
+	PriceInfo *PriceInfo `json:"price_info,omitempty" csv:",inline"`
 	// LandingPage 落地页信息
-	LandingPage *LandingPage `json:"landing_page,omitempty" csv:""`
+	LandingPage *LandingPage `json:"landing_page,omitempty" csv:",inline"`
 	// ExtraInfo 其他信息
-	ExtraInfo *ExtraInfo `json:"extra_info,omitempty" csv:""`
+	ExtraInfo *ExtraInfo `json:"extra_info,omitempty" csv:",inline"`
 }
 
 func (p DestinationProduct) CatalogType() enum.CatalogType {

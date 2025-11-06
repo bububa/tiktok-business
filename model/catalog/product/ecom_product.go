@@ -71,13 +71,13 @@ type EcomProduct struct {
 	// 示例：12433。
 	ManufacturerPartNumber string `json:"manufacturer_part_number,omitempty" csv:"manufacturer_part_number"`
 	// ProductDetail 商品的其他信息
-	ProductDetail *EcomProductDetail `json:"product_detail,omitempty" csv:""`
+	ProductDetail *EcomProductDetail `json:"product_detail,omitempty" csv:",inline"`
 	// PriceInfo 价格信息
-	PriceInfo *PriceInfo `json:"price_info,omitempty" csv:""`
+	PriceInfo *PriceInfo `json:"price_info,omitempty" csv:",inline"`
 	// LandingPage 落地页信息
-	LandingPage *LandingPage `json:"landing_page,omitempty" csv:""`
+	LandingPage *LandingPage `json:"landing_page,omitempty" csv:",inline"`
 	// ExtraInfo 其他信息
-	ExtraInfo *ExtraInfo `json:"extra_info,omitempty" csv:""`
+	ExtraInfo *ExtraInfo `json:"extra_info,omitempty" csv:",inline"`
 }
 
 func (p EcomProduct) CatalogType() enum.CatalogType {

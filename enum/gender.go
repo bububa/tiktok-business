@@ -12,6 +12,12 @@ const (
 	UNISEX Gender = "UNISEX"
 	// UnknownGender
 	UnknownGender Gender = "NONE"
+	// GenderFemale
+	GenderFemale Gender = "Female"
+	// GenderMale
+	GenderMale Gender = "Male"
+	// GenderOther
+	GenderOther Gender = "Other"
 )
 
 // GENDER  性别
