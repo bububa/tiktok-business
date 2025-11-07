@@ -67,7 +67,7 @@ type Campaign struct {
 	// true：启用。
 	// false：不启用。
 	RtaBidEnabled bool `json:"rta_bid_enabled,omitempty"`
-	// RtaProductSelectionEnabled 是否使用实时 API 自动选择商品。
+	// RTAProductSelectionEnabled 是否使用实时 API 自动选择商品。
 	// 枚举值：
 	// true：使用。
 	// false：不使用。

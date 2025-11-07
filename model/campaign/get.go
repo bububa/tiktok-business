@@ -108,7 +108,7 @@ type GetFilter struct {
 	// PRODUCT_GMV_MAX：商品 GMV Max 推广系列。
 	// LIVE_GMV_MAX：直播 GMV Max 推广系列。
 	// 注意：若想筛选 GMV Max 推广系列，需使用/gmv_max/campaign/get/。
-	GMVMaxPromotionTypets []enum.GMVMaxPromotionType `json:"gmv_max_promotion_types,omitempty"`
+	GMVMaxPromotionTypes []enum.GMVMaxPromotionType `json:"gmv_max_promotion_types,omitempty"`
 	// StoreIDs 仅当 gmv_max_promotion_types 的值中包含 LIVE_GMV_MAX 或PRODUCT_GMV_MAX 时本字段生效。
 	// TikTok Shop ID 列表。
 	// 最大数量：10。

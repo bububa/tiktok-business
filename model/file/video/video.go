@@ -42,6 +42,10 @@ type Video struct {
 	AllowDownload bool `json:"allow_download,omitempty"`
 	// FileName 视频名称
 	FileName string `json:"file_name,omitempty"`
+	// Defintion 视频的清晰度
+	Definition string `json:"definition,omitempty"`
+	// FPS 视频的每秒帧数（FPS）
+	FPS int `json:"fps,omitempty"`
 	// CreateTime 创建时间。UTC 时间，格式：2020-06-10T07:39:14Z
 	CreateTime model.DateTime `json:"create_time,omitzero"`
 	// ModifyTime 修改时间。UTC 时间，格式：2020-06-10T07:39:14Z
