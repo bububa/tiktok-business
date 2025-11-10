@@ -6,6 +6,7 @@ import (
 	"github.com/bububa/tiktok-business/enum"
 	"github.com/bububa/tiktok-business/model"
 	"github.com/bububa/tiktok-business/model/file/video"
+	"github.com/bububa/tiktok-business/model/identity"
 	"github.com/bububa/tiktok-business/util"
 )
 
@@ -67,7 +68,7 @@ type VideoGetRequest struct {
 	// 若想获取可用于商品 GMV Max 推广系列的认证身份列表，可使用 /gmv_max/identity/get/并确认返回的 product_gmv_max_available 为true。
 	// 最大数量：20。
 	// 注意：若未传入 need_auth_code_video 或设置为 false 且未传入 identity_list，返回的结果将为空
-	IdentityList []Identity `json:"identity_list,omitempty"`
+	IdentityList []identity.Identity `json:"identity_list,omitempty"`
 	// Page 当前页数。
 	// 取值范围： ≥ 1。
 	// 默认值：1
@@ -144,7 +145,7 @@ type TikTokItem struct {
 	// 注意：若 can_change_anchor 为 false，则不支持将本字段传入 /campaign/gmv_max/create/ 或 /campaign/gmv_max/update/ 中的 custom_anchor_video_list 或 item_list 创建自定义的作品
 	CanChangeAnchor bool `json:"can_change_anchor,omitempty"`
 	// IdentityInfo 与该 TikTok 帖子绑定的认证身份的有关信息
-	IdentityInfo *Identity `json:"identity_info,omitempty"`
+	IdentityInfo *identity.Identity `json:"identity_info,omitempty"`
 	// VideoInfo 帖子中视频的详情
 	VideoInfo *video.Video `json:"video_info,omitempty"`
 }

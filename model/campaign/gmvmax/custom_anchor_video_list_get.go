@@ -3,6 +3,7 @@ package gmvmax
 import (
 	"github.com/bububa/tiktok-business/model"
 	"github.com/bububa/tiktok-business/model/file/video"
+	"github.com/bububa/tiktok-business/model/identity"
 	"github.com/bububa/tiktok-business/util"
 )
 
@@ -51,7 +52,7 @@ type AnchorVideo struct {
 	// SpuIDList 与该 TikTok 帖子绑定的商品 SPU ID 列表
 	SpuIDList []string `json:"spu_id_list,omitempty"`
 	// IdentityInfo 与该 TikTok 帖子绑定的认证身份的有关信息
-	IdentityInfo *Identity `json:"identity_info,omitempty"`
+	IdentityInfo *identity.Identity `json:"identity_info,omitempty"`
 	// VideoInfo 帖子中视频的详情
 	VideoInfo *video.Video `json:"video_info,omitempty"`
 }

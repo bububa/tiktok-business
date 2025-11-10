@@ -45,10 +45,14 @@ type Item struct {
 
 // AuthInfo 授权信息
 type AuthInfo struct {
+	// AdAuthStatus 授权状态
+	AdAuthStatus string `json:"ad_auth_status,omitempty"`
 	// AuthEndTime 授权码有效期结束的时间(UTC+0)。时间格式：2017-01-01 00:00:00
 	AuthEndTime model.DateTime `json:"auth_end_time,omitzero"`
 	// AuthStartTime 授权码有效期开始的时间(UTC+0)。时间格式：2017-01-01 00:00:00
 	AuthStartTime model.DateTime `json:"auth_start_time,omitzero"`
+	// InviteStartTime 授权邀请时间（基于UTC+0时区), 格式为2017-01-01 00:00:00
+	InviteStartTime model.DateTime `json:"invite_start_time,omitzero"`
 }
 
 // ItemInfo Spark Ads 帖子信息
@@ -61,15 +65,12 @@ type ItemInfo struct {
 	// 枚举值：
 	// VIDEO：视频帖子。
 	// CAROUSEL：照片帖子
-	ItemType string `json:"item_type,omitempty"`
+	ItemType enum.TikTokItemType `json:"item_type,omitempty"`
 	// Text Spark Ads 帖子描述
 	Text string `json:"text,omitempty"`
 	// Status Spark Ads 帖子状态。
 	// 枚举值参见枚举值 - TikTok 帖子状态
-	Status enum.TTItemStatus `json:"status,omitempty"`
-	// CarouselInfo 照片帖子信息。
-	// 注意：item_type 为 VIDEO 时，本字段值为 null
-	CarouselInfo *CarouselInfo `json:"carousel_info,omitempty"`
+	Status enum.TikTokItemStatus `json:"status,omitempty"`
 	// StitchOriginalItemID 如果本帖子是另一帖子的拼接，本字段代表源帖子的视频ID
 	StitchOriginalItemID string `json:"stitch_original_item_id,omitempty"`
 	// DuetOriginalItemID 如果本帖子是另一帖子的合拍，本字段代表该源帖子的视频ID
@@ -79,8 +80,16 @@ type ItemInfo struct {
 	// MentionedItemIDs 如果本帖子提及了其他视频，本字段代表该源帖子的视频ID。
 	// 注意：帖子只能提及一个视频
 	MentionedItemIDs []string `json:"mentioned_item_ids,omitempty"`
+	// AuthInfo 授权信息
+	AuthInfo *AuthInfo `json:"auth_info,omitempty"`
 	// AnchorList Spark Ads 帖子中的锚点列表
 	AnchorList []Anchor `json:"anchor_list,omitempty"`
+	// VideoInfo 视频帖子信息。
+	// 注意：item_type 为 CAROUSEL 时，video_info 对象中的字段值为 null。
+	VideoInfo *VideoInfo `json:"video_info,omitempty"`
+	// CarouselInfo 照片帖子信息。
+	// 注意：item_type 为 VIDEO 时，本字段值为 null
+	CarouselInfo *CarouselInfo `json:"carousel_info,omitempty"`
 }
 
 // CarouselInfo 照片帖子信息。
@@ -95,6 +104,8 @@ type CarouselInfo struct {
 
 // ImageInfo 照片帖子中使用的图片的信息。
 type ImageInfo struct {
+	// ImageID 图片 ID
+	ImageID string `json:"image_id,omitempty"`
 	// ImageURL 图片 URL。
 	// 有效期：90 天。
 	ImageURL string `json:"image_url,omitempty"`
@@ -106,6 +117,8 @@ type ImageInfo struct {
 
 // MusicInfo 照片帖子中使用的音乐的信息。
 type MusicInfo struct {
+	// MusicID 音乐 ID
+	MusicID string `json:"music_id,omitempty"`
 	// MusicURL 音乐 URL。
 	// 有效期：90 天。
 	MusicURL string `json:"music_url,omitempty"`
@@ -117,6 +130,8 @@ type MusicInfo struct {
 type Anchor struct {
 	// ID 锚点 ID
 	ID string `json:"id,omitempty"`
+	// AnchorID 锚点 ID
+	AnchorID string `json:"anchor_id,omitempty"`
 	// Title 锚点标题
 	Title string `json:"title,omitempty"`
 	// Status 锚点状态。枚举值: CHECK_ING (锚点正在审核中), CHECK_FAILED (锚点审核未通过), CHECK_SUCCESS (锚点审核已通过)
@@ -166,6 +181,10 @@ type VideoInfo struct {
 	PosterURL string `json:"poster_url,omitempty"`
 	// PreviewURL 视频预览链接, 有效期1小时，过期需重新获取
 	PreviewURL string `json:"preview_url,omitempty"`
+	// URL 视频预览链接。该链接有效期为一小时。失效后，你需要获取一个新的 URL
+	URL string `json:"url,omitempty"`
 	// Signature 视频文件MD5
 	Signature string `json:"signature,omitempty"`
+	// Format 视频格式
+	Format string `json:"format,omitempty"`
 }

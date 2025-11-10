@@ -3,6 +3,7 @@ package gmvmax
 import (
 	"github.com/bububa/tiktok-business/enum"
 	"github.com/bububa/tiktok-business/model"
+	"github.com/bububa/tiktok-business/model/identity"
 	"github.com/bububa/tiktok-business/util"
 )
 
@@ -80,7 +81,7 @@ type CreateRequest struct {
 	// 若未通过 identity_list 指定认证身份，商品图片将用作广告创意。
 	// shopping_ads_type 为 LIVE 时，需通过本字段指定 1 个认证身份作为直播来源。
 	// 若想获取可用于直播 GMV Max 推广系列的认证身份，可调用 /gmv_max/identity/get/ 并检查返回的 live_gmv_max_available 是否为 true
-	IdentityList []Identity `json:"identity_list,omitempty"`
+	IdentityList []identity.Identity `json:"identity_list,omitempty"`
 	// AffiliatePostsEnabled 此字段仅在满足以下所有条件时生效且使用默认值 true：
 	// shopping_ads_type 为 PRODUCT
 	// product_video_specific_type 为 AUTO_SELECTION
