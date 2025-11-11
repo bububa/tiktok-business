@@ -59,7 +59,7 @@ func (r *AdUploadRequest) Encode() []model.UploadField {
 	if r.ImageSignature == "" {
 		buf := util.NewBuffer()
 		defer util.ReleaseBuffer(buf)
-		io.Copy(buf, r.ImageFile)
+		_, _ = io.Copy(buf, r.ImageFile)
 		h := md5.New()
 		h.Write(buf.Bytes())
 		r.ImageSignature = hex.EncodeToString(h.Sum(nil))

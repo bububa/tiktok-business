@@ -28,7 +28,7 @@ type Catalog struct {
 	// 枚举值：
 	// NOT_AVAILABLE: 商品库不可用于广告中。
 	// AVAILABLE: 若商品库中含有广告样式所需的足量可用商品，商品库可用于广告中。
-	AdCreationEligible string `json:"ad_creation_eligible,omitempty"`
+	AdCreationEligible enum.Availability `json:"ad_creation_eligible,omitempty"`
 	// CreateTime 创建时间
 	CreateTime model.DateTime `json:"create_time,omitzero"`
 	// UpdateTime 更新时间

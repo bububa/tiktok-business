@@ -3,6 +3,7 @@ package gmvmax
 import (
 	"github.com/bububa/tiktok-business/enum"
 	"github.com/bububa/tiktok-business/model"
+	"github.com/bububa/tiktok-business/model/identity"
 )
 
 // Campaign 推广系列
@@ -94,7 +95,7 @@ type Campaign struct {
 	// UNSET：未设置。
 	ProductVideoSpecificType enum.ProductVideoSpecificType `json:"product_video_specific_type,omitempty"`
 	// IdentityList 与该 GMV Max 推广系列绑定的认证身份（即 TikTok 账号）列表
-	IdentityList []Identity `json:"identity_list,omitempty"`
+	IdentityList []identity.Identity `json:"identity_list,omitempty"`
 	// AffiliatePostsEnabled 是否为商品 GMV Max 推广系列启用联盟作品。
 	// 联盟帖子是由联盟方（即参加 TikTok Shop 联盟项目的达人）制作并被授权用于 TikTok 店铺广告的 TikTok 帖子。了解 TikTok 店铺广告的联盟创意的详情。
 	// 支持的值： true， false
