@@ -1,6 +1,8 @@
 package music
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"io"
 
 	"github.com/bububa/tiktok-business/enum"
@@ -72,6 +74,18 @@ func (r *PostUploadRequest) Encode() []byte {
 
 // Encode implements UploadRequest interface
 func (r *UploadRequest) Encode() []model.UploadField {
+	var reader io.Reader
+	if r.MusicSignature == "" {
+		buf := util.NewBuffer()
+		defer util.ReleaseBuffer(buf)
+		_, _ = io.Copy(buf, r.MusicFile)
+		h := md5.New()
+		h.Write(buf.Bytes())
+		r.MusicSignature = hex.EncodeToString(h.Sum(nil))
+		reader = buf
+	} else {
+		reader = r.MusicFile
+	}
 	ret := make([]model.UploadField, 0, 8)
 	ret = append(ret, model.UploadField{
 		Key:   "advertiser_id",
@@ -86,7 +100,7 @@ func (r *UploadRequest) Encode() []model.UploadField {
 		Key:   "music_signature",
 		Value: r.MusicSignature,
 	}, model.UploadField{
-		Reader: r.MusicFile,
+		Reader: reader,
 		Key:    "music_file",
 		Value:  r.FileName,
 	})

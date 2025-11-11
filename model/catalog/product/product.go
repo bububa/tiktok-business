@@ -17,7 +17,7 @@ type Product struct {
 	// audit_status 为 approved。
 	// active_status 为 ACTIVATED。
 	// availability 为 IN_STOCK，AVAILABLE_FOR_ORDER或PREORDER。
-	AdCreationEligible string `json:"ad_creation_eligible,omitempty"`
+	AdCreationEligible enum.Availability `json:"ad_creation_eligible,omitempty"`
 	// ActiveStatus 商品的上架状态。
 	// 枚举值：
 	// ACTIVATED：已上架。

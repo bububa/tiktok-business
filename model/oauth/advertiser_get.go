@@ -31,6 +31,7 @@ type AdvertiserGetResponse struct {
 	} `json:"data"`
 }
 
+// Advertiser 广告主
 type Advertiser struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID string `json:"advertiser_id,omitempty"`
