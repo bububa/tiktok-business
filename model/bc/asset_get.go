@@ -116,7 +116,7 @@ type Asset struct {
 	// UNBOUND: 管理资产的申请获拥有者批准后已被取消。
 	// PENDING: 管理资产的申请正在等待拥有者批准。
 	// REJECTED: 管理资产的申请已被拥有者拒绝。
-	RelationStatus enum.BcAssetRelationStatus `json:"relation_status,omitempty"`
+	RelationStatus enum.BcRelationStatus `json:"relation_status,omitempty"`
 	// AdvertiserStatus 广告账户状态。
 	// 枚举值可参考枚举值 - 广告主状态
 	AdvertiserStatus enum.AdvertiserStatus `json:"advertiser_status,omitempty"`

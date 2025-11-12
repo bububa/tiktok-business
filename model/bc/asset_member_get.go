@@ -4,7 +4,6 @@ import (
 	"strconv"
 
 	"github.com/bububa/tiktok-business/enum"
-	"github.com/bububa/tiktok-business/model"
 	"github.com/bububa/tiktok-business/util"
 )
 
@@ -52,32 +51,4 @@ func (r *AssetMemberGetRequest) Encode() string {
 	ret := values.Encode()
 	util.ReleaseURLValues(values)
 	return ret
-}
-
-// AssetMemberGetResponse 根据资产获取成员 API Response
-type AssetMemberGetResponse struct {
-	model.BaseResponse
-	Data *AssetMemberGetResult `json:"data,omitempty"`
-}
-
-type AssetMemberGetResult struct {
-	// PageInfo 分页信息
-	PageInfo *model.PageInfo `json:"page_info,omitempty"`
-	// List 成员列表
-	List []AssetMember `json:"list,omitempty"`
-}
-
-type AssetMember struct {
-	// UserID 用户ID
-	UserID string `json:"user_id,omitempty"`
-	// UserName 用户名称
-	UserName string `json:"user_name,omitempty"`
-	// AdvertiserRole 授予合作伙伴的广告账号角色。枚举值： ADMIN, OPERATOR, ANALYST。只有当asset_type 为ADVERTISER时返回
-	AdvertiserRole enum.AdvertiserRole `json:"advertiser_role,omitempty"`
-	// CatalogRole 授予合作伙伴的商品库角色。只有当asset_type 为 CATALOG时有效。枚举值：
-	// ADMIN: 商务中心用户拥有商品库的管理权限。
-	// AD_PROMOTE: 商务中心用户只能使用商品库进行推广活动。
-	CatalogRole enum.CatalogRole `json:"catalog_role,omitempty"`
-	// UserEmail 用户邮箱地址
-	UserEmail string `json:"user_email,omitempty"`
 }
