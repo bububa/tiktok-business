@@ -143,6 +143,11 @@ func (c *SDKClient) post(ctx context.Context, base string, gw string, req model.
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
 	}
+	if preReq, ok := req.(model.PreRequest); ok {
+		if err := preReq.PreRequest(httpReq); err != nil {
+			return err
+		}
+	}
 	debug.PrintJSONRequest("POST", reqURL, httpReq.Header, reqBytes, c.debug)
 	return c.fetch(httpReq, resp)
 }
@@ -159,6 +164,11 @@ func (c *SDKClient) get(ctx context.Context, base string, gw string, req model.G
 	}
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
+	}
+	if preReq, ok := req.(model.PreRequest); ok {
+		if err := preReq.PreRequest(httpReq); err != nil {
+			return err
+		}
 	}
 	return c.fetch(httpReq, resp)
 }
@@ -207,7 +217,11 @@ func (c *SDKClient) upload(ctx context.Context, base string, gw string, req mode
 	if accessToken != "" {
 		httpReq.Header.Add("Access-Token", accessToken)
 	}
-
+	if preReq, ok := req.(model.PreRequest); ok {
+		if err := preReq.PreRequest(httpReq); err != nil {
+			return err
+		}
+	}
 	return c.fetch(httpReq, resp)
 }
 
@@ -227,12 +241,24 @@ func (c *SDKClient) fetch(httpReq *http.Request, resp model.Response) error {
 		return err
 	}
 	defer httpResp.Body.Close()
+	if reader, ok := resp.(model.DownloadResponse); ok {
+		if httpResp.Header.Get("Content-Type") == "application/json" {
+			if err := c.validateResponse(httpResp, resp); err != nil {
+				return err
+			}
+		}
+		return reader.Read(httpResp.Body)
+	}
 	if resp == nil {
 		resp = &model.BaseResponse{}
 	}
+	return c.validateResponse(httpResp, resp)
+}
+
+func (c *SDKClient) validateResponse(httpResp *http.Response, resp model.Response) error {
 	buf := util.NewBuffer()
 	defer util.ReleaseBuffer(buf)
-	err = debug.DecodeJSONHttpResponse(httpResp.Body, buf, resp, c.debug)
+	err := debug.DecodeJSONHttpResponse(httpResp.Body, buf, resp, c.debug)
 	if resp.IsError() {
 		return resp
 	} else if err != nil {
