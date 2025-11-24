@@ -263,6 +263,14 @@ type Metrics struct {
 	ProductClicks model.Int64 `json:"product_clicks,omitempty"`
 	// ProductClickRate 商品广告点击率
 	ProductClickRate model.Float64 `json:"product_click_rate,omitempty"`
+	// AllShopsCostPerOrder 平均下单成本
+	AllShopsCostPerOrder model.Float64 `json:"all_shops_cost_per_order,omitempty"`
+	// AllShopsOrders 订单数
+	AllShopsOrders model.Int64 `json:"all_shops_orders,omitempty"`
+	// AllShopsGrossRevenue 总收入
+	AllShopsGrossRevenue model.Float64 `json:"all_shops_gross_revenue,omitempty"`
+	// AllShopsROI ROI
+	AllShopsROI model.Float64 `json:"all_shops_roi,omitempty"`
 	// AdClickRate 广告点击率
 	AdClickRate model.Float64 `json:"ad_click_rate,omitempty"`
 	// AdConversionRate 广告转化率

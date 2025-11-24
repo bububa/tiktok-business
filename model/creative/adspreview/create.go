@@ -29,7 +29,6 @@ type CreateResponse struct {
 	Data *CreateResult `json:"data,omitempty"`
 }
 
-// CreateResult
 type CreateResult struct {
 	// PreviewLink 预览链接。
 	// 有效期：

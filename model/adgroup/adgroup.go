@@ -137,8 +137,16 @@ type Adgroup struct {
 	AppDownloadURL string `json:"app_download_url,omitempty"`
 	// PixelID Pixel ID，仅对落地页生效
 	PixelID string `json:"pixel_id,omitempty"`
-	// OptimizationEvent 广告组转化事件。参阅转化事件 ，获取详细信息
+	// Otiktok_subplacementsptimizationEvent 广告组转化事件。参阅转化事件 ，获取详细信息
 	OptimizationEvent enum.OptimizationEvent `json:"optimization_event,omitempty"`
+	// AppConfig 推广系列层级 sales_destination 为 WEB_AND_APP 时必填。
+	// 想要推广的应用详情。
+	// 最大数量：2。
+	// 您可以通过本字段指定以下任意类型应用：
+	// 一个安卓应用
+	// 一个 iOS 应用
+	// 一个安卓应用和一个 iOS 应用
+	AppConfig []AppConfig `json:"app_config,omitempty"`
 	// DeepFunnelOptimizationStatus 深层漏斗优化的状态。
 	// 深层漏斗优化同时优化浅层和深层漏斗事件。您可以在主要优化事件之外再选择一个次要事件，这有助于提升推广 系列的效果。
 	// 枚举值：
@@ -177,6 +185,8 @@ type Adgroup struct {
 	// IN_FEED：信息流。广告将投放在“推荐”动态中，可能投放在“个人资料页”和“关注”推荐内容中。
 	// SEARCH_FEED：搜索推荐内容。
 	// TIKTOK_LITE：TikTok Lite，占用内容更小、视频加载速度更快的精简版 TikTok 应用。TikTok Lite 子版位仅支持定向日本或韩国时使用。
+	// LEMON8：Lemon8，一款生活方式内容社区应用，内容包含真实生活体验分享、小贴士、指南和商品测评。如果在子版位中包含 Lemon8，广告将展示在其推荐页信息流、搜索信息流和沉浸式视频信息流中。 了解 Lemon8 的详情。
+	// 仅支持在推广系列层级将 objective_type 设置为 REACH 时在 tiktok_subplacements 中包含 LEMON8。
 	// 注意：若创建广告组时未指定 tiktok_subplacements，本字段将为空列表（[]）。
 	TiktokSubplacements []enum.TiktokSubplacement `json:"tiktok_subplacements,omitempty"`
 	// SearchResultEnabled 是否在搜索广告中展示您的广告，即当用户在 TikTok上搜索您的业务相关信息时，系统是否向他们展示您的广告。
@@ -473,6 +483,12 @@ type Adgroup struct {
 	StatisticType string `json:"statistic_type,omitempty"`
 	// IsHfss 广告推广对象是否是 HFSS 食品（高脂、高盐、高糖食品）请注意，欧洲国家不允许向未成年人推送 HFSS 食品广告
 	IsHfss bool `json:"is_hfss,omitempty"`
+	// IsLhfCompliance 推广内容是否符合 LHF（较不健康食品）合规要求。
+	// 将 is_lhf_compliance 设置为 true，即表示您确认在英国 TikTok 上推广的任何食品或饮料均符合 2024 年较不健康食品法规以及其他所有适用法律。
+	// 支持的值：true，false。
+	// 默认值：false。
+	// 注意：自 2026 年 1 月 1 日起，当广告定向到英国地域且 is_hfss 为 true 时，is_lhf_compliance 必填，且必须设置为 true。
+	IsLhfCompliance bool `json:"is_lhf_compliance,omitempty"`
 	// CreativeMaterialMode 创意投放方式。
 	// 枚举值: CUSTOM（自定义）、DYNAMIC（已废弃）（程序化创意）、SMART_CREATIVE（智能创意）
 	CreativeMaterialMode enum.CreativeMaterialMode `json:"creative_material_mode,omitempty"`
@@ -581,4 +597,12 @@ type Schedule struct {
 	StartTime model.DateTime `json:"start_time,omitzero"`
 	// EndTime 广告投放结束时间
 	EndTime model.DateTime `json:"end_time,omitzero"`
+}
+
+// AppConfig 想要推广的应用详情。
+type AppConfig struct {
+	// AppID 传入app_config 时本字段必填。
+	// 想要推广的应用的 ID。
+	// 若想获取广告账户中的应用 ID 列表，可使用/app/list/并查看返回的app_id.
+	AppID string `json:"app_id,omitempty"`
 }

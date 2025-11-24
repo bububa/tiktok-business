@@ -158,9 +158,6 @@ type PriceInfo struct {
 	// 如果商品的促销价没有限定期限，请不要传入本字段。
 	// 示例：2023-12-11T23:59+00:00/2023-12-15T23:59+00:00。
 	SalePriceEffectiveDate string `json:"sale_price_effective_date,omitempty" csv:"sale_price_effective_date"`
-	// TotalPrice 仅对酒店商品库中的酒店返回本字段。
-	// 总价格。
-	TotalPrice float64 `json:"total_price,omitempty" csv:"total_price"`
 }
 
 // LandingPage 落地页信息

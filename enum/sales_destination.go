@@ -10,4 +10,6 @@ const (
 	SalesDestination_WEBSITE SalesDestination = "WEBSITE"
 	// SalesDestination_APP：应用。推动应用上的销售（需要商品库）。
 	SalesDestination_APP SalesDestination = "APP"
+	// SalesDestination_WEB_AND_APP：网站和应用。提升网站和应用上的销量
+	SalesDestination_WEB_AND_APP SalesDestination = "WEB_AND_APP"
 )

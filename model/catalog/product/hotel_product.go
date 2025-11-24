@@ -32,7 +32,7 @@ type HotelProduct struct {
 	// 示例： https://www.tiktok.com/hotel_room_image_001.jpg。
 	ImageURL string `json:"image_url,omitempty" csv:"image_link"`
 	// AdditionalImageURLs 酒店房间的附加图片的 URL。
-	// 最大数量：10。
+	// 最大数量：20。
 	// 图片规格必须大于等于500x500像素，否则图片将被过滤，商品无法通过审核。详细信息请参考商品图片要求。
 	// 所有图片应为 JPG 或 PNG 格式。
 	// 示例：["https://www.tiktok.com/hotel_room_image_002.jpg","https://www.tiktok.com/hotel_room_image_003.jpg"] 。
@@ -57,7 +57,8 @@ type HotelProduct struct {
 	// LUXURY_TENT：豪华帐篷酒店。
 	// RESORT：度假酒店。
 	// VILLA：别墅酒店。
-	HotelCategory enum.HotelCategory `json:"hotel_category,omitempty" csv:"category"`
+	// 最大数量：3
+	HotelCategory []enum.HotelCategory `json:"hotel_category,omitempty" csv:"category"`
 	// HotelRetailerID 酒店零售商的唯一 ID。
 	// 长度限制：100 字符。
 	HotelRetailerID string `json:"hotel_retailer_id,omitempty" csv:"hotel_retailer_id"`
@@ -67,6 +68,9 @@ type HotelProduct struct {
 	// 长度限制：100 字符。
 	// 示例：Bangkok Old Town。
 	Neighborhood string `json:"neighborhood,omitempty" csv:"neighborhood"`
+	// PostalCode 酒店的邮政编码。
+	// 长度限制：150 个字符。
+	PostalCode string `json:"postal_code,omitempty" csv:"postal_code"`
 	// Latitude 酒店所在地的纬度。
 	// 取值范围： [-90, 90]。
 	// 示例：37.484100。
@@ -75,9 +79,6 @@ type HotelProduct struct {
 	// 取值范围：[-180, 180]。
 	// 示例： -122.148252。
 	Longitude float64 `json:"longitude,omitempty" csv:"longitude"`
-	// Phone 酒店电话号码。
-	// 长度限制：100 字符。
-	Phone string `json:"phone,omitempty" csv:"phone"`
 	// MarginLevel 酒店按酒店房间的基础价格（price）上另外加收作为押金的比例。
 	// 取值范围：[1, 10]。
 	// 例如，10 代表该酒店按酒店房间的基础价格的10%加收押金。
@@ -85,27 +86,15 @@ type HotelProduct struct {
 	// LoyaltyProgram 酒店提供的忠诚度计划。
 	// 长度限制：150 字符。
 	LoyaltyProgram string `json:"loyalty_program,omitempty" csv:"loyalty_program"`
-	// CancellationPolicy 酒店的取消政策。
-	// 长度限制：150 字符。
-	CancellationPolicy string `json:"cancellation_policy,omitempty" csv:"cancellation_policy"`
 	// GuestRatings 酒店的顾客评分信息。
 	// 最大数量：5。
 	GuestRatings []GuestRating `json:"guest_ratings,omitempty" csv:"guest_rating"`
 	// StarRating 酒店的星级
 	StarRating int `json:"star_rating,omitempty" csv:"star_rating"`
-	// HotelRoomID 酒店房间的唯一 ID。
-	// 长度限制：100 字符。
-	HotelRoomID string `json:"hotel_room_id,omitempty" csv:"hotel_room_id"`
 	// RoomType 酒店房间类型。
 	// 长度限制：150 字符。
-	RoomType string `json:"room_type,omitempty" csv:"room_type"`
-	// MealPolicy 酒店房间对应的餐饮套餐。
-	// 长度限制：150 字符。
-	MealPolicy string `json:"meal_policy,omitempty" csv:"meal_policy"`
-	// Amenities 酒店的生活设施。
-	// 长度限制：10,000 字符。
-	// 示例：swimming pool, fitness center。
-	Amenities string `json:"amenities,omitempty" csv:"amenities"`
+	// 最大数量：3
+	RoomType []string `json:"room_type,omitempty" csv:"room_type"`
 	// Priority 酒店的优先级。
 	// 取值范围：0-5。
 	// 默认值：0。
@@ -128,6 +117,12 @@ type Address struct {
 	// Address 酒店的具体地址。
 	// 长度限制：150 字符。
 	Address string `json:"address,omitempty" csv:"address"`
+	// SecondaryAddress 酒店的次要街道地址。
+	// 长度限制：150 个字符。
+	SecondaryAddress string `json:"secondary_address,omitempty" csv:"secondary_address"`
+	// TertiaryAddress 酒店的三级街道地址。
+	// 长度限制：150 个字符。
+	TertiaryAddress string `json:"tertiary_address,omitempty" csv:"tertiary_address"`
 	// City 酒店所在城市。
 	// 长度限制：150 字符。
 	City string `json:"city,omitempty" csv:"city"`

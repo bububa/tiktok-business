@@ -30,7 +30,15 @@ type CreateRequest struct {
 	// TIKTOK_SHOP：TikTok Shop。推动 TikTok Shop 上的销售。
 	// WEBSITE：网站。推动网站上的销售。
 	// APP：应用。推动应用上的销售（需要商品库）。
+	// WEB_AND_APP：网站和应用。提升网站和应用上的销量
 	SalesDestination enum.SalesDestination `json:"sales_destination,omitempty"`
+	// IsSearchCampaign 是否创建搜索广告推广系列。
+	// 借助搜索广告推广系列，您可以选择相应关键词，据此在 TikTok 搜索结果页中投放广告。若想了解此类推广系列的创建步骤，请查看创建搜索广告推广系列。
+	// 支持的值：true，false。
+	// 注意:
+	// 搜索广告推广系列目前为白名单功能。如需使用此功能，请联系您的 TikTok 销售代表。
+	// 本字段设置后不允许修改。
+	IsSearchCampaign bool `json:"is_search_campaign,omitempty"`
 	// CampaignType 推广系列类型。枚举值: REGULAR_CAMPAIGN（普通推广系列）、IOS14_CAMPAIGN（iOS 14专属推广系列）。
 	CampaignType enum.CampaignType `json:"campaign_type,omitempty"`
 	// AppID 推广的App的ID。您可通过/app/list/获取app_id。
@@ -178,6 +186,10 @@ type CreateRequest struct {
 	// 若campaign_type 设置为IOS14_CAMPAIGN，operation_status 设置为 DISABLE，且您已为应用启用了 SKAN 4.0，但您未传入本字段，则本字段值默认设置为POSTBACK_WINDOW_MODE1。
 	// 若您已为应用启用了 SKAN 4.0，需定向 iOS 16.1 及以上版本的设备，从而确保能够接收 SKAN 4.0 的回传。若您想仅定向 iOS 16.1 及以上版本的设备，可在广告组层级将 min_ios_version 设置为 16.1 。
 	PostbackWindowMode enum.PostbackWindowMode `json:"postback_window_mode,omitempty"`
+	// PONumber PO（采购订单）号。
+	// PO 号可用于结算单追踪和对账。
+	// 了解月度结算单上的 PO 号。
+	PONumber string `json:"po_number,omitempty"`
 }
 
 // Encode implements PostRequest interface

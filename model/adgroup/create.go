@@ -150,6 +150,14 @@ type CreateRequest struct {
 	// 若您要在一个已开启CBO的推广系列下创建新的广告组，需确保本字段的值与第一个广告组中的设置保持一致。
 	// 当optimization_goal为 PAGE_VISIT 时，optimization_event 将自动设置为 PAGE_VISIT。
 	OptimizationEvent enum.OptimizationEvent `json:"optimization_event,omitempty"`
+	// AppConfig 推广系列层级 sales_destination 为 WEB_AND_APP 时必填。
+	// 想要推广的应用详情。
+	// 最大数量：2。
+	// 您可以通过本字段指定以下任意类型应用：
+	// 一个安卓应用
+	// 一个 iOS 应用
+	// 一个安卓应用和一个 iOS 应用
+	AppConfig []AppConfig `json:"app_config,omitempty"`
 	// DeepFunnelOptimizationStatus 深层漏斗优化的状态。
 	// 仅当 promotion_type 为 LEAD_GENERATION 时本字段生效 。
 	// 深层漏斗优化同时优化浅层和深层漏斗事件。您可以在主要优化事件之外再选择一个次要事件，这有助于提升推广系列的效果。
@@ -679,6 +687,12 @@ type CreateRequest struct {
 	// IsHfss 广告推广对象是否是 HFSS 食品（高脂、高盐、高糖食品）请注意，欧洲国家不允许向未成年人推送 HFSS 食品广告
 	// 请注意，欧洲国家不允许向未成年人推送 HFSS 食品广告
 	IsHfss bool `json:"is_hfss,omitempty"`
+	// IsLhfCompliance 推广内容是否符合 LHF（较不健康食品）合规要求。
+	// 将 is_lhf_compliance 设置为 true，即表示您确认在英国 TikTok 上推广的任何食品或饮料均符合 2024 年较不健康食品法规以及其他所有适用法律。
+	// 支持的值：true，false。
+	// 默认值：false。
+	// 注意：自 2026 年 1 月 1 日起，当广告定向到英国地域且 is_hfss 为 true 时，is_lhf_compliance 必填，且必须设置为 true。
+	IsLhfCompliance bool `json:"is_lhf_compliance,omitempty"`
 	// OperationStatus 广告组的操作状态。
 	// ENABLE：广告组处于启用（“开”）状态。
 	// DISABLE：广告组处于未启用（“关”）状态。

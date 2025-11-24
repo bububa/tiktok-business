@@ -74,4 +74,7 @@ const (
 	// 已废弃
 	// 注意：覆盖和频次广告的推广目标视频播放量和访问量于2023年6月1日废弃。2023年6月1日前保存的存量订单可继续投放，同时支持编辑与暂停，但对应的存量广告的投放结束时间需不晚于2024年1月12日。
 	ObjectiveType_RF_VIDEO_VIEW ObjectiveType = "RF_VIDEO_VIEW"
+
+	// ObjectiveType_BRAND_CONSIDERATION 品牌认知推广
+	ObjectiveType_BRAND_CONSIDERATION ObjectiveType = "BRAND_CONSIDERATION"
 )
