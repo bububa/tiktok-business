@@ -540,7 +540,7 @@ type CustomAction struct {
 	Days int `json:"days,omitempty"`
 }
 
-// TaregetingAction 用于定向的行为分类对象数组
+// TargetingAction 用于定向的行为分类对象数组
 type TargetingAction struct {
 	// ActionScene 用于定向的用户行为种类。
 	// 枚举值：
