@@ -50,7 +50,7 @@ type AssetAdminGetFilter struct {
 	// UNBOUND: 管理资产的申请获拥有者批准后已被取消。
 	// PENDING: 管理资产的申请正在等待拥有者批准。
 	// REJECTED: 管理资产的申请已被拥有者拒绝。
-	RelationStatus enum.BcAssetRelationStatus `json:"relation_status,omitempty"`
+	RelationStatus enum.BcRelationStatus `json:"relation_status,omitempty"`
 }
 
 // Encode implements GetRequest

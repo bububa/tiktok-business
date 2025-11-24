@@ -4,7 +4,6 @@ import (
 	"strconv"
 
 	"github.com/bububa/tiktok-business/enum"
-	"github.com/bububa/tiktok-business/model"
 	"github.com/bububa/tiktok-business/util"
 )
 
@@ -63,25 +62,4 @@ func (r *AssetPartnerGetRequest) Encode() string {
 	ret := values.Encode()
 	util.ReleaseURLValues(values)
 	return ret
-}
-
-// AssetPartnerGetResponse 根据资产获取合作伙伴 API Response
-type AssetPartnerGetResponse struct {
-	model.BaseResponse
-	Data *AssetPartnerGetResult `json:"data,omitempty"`
-}
-
-type AssetPartnerGetResult struct {
-	// PageInfo 分页信息
-	PageInfo *model.PageInfo `json:"page_info,omitempty"`
-	// List 合作伙伴列表
-	List []AssetPartner `json:"list,omitempty"`
-}
-
-// AssetPartner 合作伙伴
-type AssetPartner struct {
-	// BcID 合作伙伴商务中心ID
-	BcID string `json:"bc_id,omitempty"`
-	// BcName 合作伙伴名
-	BcName string `json:"bc_name,omitempty"`
 }

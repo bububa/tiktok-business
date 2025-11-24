@@ -51,7 +51,7 @@ func (r *TemporarilyUploadRequest) Encode() []model.UploadField {
 	if r.Signature == "" {
 		buf := util.NewBuffer()
 		defer util.ReleaseBuffer(buf)
-		io.Copy(buf, r.File)
+		_, _ = io.Copy(buf, r.File)
 		h := md5.New()
 		h.Write(buf.Bytes())
 		r.Signature = hex.EncodeToString(h.Sum(nil))

@@ -2,6 +2,7 @@ package model
 
 import (
 	"io"
+	"net/http"
 )
 
 // PostRequest post request interface
@@ -14,6 +15,10 @@ type PostRequest interface {
 type GetRequest interface {
 	// Encode encode request to string
 	Encode() string
+}
+
+type PreRequest interface {
+	PreRequest(*http.Request) error
 }
 
 // UploadField multipart/form-data post request field struct

@@ -177,6 +177,10 @@ func (d DateTime) MarshalJSON() ([]byte, error) {
 func (d *DateTime) UnmarshalJSON(data []byte) error {
 	s := strings.TrimSpace(string(data))
 
+	// Remove quotes if present
+	if strings.HasPrefix(s, `"`) && strings.HasSuffix(s, `"`) {
+		s = strings.Trim(s, `"`)
+	}
 	// Try to parse as an integer (timestamp)
 	if len(s) > 0 && s[0] >= '0' && s[0] <= '9' { // Quick check if it could be a number
 		if timestamp, err := strconv.ParseInt(s, 10, 64); err == nil {
@@ -191,10 +195,6 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 		}
 	}
 	// Try to parse as a string (YYYY-MM-DD HH:MM:SS)
-	// Remove quotes if present
-	if strings.HasPrefix(s, `"`) && strings.HasSuffix(s, `"`) {
-		s = strings.Trim(s, `"`)
-	}
 	layout := datetimeFormat
 	if strings.Contains(s, "Z") {
 		layout = time.RFC3339

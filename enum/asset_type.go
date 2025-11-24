@@ -16,4 +16,6 @@ const (
 	AssetType_LEAD AssetType = "LEAD"
 	// AssetType_TT_ACCOUNT：TikTok 账号。此资产类型对应 BC_AUTH_TT身份，详情见认证身份
 	AssetType_TT_ACCOUNT AssetType = "TT_ACCOUNT"
+	// AssetType_STOREFRANT
+	AssetType_STOREFRANT AssetType = "STOREFRANT"
 )

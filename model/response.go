@@ -1,6 +1,7 @@
 package model
 
 import (
+	"io"
 	"strconv"
 
 	"github.com/bububa/tiktok-business/util"
@@ -39,4 +40,9 @@ func (r BaseResponse) Error() string {
 // APIRequestID implement Response interface
 func (r BaseResponse) APIRequestID() string {
 	return r.RequestID
+}
+
+type DownloadResponse interface {
+	Response
+	Read(io.Reader) error
 }
