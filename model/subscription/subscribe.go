@@ -21,6 +21,7 @@ type SubscribeRequest struct {
 	// AD：广告的审核状态。
 	// TCM_SPARK_ADS：上传至某个 TCM 工作流程 2.0 订单的视频的 Spark Ads 授权状态。
 	// CREATIVE_FATIGUE：单个广告、广告组中所有广告或广告账户下所有广告的疲劳状态。
+	// API_SERVICE_STATUS: API 服务状态
 	SubscribeEntity enum.SubscribeEntity `json:"subscribe_entity,omitempty"`
 	// CallbackURL 回调链接
 	CallbackURL string `json:"callback_url,omitempty"`

@@ -29,6 +29,26 @@ type SubscriptionDetail struct {
 	// 可以通过/oauth2/access_token/接口获取。
 	// 注意：若用于配置 Webhook 的access_token被撤销（无论是开发者还是广告主撤销），则 Webhook 订阅将失效，您将无法再接收到 Webhook 事件。此时，您需重新生成access_token，并使用新访问令牌重新配置 Webhook。
 	AccessToken string `json:"access_token,omitempty"`
+	// ProductFilters 仅当 subscribe_entity 为 API_SERVICE_STATUS 时生效。
+	// 要订阅的 API 产品列表。
+	// 枚举值：
+	// BUSINESS_CENTER_API：商务中心 API。
+	// CREATIVES_API：创意管理 API。
+	// CATALOG_API：商品库 API。
+	// TIKTOK_STORE_API：TikTok Store API。
+	// CAMPAIGN_API：推广系列管理 API 。
+	// REPORTING_API：报表 API。
+	// AUDIENCE_API：受众 API。
+	// STREAMING_API：流式 API。
+	// EVENTS_API：事件 API。
+	// ACCOUNTS_API：账号 API。
+	// MENTIONS_API：提及 API。
+	// TIKTOK_ONE_API：TikTok One API。
+	// DISCOVERY_API：热门发现 API。
+	// SPARK_RECOMMEND_API：Spark Ads 推荐 API。
+	// BUSINESS_MESSAGING_API：Business Messaging API。
+	// 如果未指定product_filters，将订阅所有 API 产品的更新。
+	ProductFilters []enum.APIServiceType `json:"product_filters,omitempty"`
 	// LeadSource 仅当 subscribe_entity 为 LEAD 时生效。
 	// 订阅的线索来源。
 	// 枚举值：

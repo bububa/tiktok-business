@@ -159,4 +159,8 @@ type Campaign struct {
 	// PULSE：TikTok Pulse 推广系列。
 	// TOPVIEW： TopView 推广系列。
 	RfCampaignType enum.RfCampaignType `json:"rf_campaign_type,omitempty"`
+	// PONumber PO（采购订单）号。
+	// PO 号可用于结算单追踪和对账。
+	// 了解月度结算单上的 PO 号。
+	PONumber string `json:"po_number,omitempty"`
 }

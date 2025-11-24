@@ -379,6 +379,20 @@ type UpdateRequest struct {
 	// IsHfss 广告推广对象是否是 HFSS 食品（高脂、高盐、高糖食品）请注意，欧洲国家不允许向未成年人推送 HFSS 食品广告
 	// 请注意，欧洲国家不允许向未成年人推送 HFSS 食品广告
 	IsHfss *bool `json:"is_hfss,omitempty"`
+	// IsLhfCompliance 推广内容是否符合 LHF（较不健康食品）合规要求。
+	// 将 is_lhf_compliance 设置为 true，即表示您确认在英国 TikTok 上推广的任何食品或饮料均符合 2024 年较不健康食品法规以及其他所有适用法律。
+	// 支持的值：true，false。
+	// 默认值：false。
+	// 注意：自 2026 年 1 月 1 日起，当广告定向到英国地域且 is_hfss 为 true 时，is_lhf_compliance 必填，且必须设置为 true。
+	IsLhfCompliance *bool `json:"is_lhf_compliance,omitempty"`
+	// AppConfig 推广系列层级 sales_destination 为 WEB_AND_APP 时必填。
+	// 想要推广的应用详情。
+	// 最大数量：2。
+	// 您可以通过本字段指定以下任意类型应用：
+	// 一个安卓应用
+	// 一个 iOS 应用
+	// 一个安卓应用和一个 iOS 应用
+	AppConfig []AppConfig `json:"app_config,omitempty"`
 }
 
 // Encode implements PostRequest interface
