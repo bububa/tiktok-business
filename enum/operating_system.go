@@ -4,6 +4,8 @@ package enum
 type OperatingSystem string
 
 const (
+	// ALL
+	OSAll OperatingSystem = "ALL"
 	// ANDROID Android
 	ANDROID OperatingSystem = "ANDROID"
 	// IOS iOS

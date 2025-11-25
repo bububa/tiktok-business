@@ -320,4 +320,44 @@ type Filter struct {
 	Value enum.FilterValue `json:"value,omitempty"`
 	// CaseSensitive 是否大小写敏感
 	CaseSensitive *bool `json:"case_sensitive,omitempty"`
+	// ParameterFilters 链接关键词和参数的筛选条件列表。
+	// 您可在 parameter_filters 中最多指定 1 个链接关键词筛选条件（field设置为URL）和 10 个参数筛选条件（field设置为非 URL）。
+	// 若指定了parameter_filters中的筛选条件，这些条件将与（通过field、operator 和 value 定义的）受众行为筛选条件默认通过 AND 逻辑组合，形成最终的包含规则。
+	// 例如，若retention_days为30，且 filter_set 设置为{"operator": "OR", "filters":[{"field":"EVENT","operator":"EQ", "value":"PIXEL COMPLETE PAYMENT"},"parameter_filters":[{"field":"URL","operator":"CONTAINS","value":"us"}]]}，则该包含规则生成的受众将包含过去 30 天内在安装了所指定的 Pixel 的网站上的网页链接中带有"us"字样的网页上发生了“支付完成”行为的受众。
+	ParameterFilters []ParameterFilter `json:"parameter_filters,omitempty"`
+}
+
+// ParameterFilter 链接关键词和参数的筛选条件
+type ParameterFilter struct {
+	// Field 传入 inclusion_rule_set 中的 parameter_filters 时本字段必填。
+	// 筛选条件。
+	// 使用本字段指定筛选链接关键词或 Pixel 报告的网站事件参数。
+	// 枚举值：
+	// URL：链接关键词。
+	// CONTENT_TYPE：参数 content_type。
+	// PRICE：参数 price。
+	// VALUE：参数 value。
+	// CONTENT_ID：参数 content_id。
+	// CONTENT_CATEGORY：参数 content_category。
+	Field string `json:"field,omitempty"`
+	// Operator 传入 inclusion_rule_set 中的 parameter_filters 时本字段必填。
+	// 连接筛选条件和筛选值的操作符。
+	// 枚举值：
+	// CONTAINS：包含。
+	// DOES_NOT_CONTAIN：不包含。
+	// EQ：等于。
+	// IS_LESS_THAN：小于。
+	// IS_GREATER_THAN：大于。
+	// IS_LESS_THAN_OR_EQUAL_TO：小于或等于。
+	// IS_GRETER_THAN_OR_EQUAL_TO：大于或等于。
+	// 本字段的可选值根据 field 而变化：
+	// 若 field 设置为 URL，仅可将 operator 设置为 CONTAINS，DOES_NOT_CONTAIN 或 EQ。
+	// 若 field 未设置为 URL，可将 operator 设置为 CONTAINS, DOES_NOT_CONTAINS，EQ，IS_LESS_THAN，IS_GREATER_THAN，IS_LESS_THAN_OR_EQUAL_TO 或IS_GREATER_THAN_OR_EQUAL_TO。
+	Operatior enum.FilterOperator `json:"operator,omitempty"`
+	// Values 传入 inclusion_rule_set 中的 parameter_filters 时本字段必填。
+	// 筛选值列表。
+	// 最大数量：10。
+	// 每个筛选值的长度限制：100 个字符。
+	// 若您指定多个值，值之间将通过 OR 逻辑连接。
+	Values []string `json:"values,omitempty"`
 }

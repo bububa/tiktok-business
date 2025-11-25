@@ -19,3 +19,15 @@ const (
 	// PLACEMENT_ALL
 	PLACEMENT_ALL Placement = "ALL"
 )
+
+// LookalikePlacement 相似受众版位
+type LookalikePlacement string
+
+const (
+	// LookalikePlacement_TikTok TikTok
+	LookalikePlacement_TikTok LookalikePlacement = "TikTok"
+	// LookalikePlacement_TopBuzz_BuzzVideo TopBuzz and BuzzVideo
+	LookalikePlacement_TopBuzz_BuzzVideo LookalikePlacement = "TopBuzz_BuzzVideo"
+	// LookalikePlacement_Pangle Pangle
+	LookalikePlacement_Pangle LookalikePlacement = "Pangle"
+)
