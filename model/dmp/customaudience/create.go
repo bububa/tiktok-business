@@ -1,4 +1,4 @@
-package dmp
+package customaudience
 
 import (
 	"github.com/bububa/tiktok-business/enum"
@@ -6,8 +6,8 @@ import (
 	"github.com/bububa/tiktok-business/util"
 )
 
-// CustomAudienceCreateRequest 通过文件创建受众 API Request
-type CustomAudienceCreateRequest struct {
+// CreateRequest 通过文件创建受众 API Request
+type CreateRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID string `json:"advertiser_id,omitempty"`
 	// CustomAudienceName 自定义受众名称，限128字符内
@@ -29,12 +29,12 @@ type CustomAudienceCreateRequest struct {
 }
 
 // Encode implements PostRequest
-func (r *CustomAudienceCreateRequest) Encode() []byte {
+func (r *CreateRequest) Encode() []byte {
 	return util.JSONMarshal(r)
 }
 
-// CustomAudienceCreateResponse 通过文件创建受众 API Response
-type CustomAudienceCreateResponse struct {
+// CreateResponse 通过文件创建受众 API Response
+type CreateResponse struct {
 	model.BaseResponse
 	Data struct {
 		// CustomAudienceID 自定义受众ID

@@ -43,7 +43,7 @@ type CreateRequest struct {
 	// 若您使用了与美国 13-17 年龄区间定向不兼容的定向设置，且将 age_groups 设置为 [] 或不传入字段 age_groups，将出现报错。您需在该字段中明确指定您想要定向的具体年龄区间，例如AGE_18_24，从而避免发生报错。
 	AgeGroups []enum.Age `json:"age_groups,omitempty"`
 	// Gender 受众性别。枚举值详见枚举值 -受众性别
-	Gender enum.GENDER `json:"gender,omitempty"`
+	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// Languages 受众语言。枚举值详见枚举值-受众语言
 	Languages []string `json:"languages,omitempty"`
 	// LocationIDs 定向地域ID。所定向地域可为国家或地区层级，省、指定市场区域或都会区层级，或城市层级地域。

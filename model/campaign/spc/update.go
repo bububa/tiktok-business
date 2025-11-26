@@ -44,7 +44,7 @@ type UpdateRequest struct {
 	LocationIDs []string `json:"location_ids,omitempty"`
 	// Gender 定向受众性别
 	// 枚举值: GENDER_FEMALE,GENDER_MALE,GENDER_UNLIMITED。
-	Gender enum.GENDER `json:"gender,omitempty"`
+	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// ExcludeAgeUnderEighteen 是否排除十八岁以下受众
 	ExcludeAgeUnderEighteen *bool `json:"exclude_age_under_eighteen,omitempty"`
 	// ExcludeAudienceIDs 排除受众 ID 列表

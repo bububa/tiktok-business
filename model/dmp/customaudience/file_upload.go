@@ -1,4 +1,4 @@
-package dmp
+package customaudience
 
 import (
 	"crypto/md5"
@@ -10,8 +10,8 @@ import (
 	"github.com/bububa/tiktok-business/util"
 )
 
-// CustomAudienceFileUploadRequest 上传受众文件 API Request
-type CustomAudienceFileUploadRequest struct {
+// FileUploadRequest 上传受众文件 API Request
+type FileUploadRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID string `json:"advertiser_id,omitempty"`
 	// File 数据文件。仅支持.txt或者.csv文件
@@ -22,7 +22,7 @@ type CustomAudienceFileUploadRequest struct {
 	CaculateType enum.CalculateType `json:"caculate_type,omitempty"`
 }
 
-func (r *CustomAudienceFileUploadRequest) Encode() []model.UploadField {
+func (r *FileUploadRequest) Encode() []model.UploadField {
 	var reader io.Reader
 	if r.FileSignature == "" {
 		buf := util.NewBuffer()
@@ -51,8 +51,8 @@ func (r *CustomAudienceFileUploadRequest) Encode() []model.UploadField {
 	}}
 }
 
-// CustomAudienceFileUploadResponse 上传受众文件 API Response
-type CustomAudienceFileUploadResponse struct {
+// FileUploadResponse 上传受众文件 API Response
+type FileUploadResponse struct {
 	model.BaseResponse
 	Data struct {
 		// FilePath 在TikTok内部的文件地址。

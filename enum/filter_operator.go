@@ -28,12 +28,23 @@ const (
 	CONTAIN FilterOperator = "CONTAIN"
 	// NOT_CONTAIN: 不包含。
 	NOT_CONTAIN FilterOperator = "NOT_CONTAIN"
+	// DOES_NOT_CONTAIN：不包含。
+	DOES_NOT_CONTAIN FilterOperator = "DOES_NOT_CONTAIN"
 	// START_WITH: 开头是。
 	START_WITH FilterOperator = "START_WITH"
 	// EQUAL: 等于。
 	EQUAL FilterOperator = "EQUAL"
 	// NOT_EQUAL: 不等于。
 	NOT_EQUAL FilterOperator = "NOT EQUAL"
+
+	// IS_LESS_THAN：小于。
+	IS_LESS_THAN FilterOperator = "IS_LESS_THAN"
+	// IS_GREATER_THAN：大于。
+	IS_GREATER_THAN FilterOperator = "IS_GREATER_THAN"
+	// IS_LESS_THAN_OR_EQUAL_TO：小于或等于。
+	IS_LESS_THAN_OR_EQUAL_TO FilterOperator = "IS_LESS_THAN_OR_EQUAL_TO"
+	// IS_GRETER_THAN_OR_EQUAL_TO：大于或等于。
+	IS_GRETER_THAN_OR_EQUAL_TO FilterOperator = "IS_GRETER_THAN_OR_EQUAL_TO"
 
 	RNG          FilterOperator = "RNG"
 	WILDCARD     FilterOperator = "WILDCARD"

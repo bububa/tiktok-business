@@ -20,14 +20,14 @@ const (
 	GenderOther Gender = "Other"
 )
 
-// GENDER  性别
-type GENDER string
+// AudienceGender  受众性别
+type AudienceGender string
 
 const (
 	// GENDER_FEMALE
-	GENDER_FEMALE GENDER = "GENDER_FEMALE"
+	GENDER_FEMALE AudienceGender = "GENDER_FEMALE"
 	// GENDER_MALE
-	GENDER_MALE GENDER = "GENDER_MALE"
+	GENDER_MALE AudienceGender = "GENDER_MALE"
 	// GENDER_UNLIMITED。
-	GENDER_UNLIMITED GENDER = "GENDER_UNLIMITED"
+	GENDER_UNLIMITED AudienceGender = "GENDER_UNLIMITED"
 )

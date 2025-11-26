@@ -239,7 +239,7 @@ type Adgroup struct {
 	Languages []string `json:"languages,omitempty"`
 	// Gender 定向受众性别
 	// 枚举值: GENDER_FEMALE,GENDER_MALE,GENDER_UNLIMITED。
-	Gender enum.GENDER `json:"gender,omitempty"`
+	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// AgeGroups 定向受众年龄
 	// 枚举值：详见枚举值-受众年龄区间
 	AgeGroups []enum.Age `json:"age_groups,omitempty"`
@@ -565,7 +565,7 @@ type TargetingAction struct {
 	// HASHTAG_RELATED：话题互动。
 	ActionScene enum.ActionScene `json:"actiotn_scene,omitempty"`
 	// ActionPeriod 选择n天内发生的行为
-	ActionPeriod int `json:"action_period,omitempty"`
+	ActionPeriod *int `json:"action_period,omitempty"`
 	// VideoUserActions 所选用户行为种类下想要定向的的具体用户行为。
 	// 若action_scene为VIDEO_RELATED，枚举值为：WATCHED_TO_END（完播），LIKED（点赞），COMMENTED（评论），SHARED（分享）。
 	// 若action_scene为CREATOR_RELATED，枚举值为：FOLLOWING（关注），VIEW_HOMEPAGE（浏览主页）。

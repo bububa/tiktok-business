@@ -1,12 +1,12 @@
-package dmp
+package customaudience
 
 import (
 	"github.com/bububa/tiktok-business/enum"
 	"github.com/bububa/tiktok-business/util"
 )
 
-// CustomAudienceUpdateRequest 修改受众 API Request
-type CustomAudienceUpdateRequest struct {
+// UpdateRequest 修改受众 API Request
+type UpdateRequest struct {
 	// AdvertiserID 广告主ID
 	AdvertiserID string `json:"advertiser_id,omitempty"`
 	// CustomAudienceID 自定义受众ID
@@ -29,6 +29,6 @@ type CustomAudienceUpdateRequest struct {
 }
 
 // Encode implements PostRequest
-func (r *CustomAudienceUpdateRequest) Encode() []byte {
+func (r *UpdateRequest) Encode() []byte {
 	return util.JSONMarshal(r)
 }
