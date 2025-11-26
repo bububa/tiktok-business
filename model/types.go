@@ -102,7 +102,15 @@ func (f64 *Float64) UnmarshalJSON(b []byte) (err error) {
 	if b[0] == '"' && b[len(b)-1] == '"' {
 		b = b[1 : len(b)-1]
 	}
+	var isPercent bool
+	if b[len(b)-1] == '%' {
+		b = b[0 : len(b)-1]
+		isPercent = true
+	}
 	i, _ := strconv.ParseFloat(string(b), 64)
+	if isPercent {
+		i /= 100
+	}
 	*f64 = Float64(i)
 	return err
 }

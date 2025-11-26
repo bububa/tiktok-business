@@ -11,7 +11,7 @@ type Audience struct {
 	// AgeGroups 受众年龄区间。若定向地区包括以色列和巴西，则此字段不可设置为AGE_13_17。枚举值可见枚举值-受众年龄区间
 	AgeGroups []enum.Age `json:"age_groups,omitempty"`
 	// Gender 受众性别。 枚举值详见枚举值 - 性别
-	Gender []enum.GENDER `json:"gender,omitempty"`
+	Gender []enum.AudienceGender `json:"gender,omitempty"`
 	// Languages 受众语言。枚举值详见枚举值-受众语言。
 	Languages []string `json:"languages,omitempty"`
 	// LocationIDs 定向地域ID。所定向地域可为国家或地区层级，省、指定市场区域或都会区层级，或城市层级地域。

@@ -335,7 +335,7 @@ type CreateRequest struct {
 	Languages []string `json:"languages,omitempty"`
 	// Gender 定向受众性别
 	// 枚举值: GENDER_FEMALE,GENDER_MALE,GENDER_UNLIMITED。
-	Gender enum.GENDER `json:"gender,omitempty"`
+	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// AgeGroups 定向受众年龄
 	// 在某些场景下，不允许创建定向美国、拉丁美洲、欧洲经济区、英国、瑞士或加拿大 13-17 年龄区间（AGE_13_17）受众的广告组。若想了解详情，请查看 TikTok 广告的新增年龄定向限制。
 	// 若您使用了与美国、拉丁美洲、欧洲经济区、英国、瑞士或加拿大 13-17 年龄区间定向不兼容的定向设置，且将 age_groups 设置为 [] 或不传入字段 age_groups ，则该字段将默认为["AGE_18_24", "AGE_25_34", "AGE_35_44", "AGE_45_54", "AGE_55_100"]。
