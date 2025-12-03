@@ -36,7 +36,8 @@ type AdUploadRequest struct {
 	// (3) 格式：.mp4, .mov, .mpeg, .avi。
 	// 示例：'video_file=@"/Users/admin/Downloads/sample-mov-file.mov"'
 	// 注意：上传视频前，请确保视频文件可播放且格式支持。
-	VideoFile io.Reader `json:"-"`
+	VideoFile      io.Reader `json:"-"`
+	VideoSignature string    `json:"video_signature,omitempty"`
 	// VideoURL 当 upload_type 为UPLOAD_BY_URL 时必填。
 	// 视频 URL 地址，如http://xxx.xxx。
 	// (1) 文件大小：建议 10M 以内。
@@ -97,6 +98,9 @@ func (r *AdUploadRequest) Encode() []model.UploadField {
 		Reader: r.VideoFile,
 		Key:    "video_file",
 		Value:  r.FileName,
+	}, model.UploadField{
+		Key:   "video_signature",
+		Value: r.VideoSignature,
 	})
 	if r.IsThirdParty {
 		ret = append(ret, model.UploadField{

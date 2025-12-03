@@ -8,13 +8,13 @@ import (
 )
 
 // AdvertiserGet 获取广告账号列表
-func AdvertiserGet(ctx context.Context, clt *core.SDKClient) ([]oauth.Advertiser, error) {
+func AdvertiserGet(ctx context.Context, clt *core.SDKClient, accessToken string) ([]oauth.Advertiser, error) {
 	req := oauth.AdvertiserGetRequest{
 		AppID:  clt.AppID(),
 		Secret: clt.Secret(),
 	}
 	var ret oauth.AdvertiserGetResponse
-	if err := clt.Get(ctx, "v1.3/oauth2/advertiser/get/", &req, &ret, ""); err != nil {
+	if err := clt.Get(ctx, "v1.3/oauth2/advertiser/get/", &req, &ret, accessToken); err != nil {
 		return nil, err
 	}
 	return ret.Data.List, nil
