@@ -19,6 +19,10 @@ type Identity struct {
 	// IdentityAuthorizedShopID 仅为部分 BC_AUTH_TT 认证身份返回本字段。
 	// 与添加到商务中心的 TikTok 用户类型认证身份绑定的 TikTok Shop 的 ID
 	IdentityAuthorizedShopID string `json:"identity_authorized_shop_id,omitempty"`
+	// IsGPPPA 该 TikTok 账号是否为政府、政治人物和政党账号。
+	// 支持的值：true，false。
+	// 本字段为 true 时，对应的 TikTok 账号不可用于创建 Spark Ads。
+	IsGPPPA bool `json:"is_gpppa,omitempty"`
 	// ProfileImage 与该认证身份绑定的 TikTok 账号的主页头像临时 URL。
 	// 有效期：约 48 小时。过期时间包含在 x-expires 参数后的 URL 中，格式为以秒为单位的 Epoch/Unix 时间戳。
 	// URL 过期后，您需要调用 /campaign/gmv_max/info/ 获取新的 URL。

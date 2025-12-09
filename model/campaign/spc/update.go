@@ -59,6 +59,13 @@ type UpdateRequest struct {
 	// 当开启了推广系列预算优化(budget_optimize_on)时，返回0.0。
 	// 对于 TopView 广告，本字段代表预估折后预算。
 	Budget float64 `json:"budget,omitempty"`
+	// BudgetAutoAdjustStrategy 仅当 budget_mode 为 BUDGET_MODE_DYNAMIC_DAILY_BUDGET 时生效。
+	// 日预算策略。
+	// 枚举值：
+	// AUTO_BUDGET_INCREASE：启用自动增加预算。当广告成效良好并满足目标 CPA、第 0 天目标 ROAS 和预算要求时，允许预算自动增加。
+	// budget_auto_adjust_strategy 为 AUTO_BUDGET_INCREASE 时，指定的 budget 为初始日预算。当预算使用率达到 90% 或以上时，允许日预算自动增加 20%，每天最多可增加 10 次。日预算每天都将重置为初始日预算。
+	// 注意：启用自动增加预算目前为白名单功能。如需使用此功能，请联系您的 TikTok 销售代表。
+	BudgetAutoAdjustStrategy *enum.BudgetAutoAdjustStrategy `json:"budget_auto_adjust_strategy,omitempty"`
 	// ScheduleType 广告投放时间类型。
 	// 枚举值: SCHEDULE_FROM_NOW，SCHEDULE_START_END。如果您选择了SCHEDULE_START_END，您需要明确投放开始和结束时间。 如果您选择了SCHEDULE_FROM_NOW，您只需要明确投放开始时间。
 	ScheduleType enum.ScheduleType `json:"schedule_type,omitempty"`
