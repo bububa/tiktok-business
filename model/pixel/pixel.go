@@ -33,6 +33,17 @@ type Pixel struct {
 	PartnerName string `json:"partner_name,omitempty"`
 	// AdvancedMatchingFields 高级匹配设置
 	AdvancedMatchingFields *AdvancedMatchingFields `json:"advanced_matching_fields,omitempty"`
+	// AutomaticAdvancedMatchingFields 该 Pixel 的自动高级匹配设置。
+	// 自动高级匹配功能自动使用通过 TikTok Pixel 收集的客户信息，如电子邮箱、姓名和电话号码，从而改善匹配率、转化监测和再营销
+	AutomaticAdvancedMatchingFields *AutomaticAdvancedMatchingFields `json:"automatic_advanced_matching_fields,omitempty"`
+	// EnableFirstPartyCookies 是否允许第一方 Cookie。
+	// 允许第一方 Cookie 将与 TikTok 共享来自你网站的第一方 Cookie 数据，可改善衡量效果并帮助触达更多用户。了解关于通过 TikTok Pixel 使用 Cookie。
+	// 默认值： true。
+	EnableFirstPartyCookies bool `json:"enable_first_party_cookies,omitempty"`
+	// EnableExpandedDataSharing 是否启用扩展数据共享。
+	// 启用扩展数据共享将允许此 Pixel 收集来自你的网站的更多信息，包括页面内容（如元标记和商品详情）、访客操作（如点击、按钮互动和使用时长）和网站性能（如页面加载速度和响应能力）。此数据可用于提升 TikTok 的广告投放成效和推广系列成效。你可以通过 TikTok Pixel 助手查看收集的所有数据。了解通过 TikTok Pixel 实现扩展型数据共享功能。
+	// 默认值： true。
+	EnableExpandedDataSharing bool `json:"enable_expanded_data_sharing,omitempty"`
 	// AssetOwnership 资产所有权数据
 	AssetOwnership *AssetOwnership `json:"asset_ownership,omitempty"`
 	// Events Pixel 事件列表。
@@ -46,6 +57,21 @@ type AdvancedMatchingFields struct {
 	PhoneNumber bool `json:"phone_number"`
 	// Email 邮件地址是否用于高级匹配
 	Email bool `json:"email"`
+}
+
+// AutomaticAdvancedMatchingFields 该 Pixel 的自动高级匹配设置。
+// 自动高级匹配功能自动使用通过 TikTok Pixel 收集的客户信息，如电子邮箱、姓名和电话号码，从而改善匹配率、转化监测和再营销
+type AutomaticAdvancedMatchingFields struct {
+	// PhoneNumber 电话号码是否用于高级匹配
+	PhoneNumber bool `json:"phone_number"`
+	// Email 邮件地址是否用于高级匹配
+	Email bool `json:"email"`
+	// Name 是否为姓名启用自动高级匹配
+	Name bool `json:"name"`
+	// Address 是否为地址启用自动高级匹配
+	Address bool `json:"address"`
+	// ExternalID 是否为外部 ID 启用自动高级匹配
+	ExternalID bool `json:"external_id"`
 }
 
 // AssetOwnership 资产所有权数据
