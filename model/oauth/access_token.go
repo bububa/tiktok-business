@@ -17,6 +17,11 @@ type AccessTokenRequest struct {
 	// 授权码有效期为 1 小时且只能使用一次。
 	// 若想了解您使用的 API 类别对应的授权码获取方式，可查看不同 API 的授权流程对比中的"OAuth 授权 URL"行。
 	AuthCode string `json:"auth_code,omitempty"`
+	// ReturnAdvertiserIDs 是否在返回中通过 advertiser_ids 返回生成的访问令牌可以访问的广告账号完整列表。
+	// 支持的值：true，false。
+	// 默认值：true。
+	// 注意：如果您拥有数千个或更多广告账户的访问权限，将此字段设置为 false 可避免在获取所有广告主 ID 完整列表导致的超时。
+	ReturnAdvertiserIDs *bool `json:"return_advertiser_ids,omitempty"`
 }
 
 // Encode implements PostRequest interface
