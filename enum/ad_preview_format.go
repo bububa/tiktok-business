@@ -6,6 +6,8 @@ type AdPreviewFormat string
 const (
 	// AdPreviewFormat_IN_FEED：信息流。广告将投放在“推荐”动态中，可能投放在“个人资料页”和“关注”推荐内容中。
 	AdPreviewFormat_IN_FEED AdPreviewFormat = "IN_FEED"
+	// AdPreviewFormat_IN_FEED_TWO_COLUMNS: 信息流（双列）。广告将在推荐页信息流中以两列布局展示，使多个内容可以并列显示
+	AdPreviewFormat_IN_FEED_TWO_COLUMNS AdPreviewFormat = "IN_FEED_TWO_COLUMNS"
 	// AdPreviewFormat_SEARCH_RESULTS：搜索结果页面。
 	AdPreviewFormat_SEARCH_RESULTS AdPreviewFormat = "SEARCH_RESULTS"
 	// AdPreviewFormat_SEARCH_FEED：搜索推荐内容。
