@@ -27,8 +27,17 @@ type AdsCreationPreviewRequest struct {
 	// 枚举值：
 	// PLACEMENT_TIKTOK：仅在objective_type 为REACH，TRAFFIC, VIDEO_VIEWS，ENGAGEMENT，APP_PROMOTION，LEAD_GENERATION， WEB_CONVERSIONS 或 PRODUCT_SALES 时支持。
 	// PLACEMENT_PANGLE：仅在objective_type 为TRAFFIC，APP_PROMOTION，LEAD_GENERATION（仅当 promotion_type为LEAD_GENERATION时）或 WEB_CONVERSIONS 时支持。
+	// PLACEMENT_GLOBAL_APP_BUNDLE：仅在objective_type 为REACH时支持。
 	// ALL：仅在objective_type 为TRAFFIC，APP_PROMOTION，LEAD_GENERATION（仅当 promotion_type为LEAD_GENERATION时）或 WEB_CONVERSIONS 时支持。
 	Placement enum.Placement `json:"placement,omitempty"`
+	// TikTokSubplacement 仅当同时满足以下两个条件时生效：
+	// objective_type 为 REACH。
+	// placement 为 PLACEMENT_TIKTOK。
+	// TikTok 子版位，用于选择广告出现的具体位置。
+	// 枚举值：
+	// LEMON8：Lemon8，一款生活方式内容社区应用，内容包含真实生活体验分享、小贴士、指南和商品测评。如果在子版位中包含 Lemon8，广告将展示在其推荐页信息流、搜索信息流和沉浸式视频信息流中。 了解 Lemon8 的详情。
+	// UNSET：未设置。
+	TikTokSubplacement enum.TiktokSubplacement `json:"tiktok_subplacement,omitempty"`
 	// PreviewFormat 不同placement的预览格式有所不同：
 	// 当placement为PLACEMENT_TIKTOK时，允许的预览格式为：
 	// IN_FEED：信息流。广告将投放在“推荐”动态中，可能投放在“个人资料页”和“关注”推荐内容中。
@@ -37,6 +46,13 @@ type AdsCreationPreviewRequest struct {
 	// TIKTOK_LITE：TikTok Lite，占用内容更小、视频加载速度更快的精简版 TikTok 应用。TikTok Lite 子版位仅支持定向日本或韩国时使用。
 	// PRODUCT_SEARCH: 搜索结果页面（Shopping Center）。在“商城”选项卡的搜索结果页面以及 TikTok 应用的常规搜索结果页面中展示您的商品。了解关于可投放店铺广告的“商城”选项卡广告位的详情。
 	// PRODUCT_SHOP_CENTER: “为你推荐”板块（Shopping Center）。在“为你推荐”板块，将您的商品展示给可能会购买的用户。
+	// 当 placement 为 PLACEMENT_TIKTOK 且 tiktok_subplacement 为 LEMON8 时，允许的预览格式为：
+	// IN_FEED: 信息流。广告将以全屏格式展示，提供沉浸且不受干扰的观看体验。
+	// IN_FEED_TWO_COLUMNS：信息流（双列）。广告将在推荐页信息流中以两列布局展示，使多个内容可以并列显示。
+	// 当 placement 为 PLACEMENT_GLOBAL_APP_BUNDLE 时，允许的预览格式为：
+	// APP_OPEN：开屏广告。广告将在打开 Capcut 应用时展示，标志着用户会话的开始。此全屏优质版位确保了广告作为用户看到的第一个画面而具有高可见性。
+	// IN_FEED: 信息流。广告将以全屏格式展示，提供沉浸且不受干扰的观看体验。
+	// IN_FEED_TWO_COLUMNS：信息流（双列）。广告将在推荐页信息流中以两列布局展示，使多个内容可以并列显示。
 	// 默认值：IN_FEED。
 	//
 	// 注意：

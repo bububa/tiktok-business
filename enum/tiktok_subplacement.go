@@ -12,4 +12,6 @@ const (
 	TiktokSubplacement_TIKTOK_LITE TiktokSubplacement = "TIKTOK_LITE"
 	// TiktokSubplacement_LEMON8：Lemon8，一款生活方式内容社区应用，内容包含真实生活体验分享、小贴士、指南和商品测评。如果在子版位中包含 Lemon8，广告将展示在其推荐页信息流、搜索信息流和沉浸式视频信息流中。 了解 Lemon8 的详情。
 	TiktokSubplacement_LEMON8 TiktokSubplacement = "LEMON8"
+	// TiktokSubplacement_UNSET 未设置
+	TiktokSubplacement_UNSET TiktokSubplacement = "UNSET"
 )
