@@ -56,6 +56,11 @@ type CreateRequest struct {
 	RoasBid float64 `json:"roas_bid,omitempty"`
 	// Budget 日预算
 	Budget float64 `json:"budget,omitempty"`
+	// PromotionDays 促销日设置详情。
+	// 注意：若想自定义促销日期间每天可以增加的预算百分比和最大次数，可使用本对象中的 budget_increase_percentage 和 increase_limit。
+	PromotionDays *PromotionDays `json:"promotion_days,omitempty"`
+	// AutoBudget 非促销日的自动增加预算设置详情。
+	AutoBudget *AutoBudget `json:"auto_budget,omitempty"`
 	// ScheduleType 排期类型。
 	// 枚举值：
 	// SCHEDULE_FROM_NOW：在排定的开始时间之后持续投放推广系列。

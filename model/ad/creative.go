@@ -478,6 +478,7 @@ type Creative struct {
 	// 请查看品牌安全，了解出价后监测的支持推广目标，支持市场以及简要介绍。
 	// 当您同时传入brand_safety_postbid_partner 和viewability_postbid_partner时：
 	// 一旦将两字段其中之一设置为 IAS，则另一字段也需要设置为IAS，且您需要为brand_safety_vast_url和viewability_vast_url传入相同的值（即您从监测合作伙伴IAS处获取的封装的 VAST 网址）。
+	// 一旦将两字段其中之一设置为 ZEFR，则另一字段也需要设置为ZEFR。
 	// 若您设置了两个不同的出价后第三方监测合作伙伴，仅出价后第三方品牌安全监测设置生效。
 	// 出价后第三方监测不支持在程序化创意广告中使用。
 	// 出价后第三方监测不支持在promotion_type设置为LIVE_SHOPPING的广告组中使用。
