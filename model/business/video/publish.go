@@ -118,6 +118,35 @@ type PostInfo struct {
 	// 默认值：false。
 	// 注意：若“仅限广告”的视频已用作 Spark Ads，您可以通过/business/video/list/拉取这些视频的详情。
 	IsAdsOnly bool `json:"is_ads_only,omitempty"`
+	// MusicSoundInfo Information about the commercial sound (track) that you want to use with a video
+	MusicSoundInfo *MusicSoundInfo `json:"music_sound_info,omitempty"`
+}
+
+// MusicSoundInfo Information about the commercial sound (track) that you want to use with a video
+type MusicSoundInfo struct {
+	// MusicSoundID Required when using music_sound_info.
+	// The ID of the commercial sound that you want to use with a video.
+	// You can get this ID using the /discovery/cml/trending_list/ endpoint.
+	MusicSoundID string `json:"music_sound_id,omitempty"`
+	// MusicSoundVolume Required when using music_sound_info.
+	// The volume of the commercial sound.
+	// Default value: 0.
+	// Value range: 0-100.
+	// Note: When using the TikTok App, the default volume is 50.
+	MusicSoundVolume int `json:"music_sound_volume,omitempty"`
+	// MusicSoundStart The starting point of the sound to be used for the video.
+	// For example, if you input a value of 2, the commercial sound will start from the 0:02 time mark.
+	// If not provided, this field defaults to the track's beginning.
+	MusicSoundStart int `json:"music_sound_start,omitempty"`
+	// MusicSoundEnd The ending point of the sound to be used for the video.
+	// If not provided, this field defaults to the video’s full duration (end time) expressed in milliseconds.
+	// For example, if your video is two seconds long and the commercial sound is 10 seconds long, omitting both music_sound_start and music_sound_end will result in the addition of the first 2 seconds of the commercial sound to your video.
+	MusicSoundEnd int `json:"music_sound_end,omitempty"`
+	// VideoOriginalSoundVolume The background volume of the original video.
+	// Default value: 0.
+	// Value range: 0-100.
+	// Note: When using the TikTok App, the default volume is 50.
+	VideoOriginalSoundVolume int `json:"video_original_sound_volume,omitempty"`
 }
 
 // Encode implements PostRequest
