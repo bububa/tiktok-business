@@ -309,16 +309,16 @@ type UpdateRequest struct {
 	// Budget 广告组预算。
 	// 当开启了推广系列预算优化（budget_optimize_on = TRUE）时，该字段将被忽略。
 	// 详情请参阅预算。欲直接获取某一币种对应的每日预算取值范围，请参阅币种-每日预算取值范围。
-	Budget float64 `json:"budget,omitempty"`
+	Budget *float64 `json:"budget,omitempty"`
 	// ScheduleType 广告投放时间类型。
 	// 枚举值: SCHEDULE_FROM_NOW，SCHEDULE_START_END。如果您选择了SCHEDULE_START_END，您需要明确投放开始和结束时间。 如果您选择了SCHEDULE_FROM_NOW，您只需要明确投放开始时间。
 	ScheduleType enum.ScheduleType `json:"schedule_type,omitempty"`
 	// ScheduleStartTime 广告投放起始时间(UTC+0)。
 	// 格式：YYYY-MM-DD HH:MM:SS。
-	ScheduleStartTime model.DateTime `json:"schedule_start_time,omitzero"`
+	ScheduleStartTime *model.DateTime `json:"schedule_start_time,omitempty"`
 	// ScheduleEndTime 广告投放结束时间(UTC+0)。
 	// 格式： YYYY-MM-DD HH:MM:SS
-	ScheduleEndTime model.DateTime `json:"schedule_end_time,omitzero"`
+	ScheduleEndTime *model.DateTime `json:"schedule_end_time,omitempty"`
 	// Dapparting 广告投放安排。格式为48x7的字符串。字符只能为0或者1。0代表不投放，1代表投放。每个字符对应一个30分钟的时间段。第一个字符对应的是周一的凌晨0:01-0:30，第二个字符对应0:31-1:00，依次类推。最后一个字符代表周日23:31-0:00。
 	// 注意：
 	// 不设置，全部设置为0，或者全部都设置为1都代表了要进行全时投放。

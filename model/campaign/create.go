@@ -105,7 +105,7 @@ type CreateRequest struct {
 	// 枚举值：true（开启）。
 	// 详见推广系列预算优化。
 	// 注意：对于 Smart+ 推广系列或智能效果网站推广系列，本字段值将为 true，因为这些推广系列均默认启用推广系列预算优化。
-	BudgetOptimizeOn bool `json:"budget_optimize_on,omitempty"`
+	BudgetOptimizeOn *bool `json:"budget_optimize_on,omitempty"`
 	// BudgetMode 预算类型。
 	// 枚举值：
 	// BUDGET_MODE_INFINITE：不限预算。

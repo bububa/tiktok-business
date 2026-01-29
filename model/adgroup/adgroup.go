@@ -447,11 +447,15 @@ type Adgroup struct {
 	// SEVEN_DAYS：7天（点击）。
 	// FOURTEEN_DAYS：14天（点击）。
 	// TWENTY_EIGHT_DAYS：28天（点击）。
+	// THIRTY_DAYS: 30-day click.
+	// THIRTY_TWO_DAYS: 32-day click.
 	ClickAttributionWindow enum.Window `json:"click_attribution_window,omitempty"`
 	// EngagedViewAttributionWindow 广告组的深度互动观看归因窗口期。该窗口期指用户从观看视频广告 6 秒到采取行动之间的时间间隔。
 	// 枚举值：
 	// ONE_DAY：1天（深度互动观看）。
 	// SEVEN_DAYS：7天（深度互动观看）。
+	// FOURTEEN_DAYS: 14-day engaged view.
+	// TWENTY_EIGHT_DAYS: 28-day engaged view.
 	EngagedViewAttributionWindow enum.Window `json:"engaged_view_attribution_window,omitempty"`
 	// ViewAttributionWindow 广告组的展示归因窗口期。该窗口期指用户从查看广告到采取行动之间的时间间隔。
 	// 枚举值：
