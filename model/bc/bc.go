@@ -7,6 +7,14 @@ import (
 type BusinessCenter struct {
 	// BcID 商务中心ID
 	BcID string `json:"bc_id,omitempty"`
+	// VerificationStatus Business verification status of the Business Center.
+	// Enum values:
+	// NOT_SUBMITTED: The business verification has not been submitted.
+	// REVIEWING: The business verification is currently under review.
+	// VERIFIED: The business has been verified successfully.
+	// FAILED: The business verification has failed.
+	// EXPIRED: The business verification has expired.
+	VerificationStatus enum.BcVerificationStatus `json:"verification_status,omitempty"`
 	// Name 商务中心名称
 	Name string `json:"name,omitempty"`
 	// Company 商务中心公司名称

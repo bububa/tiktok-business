@@ -19,6 +19,11 @@ type Identity struct {
 	// IdentityAuthorizedShopID 仅为部分 BC_AUTH_TT 认证身份返回本字段。
 	// 与添加到商务中心的 TikTok 用户类型认证身份绑定的 TikTok Shop 的 ID
 	IdentityAuthorizedShopID string `json:"identity_authorized_shop_id,omitempty"`
+	// AdsOnlyMode Returned only when identity_type is BC_AUTH_TT.
+	// Whether the "Ads-only mode" mode is enabled for the identity.
+	// Supported values: true, false.
+	// When this field is true, you cannot set dark_post_status to OFF while creating ads (through /smart_plus/ad/create/, /ad/create/, or /campaign/spc/create/) or updating ads (through /smart_plus/ad/update/, /ad/update/, or /campaign/spc/update/) to allow your post to appear on your TikTok profile and be eligible to receive organic traffic.
+	AdsOnlyMode bool `json:"ads_only_mode,omitempty"`
 	// IsGPPPA 该 TikTok 账号是否为政府、政治人物和政党账号。
 	// 支持的值：true，false。
 	// 本字段为 true 时，对应的 TikTok 账号不可用于创建 Spark Ads。
