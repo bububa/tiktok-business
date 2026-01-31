@@ -22,4 +22,9 @@ const (
 	STATUS_ALL PrimaryStatus = "STATUS_ALL"
 	// STATUS_NOT_DELETE 所有状态（不包含已删除）。该枚举值为基础、受众分析或DSA类型的同步报表中的默认筛选条件。
 	STATUS_NOT_DELETE PrimaryStatus = "STATUS_NOT_DELETE"
+	// STATUS_DELIVERY_PARTIAL Limited delivery
+	STATUS_DELIVERY_PARTIAL PrimaryStatus = "STATUS_DELIVERY_PARTIAL"
+	// STATUS_DELIVERY_CATALOG The creative is a creative within a catalog.
+	// Currently, the statuses of catalog creatives are unavailable.
+	STATUS_DELIVERY_CATALOG PrimaryStatus = "STATUS_DELIVERY_CATALOG"
 )
