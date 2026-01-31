@@ -18,4 +18,6 @@ const (
 	AssetType_TT_ACCOUNT AssetType = "TT_ACCOUNT"
 	// AssetType_STOREFRANT
 	AssetType_STOREFRANT AssetType = "STOREFRANT"
+	// AssetType_MANAGED_BUSINESS_ACCOUNT: TikTok account for Business Account management. You can run ads from these TikTok accounts, and manage messages, leads, forms, comments, product links, and insights in your TikTok account.
+	AssetType_MANAGED_BUSINESS_ACCOUNT AssetType = "MANAGED_BUSINESS_ACCOUNT"
 )

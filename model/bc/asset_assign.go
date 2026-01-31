@@ -19,6 +19,7 @@ type AssetAssignRequest struct {
 	// PIXEL：Pixel。
 	// LEAD：线索。
 	// TT_ACCOUNT：TikTok 账号。此资产类型对应 BC_AUTH_TT身份，详情见认证身份
+	// MANAGED_BUSINESS_ACCOUNT: TikTok account for Business Account management. You can run ads from these TikTok accounts, and manage messages, leads, forms, comments, product links, and insights in your TikTok account.
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
 	// AssetID 资产ID。如果资产类型为广告账户，则传入广告账户ID。如果资产类型为商品库，则传入商品库ID
 	AssetID string `json:"asset_id,omitempty"`
