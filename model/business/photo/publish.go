@@ -81,6 +81,15 @@ type PostInfo struct {
 	// 示例：false
 	// 默认值：false
 	DisableComment bool `json:"disable_comment,omitempty"`
+	// MusicSoundInfo Information about the track that you want to use with a photo.
+	MusicSoundInfo *MusicSoundInfo `json:"music_sound_info,omitempty"`
+}
+
+// MusicSoundInfo Information about the track that you want to use with a photo.
+type MusicSoundInfo struct {
+	// MusicSoundID Required when using music_sound_info.
+	// The commercial music library ID of the track that you want to use with a photo. You can get this ID using the /discovery/cml/trending_list/ endpoint.
+	MusicSoundID string `json:"music_sound_id,omitempty"`
 }
 
 // Encode implements PostRequest

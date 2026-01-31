@@ -12,6 +12,8 @@ const (
 	AppPromotionType_APP_PREREGISTRATION AppPromotionType = "APP_PREREGISTRATION"
 	// AppPromotionType_APP_POSTS_PROMOTION：应用帖子推广。推广 TikTok 帖子，提升应用认知度并度量转化量。
 	AppPromotionType_APP_POSTS_PROMOTION AppPromotionType = "APP_POSTS_PROMOTION"
+	// AppPromotionType_MINIS TikTok Minis. Get people to watch your series or play your games with TikTok Minis.
+	AppPromotionType_MINIS AppPromotionType = "MINIS"
 	// AppPromotionType_UNSET
 	AppPromotionType_UNSET AppPromotionType = "UNSET"
 )

@@ -83,6 +83,7 @@ type ReportGetFilter struct {
 	// STATUS_DELIVERY_OK：投放中。
 	// STATUS_DISABLE：未投放。
 	// STATUS_DELETE：已删除
+	// STATUS_ALL: All statuses.
 	CampaignStatuses []enum.PrimaryStatus `json:"campaign_statuses,omitempty"`
 	// ItemGroupIDs 按商品 SPU ID 列表筛选。
 	// 最大数量：100

@@ -16,4 +16,8 @@ const (
 	Window_FOURTEEN_DAYS Window = "FOURTEEN_DAYS"
 	// Window_TWENTY_EIGHT_DAYS：28天
 	Window_TWENTY_EIGHT_DAYS Window = "TWENTY_EIGHT_DAYS"
+	// Window_THIRTY_DAYS: 30-day
+	Window_THIRTY_DAYS Window = "THIRTY_DAYS"
+	// Window_THIRTY_TWO_DAYS: 32-day
+	Window_THIRTY_TWO_DAYS Window = "THIRTY_TWO_DAYS"
 )

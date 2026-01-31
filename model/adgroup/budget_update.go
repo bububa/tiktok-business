@@ -12,7 +12,7 @@ type BudgetUpdateRequest struct {
 	ScheduleBudget []ScheduleBudget `json:"schedule_budget,omitempty"`
 }
 
-// 想要为广告组更新的总预算的有关信息
+// Budget 想要为广告组更新的总预算的有关信息
 type Budget struct {
 	// AdgroupID 传入对象数组 budget 时，本字段必填。
 	// 广告组 ID。

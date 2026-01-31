@@ -20,6 +20,7 @@ type AssetGetRequest struct {
 	// PIXEL：Pixel。
 	// LEAD：线索。
 	// TT_ACCOUNT：TikTok 账号。此资产类型对应 BC_AUTH_TT身份，详情见认证身份
+	// MANAGED_BUSINESS_ACCOUNT: TikTok account for Business Account management. You can run ads from these TikTok accounts, and manage messages, leads, forms, comments, product links, and insights in your TikTok account.
 	AssetType enum.AssetType `json:"asset_type,omitempty"`
 	// Filtering 筛选条件
 	Filtering *AssetGetFilter `json:"filtering,omitempty"`
@@ -157,7 +158,33 @@ type Asset struct {
 	// DIRECT_MESSAGE：私信权限，包括允许所有人向您发送私信，阅读和管理您收件箱中的私信，以及代表您向其他账号发送消息或进行互动。
 	// 仅当asset_type为TT_ACCOUNT时，本字段返回非 null 值
 	TTAcountRoles []enum.TTAccountRole `json:"tt_account_roles,omitempty"`
+	// BusinessAccountRoles Returned only when asset_type is MANAGED_BUSINESS_ACCOUNT.
+	// Business Center user's Business Account management permission to the TikTok account.
+	// Enum values:
+	// BUSINESS_ACCOUNT_ADMIN: Business Account admin. Business Account admins have access to all Business Account features, including verification, member management, and linking to Business Center.
+	// BUSINESS_ACCOUNT_OPERATOR: Business Account operator. Business Account operators can manage TikTok analytics, posts, messages, and profile information.
+	// BUSINESS_ACCOUNT_ANALYST : Business Account analyst. Business Account analysts only have access to analytics and are not able to manage posts, messages, etc.
+	BusinessAccountRole enum.BusinessAccountRole `json:"business_account_role,omitempty"`
 	// OwernBcName 拥有该资产的商务中心名称。
 	// asset_type 为 TT_ACCOUNT 时，本字段的值将为 null
 	OwnerBcName string `json:"owner_bc_name,omitempty"`
+	// IsBusinessVerified Returned only when asset_type is MANAGED_BUSINESS_ACCOUNT.
+	// Whether the TikTok account is a Verified Business Account.
+	// A verified badge shows your account is authentic, based on your activity and the information you provided. With a verified account, you’ll also get extra protection, direct support, and more visibility.
+	// Supported values: true, false.
+	// Note: Organization Accounts created in Business Center will have access to functions exclusive to Verified Business Accounts such as Business Suite features. For these accounts, business verification will be approved without requiring any business verification documentation. For these accounts, is_business_verified will be true.
+	IsBusinessVerified bool `json:"is_business_verified,omitempty"`
+	// OperatingRegionCode eturned only when asset_type is MANAGED_BUSINESS_ACCOUNT.
+	// The region code of the operating region for the TikTok account.
+	// Example: US.
+	// For enum values, see List of values for operating_region_code.
+	OperatingRegionCode string `json:"operating_region_code,omitempty"`
+	// TTAssetHandle Returned only when asset_type is MANAGED_BUSINESS_ACCOUNT.
+	// The handle of the TikTok account.
+	TTAssetHandle string `json:"tt_asset_handle,omitempty"`
+	// TTAssetProfileImage Returned only when asset_type is MANAGED_BUSINESS_ACCOUNT.
+	// The URL to the profile image of the TikTok account.
+	// If no profile image has been specified for the TikTok account, this field will be empty.
+	// The expiration time is included in the URL after the x-expires parameter, in the format of an Epoch/Unix timestamp in seconds.
+	TTAssetProfileImage string `json:"tt_asset_profile_image,omitempty"`
 }

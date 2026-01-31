@@ -16,4 +16,8 @@ const (
 	CatalogType_ENTERTAINMENT CatalogType = "ENTERTAINMENT"
 	// CatalogType_MINI_SERIES：短剧商品库。
 	CatalogType_MINI_SERIES CatalogType = "MINI_SERIES"
+	// CatalogType_ECOMMERCE: e-commerce
+	CatalogType_ECOMMERCE CatalogType = "ECOMMERCE"
+	// CatalogType_TRAVEL_ENTERTAINMENT: travel and entertainment.
+	CatalogType_TRAVEL_ENTERTAINMENT CatalogType = "TRAVEL_ENTERTAINMENT"
 )

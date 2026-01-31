@@ -9,6 +9,7 @@ import (
 type ICreateRequest interface {
 	model.PostRequest
 	GetPreviewType() enum.AdPreviewType
+	Gateway() string
 }
 
 type CreateRequest struct {
@@ -21,6 +22,10 @@ type CreateRequest struct {
 
 func (r CreateRequest) GetPreviewType() enum.AdPreviewType {
 	return r.PreviewType
+}
+
+func (r CreateRequest) Gateway() string {
+	return "creative/ads_preview/create/"
 }
 
 // CreateResponse 广告预览 API Response
