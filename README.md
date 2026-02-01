@@ -153,7 +153,7 @@ if err != nil {
     log.Fatal(err)
 }
 
-fmt.Printf("Created ad with ID: %s\n", resp.Data.AdIDs[0])
+fmt.Printf("Created ad with ID: %s\n", resp.Data.AdID)
 ```
 
 ### Updating an Ad
