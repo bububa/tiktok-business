@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"errors"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/bububa/tiktok-business/enum"
@@ -120,7 +119,7 @@ func (f64 Float64) Value() float64 {
 }
 
 func (f64 Float64) String(prec int) string {
-	return strconv.FormatFloat(float64(64), 'f', prec, 64)
+	return strconv.FormatFloat(float64(f64), 'f', prec, 64)
 }
 
 // Bool support number/string in json
@@ -160,8 +159,9 @@ func (bl Bool) String() string {
 }
 
 const (
-	datetimeFormat = "2006-01-02 15:04:05"
-	dateFormat     = "2006-01-02"
+	datetimeFormat    = "2006-01-02 15:04:05"
+	altDatetimeFormat = "2006-01-02 15:04"
+	dateFormat        = "2006-01-02"
 )
 
 type DateTime time.Time
@@ -183,15 +183,15 @@ func (d DateTime) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DateTime) UnmarshalJSON(data []byte) error {
-	s := strings.TrimSpace(string(data))
+	s := bytes.TrimSpace(data)
 
 	// Remove quotes if present
-	if strings.HasPrefix(s, `"`) && strings.HasSuffix(s, `"`) {
-		s = strings.Trim(s, `"`)
+	if len(s) >= 2 && s[0] == '"' && s[len(s)-1] == '"' {
+		s = s[1 : len(s)-1]
 	}
 	// Try to parse as an integer (timestamp)
 	if len(s) > 0 && s[0] >= '0' && s[0] <= '9' { // Quick check if it could be a number
-		if timestamp, err := strconv.ParseInt(s, 10, 64); err == nil {
+		if timestamp, err := strconv.ParseInt(string(s), 10, 64); err == nil {
 			// Check for common timestamp lengths (seconds vs milliseconds)
 			// If it's a very large number, it's likely milliseconds
 			if timestamp > 1000000000000 { // Roughly > year 2001 in milliseconds
@@ -204,13 +204,18 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 	}
 	// Try to parse as a string (YYYY-MM-DD HH:MM:SS)
 	layout := datetimeFormat
-	if strings.Contains(s, "Z") {
+	if bytes.Contains(s, []byte{'Z'}) {
 		layout = time.RFC3339
-	} else if !strings.Contains(s, ":") {
-		layout = dateFormat
+	} else {
+		switch n := bytes.Count(s, []byte{':'}); n {
+		case 0:
+			layout = dateFormat
+		case 1:
+			layout = altDatetimeFormat
+		}
 	}
 
-	parsed, err := time.ParseInLocation(layout, s, time.UTC)
+	parsed, err := time.ParseInLocation(layout, string(s), time.UTC)
 	if err != nil {
 		return err
 	}
