@@ -91,9 +91,7 @@ type Campaign struct {
 	// 注意：目前不支持通过 API 创建应用帖子推广类型的推广系列，仅支持通过 API 更新或检索此类推广系列。
 	AppPromotionType enum.AppPromotionType `json:"aepp_promotion_type,omitempty"`
 	// VirtualObjectiveType 新推广目标类型。
-
 	// 枚举值：SALES（销量）。
-	//
 	// 使用本字段创建推广目标为销量的推广系列，该目标合并了网站转化量目标和商品销量目标。了解销量目标的详情，参见销量目标。
 	VirtetualObjectiveType enum.VirtualObjectiveType `json:"virtual_objective_type,omitempty"`
 	// SalesDestination 销售目标页面，即想要推动销售的渠道。

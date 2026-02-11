@@ -290,6 +290,14 @@ type Creative struct {
 	// 若想了解如何创建推广对象类型为电话通话的线索广告，请查看这里。
 	// 注意：创建推广对象类型为电话通话的线索广告目前为白名单功能。如需使用此功能，请联系您的TikTok销售代表。
 	PhoneNumber *string `json:"phone_number,omitempty"`
+	// CreativeAutoEnhancementStrategyList 应用于你的广告的自动优化策略列表。
+	// 你传入的优化功能将在你的推广系列投放期间自动实时应用。
+	// 枚举值：
+	// VIDEO_QUALITY：视频质量。通过提高分辨率和清晰度来提升整体视觉效果。
+	// MUSIC_REFRESH：音乐焕新。替换为当前 TikTok 上流行的音乐，紧跟潮流趋势。
+	// IMAGE_QUALITY：图片质量。通过提高分辨率和清晰度来提升整体视觉效果。
+	// IMAGE_RESIZE：调整尺寸。调整图片大小，充分利用全屏功能。
+	CreativeAutoEnhancementStrategyList []enum.CreativeAutoEnhancementStrategy `json:"creative_auto_enhancement_strategy_list,omitempty"`
 	// Deeplink 深度链接，即已安装应用的用户点击链接后跳转至的特定页面。
 	// 参见deeplink_type。
 	//
