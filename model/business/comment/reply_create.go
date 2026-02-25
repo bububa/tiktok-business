@@ -15,6 +15,16 @@ type ReplyCreateRequest struct {
 	CommentID string `json:"comment_id,omitempty"`
 	// Text 要创建的评论的文本内容。字符数上限为 150 个字符（UTF-8编码）
 	Text string `json:"text,omitempty"`
+	// ImageURI 必须传入 text 或 image_uri。
+	// 用作回复的图片的 URI。
+	// 若想获取图片 URI，需先调用 /business/comment/image/upload/ 接口。
+	ImageURI string `json:"image_uri,omitempty"`
+	// ImageWidth 当传入 image_uri 时，此为必填字段。
+	// 图片的宽度。
+	ImageWidth int64 `json:"image_width,omitempty"`
+	// ImageHeight 当传入 image_uri 时，此为必填字段。
+	// 图片的高度。
+	ImageHeight int64 `json:"image_height,omitempty"`
 }
 
 // Encode implements PostRequest

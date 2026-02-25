@@ -117,6 +117,9 @@ type Comment struct {
 	CreateTime model.DateTime `json:"create_time,omitzero"`
 	// Text 评论或评论回复的文本内容
 	Text string `json:"text,omitempty"`
+	// ImageURL 评论中图片的 URL。
+	// 此 URL 不会过期
+	ImageURL string `json:"image_url,omitempty"`
 	// Likes 评论或评论回复获得的点赞数
 	Likes int64 `json:"likes,omitempty"`
 	// Replies 评论获得的回复数
