@@ -5,7 +5,7 @@ import (
 	"github.com/bububa/tiktok-business/util"
 )
 
-// SmartAdPreviewRequest Preview Upgraded Smart+ Ads API Request
+// SmartPlusAdPreviewRequest Preview Upgraded Smart+ Ads API Request
 type SmartPlusAdPreviewRequest struct {
 	CreateRequest
 	// AdvertiserID 广告主 ID

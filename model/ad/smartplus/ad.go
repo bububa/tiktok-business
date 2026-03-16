@@ -175,6 +175,11 @@ type AdConfiguration struct {
 	// New assets will be added to your campaign automatically and won't appear on your TikTok profile. You can turn off this feature anytime.
 	// Supported values: true, false.
 	CreativeAutoAddToggle *bool `json:"creative_auto_add_toggle,omitempty"`
+	// CatalogCreativeInfo Valid only when the following conditions are met:
+	// The ad is an Upgraded Smart+ E-commerce Catalog Ad.
+	// catalog_creative_toggle is true.
+	// Additional settings for catalog creatives to use in your ads.
+	CatalogCreativeInfo *CatalogCreativeInfo `json:"catalog_creatiev_info,omitempty"`
 	// CreativeAutoEnhancementStrategyList The list of automatic enhancement strategies to apply to your ads.
 	// Automatic enhancements are real-time edits applied to your ads during your campaign. They can improve performance by creating more engaging and impactful visuals, sound, and more.
 	// Enum values:
@@ -297,4 +302,21 @@ type AppTrackingInfo struct {
 	// When app_type is APP_ANDROID, this field represents a click tracking URL for Android.
 	// When app_type is APP_IOS, this field represents a click tracking URL for iOS.
 	ClickTrackingURL string `json:"click_tracking_url,omitempty"`
+}
+
+// CatalogCreativeInfo The ad is an Upgraded Smart+ E-commerce Catalog Ad.
+type CatalogCreativeInfo struct {
+	// CatalogMediaSettings The types of creatives from your E-commerce catalog to use in the ad.
+	// Enum values:
+	// VIDEO: Video.
+	// IMAGE: Image.
+	// TEMPLATE_VIDEO: Video templates. If you include this value in catalog_media_settings, you can optionally specify catalog_template_video_id at the same time.
+	// If catalog_template_video_id is not specified, all video templates and video URLs from your catalog will be used to generate the ad.
+	// If catalog_template_video_id is specified, the selected video template will be used to generate the ad.
+	CatalogMediaSettings []enum.CatalogMediaSetting `json:"catalog_media_settings,omitempty"`
+	// CatalogTemplateVideoID Valid only when TEMPLATE_VIDEO is included in catalog_media_settings.
+	// The ID of a video template in your catalog to use in the ad.
+	// To obtain the IDs of video templates (video packages) in your catalog, use /catalog/video_package/get/.
+	// To learn about how to create video packages on TikTok Ads Manager, see How to create video packages in a Catalog.
+	CatalogTemplateVideoID string `json:"catalog_template_video_id,omitempty"`
 }

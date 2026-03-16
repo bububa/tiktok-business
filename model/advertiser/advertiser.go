@@ -9,6 +9,17 @@ import (
 type Advertiser struct {
 	// AdvertiserID 广告账号 ID
 	AdvertiserID string `json:"advertiser_id,omitempty"`
+	// CanUseCustomIdentity Whether the ad account has custom identities that are available for creating ads.
+	// Supported values:
+	// true: The ad account can use custom identities to create ads.
+	// false: The ad account cannot use custom identities to create ads.
+	// However, in some cases, you can continue to use custom identities. Learn more about the unaffected scenarios in About changes coming to Custom Identity.
+	CanUseCustomIdentity bool `json:"can_use_custom_identity,omitempty"`
+	// AdsOnlyMode Whether the ad account must use "Show through ads only" for Spark Ads created using Spark Ads Push.
+	// Supported values: true, false.
+	// When this field is true, a mandatory "Show through ads only" mode is active for the ad account. As a result, you can only set dark_post_status to ON when creating Spark Ads using Spark Ads Push (through /smart_plus/ad/create/, /ad/create/, or /campaign/spc/create/) or updating ads (through /smart_plus/ad/update/, /ad/update/, or /campaign/spc/update/). This prevents the posts from appearing on your TikTok profile and gaining organic traffic, regardless of the identity's own ads_only_mode setting. It's a safeguard to ensure your Spark Ads Push content remains ads-only and avoids accidental profile posts.
+	// Note: Mandatory "Show through ads only" for an ad account is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	AdsOnlyMode bool `json:"ads_only_mode,omitempty"`
 	// OwnerBcID 广告账户所属的商务中心的 ID。
 	// 注意：仅当以下条件均满足时返回本字段：
 	//

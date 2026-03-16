@@ -29,6 +29,7 @@ type AdvertiserCreateRequest struct {
 	BillingInfo *BillingInfo `json:"billing_info,omitempty"`
 	// BillingGroupInfo 账单组信息
 	BillingGroupInfo *BillingGroup `json:"billing_group_info,omitempty"`
+	// PaymentInfo Payment information
 }
 
 // Advertiser 广告主
@@ -112,6 +113,21 @@ type BillingGroup struct {
 	InvoicePayer enum.InvoicePayer `json:"invoice_payer,omitempty"`
 }
 
+// PaymentInfo Payment information
+type PaymentInfo struct {
+	// PaymentPortfolioID Valid when you have enabled the multiple Payment Portfolios feature.
+	// The ID of the Payment Portfolio to which the ad account will be linked.
+	// If the linkage to the Payment Portfolio fails, the ad account creation will still succeed.
+	// To confirm the result of the linkage, check the response parameter payment_portfolio_binding_result.
+	// Note:
+	// Multiple Payment Portfolios for one client is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	PaymentPortfolioID string `json:"payment_portfolio_id,omitempty"`
+	// BudgetInfo Details of the budget settings for the ad account.
+	// If budget settings fail, the ad account creation will still succeed.
+	// To confirm the final budget settings, check the response parameter budget_setup_result.
+	BudgetInfo *AdvertiserBudget `json:"budget_info,omitempty"`
+}
+
 // Encode implements PostRequest
 func (r *AdvertiserCreateRequest) Encode() []byte {
 	return util.JSONMarshal(r)
@@ -120,8 +136,54 @@ func (r *AdvertiserCreateRequest) Encode() []byte {
 // AdvertiserCreateResponse 创建广告账户 API Response
 type AdvertiserCreateResponse struct {
 	model.BaseResponse
-	Data struct {
-		// AdvertiserID 广告账户ID
-		AdvertiserID string `json:"advertiser_id,omitempty"`
-	} `json:"data"`
+	Data *AdvertiserCreateResult `json:"data"`
+}
+
+type AdvertiserCreateResult struct {
+	// AdvertiserID 广告账户ID
+	AdvertiserID string `json:"advertiser_id,omitempty"`
+	// PaymentPortfolioBindingResult The result of binding the newly created ad account to the Payment Portfolio (payment_portfolio_id) specified in the request.
+	PaymentPortfolioBindingResult *PaymentPortfolioBindingResult `json:"payment_portfolio_binding_result,omitempty"`
+	// BudgetSetupResult The result of setting the budget for the newly created ad account.
+	BudgetSetupResult *BudgetSetupResult `json:"budget_setup_result,omitempty"`
+}
+
+// PaymentPortfolioBindingResult The result of binding the newly created ad account to the Payment Portfolio (payment_portfolio_id) specified in the request.
+type PaymentPortfolioBindingResult struct {
+	// Status Binding status.
+	// Enum values:
+	// SUCCESS: The ad account was successfully bound to the Payment Portfolio.
+	// FAILED: The ad account failed to be bound to the Payment Portfolio.
+	Status string `json:"status,omitempty"`
+	// ErrorMsg The error message.
+	// When status is SUCCESS, the value of this field will be null.
+	ErrorMsg string `json:"error_msg,omitempty"`
+}
+
+func (r PaymentPortfolioBindingResult) IsError() bool {
+	return r.Status != "SUCCESS"
+}
+
+func (r PaymentPortfolioBindingResult) Error() string {
+	return r.ErrorMsg
+}
+
+// BudgetSetupResult The result of setting the budget for the newly created ad account.
+type BudgetSetupResult struct {
+	// Status Budget setup status.
+	// Enum values:
+	// SUCCESS: The budget settings were successfully configured for the ad account.
+	// FAILED: The budget settings failed to be configured for the ad account.
+	Status string `json:"status,omitempty"`
+	// ErrorMsg The error message.
+	// When status is SUCCESS, the value of this field will be null.
+	ErrorMsg string `json:"error_msg,omitempty"`
+}
+
+func (r BudgetSetupResult) IsError() bool {
+	return r.Status != "SUCCESS"
+}
+
+func (r BudgetSetupResult) Error() string {
+	return r.ErrorMsg
 }
