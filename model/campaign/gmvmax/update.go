@@ -31,7 +31,7 @@ type UpdateRequest struct {
 	AutoBudget *AutoBudget `json:"auto_budget,omitempty"`
 	// ItemGroupIDs shopping_ads_type 为 PRODUCT 且product_specific_type为CUSTOMIZED_PRODUCTS时必填。
 	// 商品 SPU（标准化产品单元）ID 列表。
-	// 最大数量：50。
+	// 最大数量：400。
 	// 若想获取某个 TikTok Shop 中商品的 SPU ID 列表，可使用 /store/product/get/。将 ad_creation_eligible 设置为 GMV_MAX 并从返回中挑选 status 为 AVAILABLE 且 gmv_max_ads_status 为 UNOCCUPIED 的 item_group_id 值
 	ItemGroupIDs []string `json:"item_group_ids,omitempty"`
 	// ScheduleType 排期类型。
@@ -45,6 +45,14 @@ type UpdateRequest struct {
 	// ScheduleEndTime 广告投放结束时间(UTC+0)。
 	// 格式： YYYY-MM-DD HH:MM:SS
 	ScheduleEndTime string `json:"schedule_end_time,omitempty"`
+	// AccelerateTestingForNewVideos Valid only when product_video_specific_type is AUTO_SELECTION.
+	// Whether to accelerate testing for new videos, that is, prioritize performance testing for your new, recently authorized, and updated videos as part of your campaign.
+	// Videos that have been uploaded or authorized in the past 7 days, including recently authorized TikTok account videos, customized posts, and videos with new or updated product links, will be prioritized for testing. This may temporarily reduce gross revenue, but your campaign's overall ROI will stay within your target ROI range. Your campaign will still be eligible for ROI protection when you turn on accelerated learning.
+	// Enum values:
+	// ON: To accelerate testing for new videos.
+	// OFF: To not accelerate testing for new videos.
+	// Default value: OFF.
+	AccelerateTestingForNewVideos enum.OnOff `json:"accelerate_testing_for_new_videos,omitempty"`
 	// AffiliatePostsEnabled 此字段仅在满足以下所有条件时生效且使用默认值 true：
 	// shopping_ads_type 为 PRODUCT
 	// product_video_specific_type 为 AUTO_SELECTION

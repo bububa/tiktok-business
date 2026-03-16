@@ -113,10 +113,11 @@ type AccountTransactionGetResult struct {
 	// PageInfo Pagination information
 	PageInfo *model.PageInfo `json:"page_info,omitempty"`
 	// TransactionList The list of transaction records.
-	TransactionList []Transaction `json:"transaction,omitempty"`
+	TransactionList []AccountTransaction `json:"transaction,omitempty"`
 }
 
-type Transaction struct {
+// AccountTransaction account transaction record
+type AccountTransaction struct {
 	// TransactionID Transaction ID, the unique identifier of the translation
 	TransactionID string `json:"transaction_id,omitempty"`
 	// PaymentPortfolioID The ID of the Payment Portfolio associated with the transaction.

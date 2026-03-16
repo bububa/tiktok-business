@@ -99,6 +99,14 @@ type Campaign struct {
 	// CUSTOM_SELECTION：手动选择视频。
 	// UNSET：未设置。
 	ProductVideoSpecificType enum.ProductVideoSpecificType `json:"product_video_specific_type,omitempty"`
+	// AccelerateTestingForNewVideos Valid only when product_video_specific_type is AUTO_SELECTION.
+	// Whether to accelerate testing for new videos, that is, prioritize performance testing for your new, recently authorized, and updated videos as part of your campaign.
+	// Videos that have been uploaded or authorized in the past 7 days, including recently authorized TikTok account videos, customized posts, and videos with new or updated product links, will be prioritized for testing. This may temporarily reduce gross revenue, but your campaign's overall ROI will stay within your target ROI range. Your campaign will still be eligible for ROI protection when you turn on accelerated learning.
+	// Enum values:
+	// ON: To accelerate testing for new videos.
+	// OFF: To not accelerate testing for new videos.
+	// Default value: OFF.
+	AccelerateTestingForNewVideos enum.OnOff `json:"accelerate_testing_for_new_videos,omitempty"`
 	// IdentityList 与该 GMV Max 推广系列绑定的认证身份（即 TikTok 账号）列表
 	IdentityList []identity.Identity `json:"identity_list,omitempty"`
 	// AffiliatePostsEnabled 是否为商品 GMV Max 推广系列启用联盟作品。

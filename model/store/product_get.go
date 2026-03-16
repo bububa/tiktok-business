@@ -120,6 +120,8 @@ type Product struct {
 	HistoricalSales int64 `json:"historical_sales,omitempty"`
 	// Category 商品的分类
 	Category string `json:"category,omitempty"`
+	// Quantity The number of products within the TikTok Shop.
+	Quantity int `json:"quantity,omitempty"`
 	// Status 商品的状态。
 	// 枚举值：
 	// AVAILABLE：商品可用于创建广告。
