@@ -29,7 +29,7 @@ type SubscribeRequest struct {
 	// CallbackURL 回调链接
 	CallbackURL string `json:"callback_url,omitempty"`
 	// SubscriptionDetail 订阅内容
-	SubscriptionDetail *SubscribeRequest `json:"subscription_detail,omitempty"`
+	SubscriptionDetail *SubscriptionDetail `json:"subscription_detail,omitempty"`
 }
 
 // Encode implements PostRequest interface
