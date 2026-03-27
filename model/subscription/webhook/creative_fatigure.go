@@ -1,6 +1,9 @@
 package webhook
 
-import "github.com/bububa/tiktok-business/model"
+import (
+	"github.com/bububa/tiktok-business/enum"
+	"github.com/bububa/tiktok-business/model"
+)
 
 // CreativeFatigureEntity 广告疲劳状态
 type CreativeFatigureEntity struct {
@@ -21,4 +24,8 @@ type CreativeFatigureEntity struct {
 	// Date 检测到所订阅的对象（广告、广告组或广告账号）发生创意疲劳的日期。
 	// 格式：YYYY-MM-DD.
 	Date string `json:"date,omitempty"`
+}
+
+func (e CreativeFatigureEntity) Entity() enum.SubscribeEntity {
+	return enum.SubscribeEntity_CREATIVE_FATIGUE
 }

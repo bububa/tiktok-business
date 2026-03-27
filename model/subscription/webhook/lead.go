@@ -47,3 +47,7 @@ type LeadEntity struct {
 		Value string `json:"value,omitempty"`
 	} `json:"changes,omitempty"`
 }
+
+func (e LeadEntity) Entity() enum.SubscribeEntity {
+	return enum.SubscribeEntity_LEAD
+}

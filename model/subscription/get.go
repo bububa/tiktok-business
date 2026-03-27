@@ -15,13 +15,15 @@ type GetRequest struct {
 	// Secret 开发者应用密钥。您可以导航至应用管理 > App Detail > 基本信息，获取密钥。
 	Secret string `json:"secret,omitempty"`
 	// SubscribeEntity 订阅对象。
-	// 枚举值:
-	// AD_ACCOUNT_SUSPENSION：广告账户的暂时停用状态。
-	// LEAD：线索。
-	// AD_GROUP：广告组的审核状态。
-	// AD：广告的审核状态。
-	// TCM_SPARK_ADS：上传至某个 TCM 工作流程 2.0 订单的视频的 Spark Ads 授权状态。
-	// CREATIVE_FATIGUE：单个广告、广告组中所有广告或广告账户下所有广告的疲劳状态。
+	// Enum values:
+	// REPORT_DATA_CHANGE: the data change in any of the reporting metrics spend, impressions, clicks, and video_play_actions for one or more ad accounts.
+	// AD_ACCOUNT_SUSPENSION: the suspension statuses of ad accounts.
+	// LEAD: leads.
+	// AD_GROUP: the review status of an ad group.
+	// AD: the review status of an ad.
+	// TCM_VIDEOS: the linking of a TikTok video to a TTO campaign.
+	// CREATIVE_FATIGUE: the fatigue status of an ad, ads within an ad group, or ads within an advertiser account.
+	// API_SERVICE_STATUS: the status of API service.
 	SubscribeEntity enum.SubscribeEntity `json:"subscribe_entity,omitempty"`
 	// Page 当前页数。
 	// 默认值：1。

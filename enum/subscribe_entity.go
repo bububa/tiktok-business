@@ -12,10 +12,12 @@ const (
 	SubscribeEntity_AD_GROUP SubscribeEntity = "AD_GROUP"
 	// SubscribeEntity_AD：广告的审核状态。
 	SubscribeEntity_AD SubscribeEntity = "AD"
-	// SubscribeEntity_TCM_SPARK_ADS：上传至某个 TCM 工作流程 2.0 订单的视频的 Spark Ads 授权状态。
-	SubscribeEntity_TCM_SPARK_ADS SubscribeEntity = "TCM_SPARK_ADS"
+	// SubscribeEntity_TCM_VIDEOS Subscribe to the linking of a TikTok video to a TTO campaign
+	SubscribeEntity_TCM_VIDEOS SubscribeEntity = "TCM_VIDEOS"
 	// SubscribeEntity_CREATIVE_FATIGUE：单个广告、广告组中所有广告或广告账户下所有广告的疲劳状态。
 	SubscribeEntity_CREATIVE_FATIGUE SubscribeEntity = "CREATIVE_FATIGUE"
 	// SubscribeEntity_API_SERVICE_STATUS API 服务状态
 	SubscribeEntity_API_SERVICE_STATUS SubscribeEntity = "API_SERVICE_STATUS"
+	// SubscribeEntity_REPORT_DATA_CHANGE Subscribe to reporting metric data changes
+	SubscribeEntity_REPORT_DATA_CHANGE SubscribeEntity = "REPORT_DATA_CHANGE"
 )

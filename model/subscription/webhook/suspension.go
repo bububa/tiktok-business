@@ -1,9 +1,12 @@
 package webhook
 
-import "github.com/bububa/tiktok-business/model"
+import (
+	"github.com/bububa/tiktok-business/enum"
+	"github.com/bububa/tiktok-business/model"
+)
 
-// Suspension 不同商务中心的广告账户的暂时停用状态
-type Suspension struct {
+// AdAccountSuspensionEntity 不同商务中心的广告账户的暂时停用状态
+type AdAccountSuspensionEntity struct {
 	// AdvertiserID 广告账户 ID
 	AdvertiserID string `json:"advertiser_id,omitempty"`
 	// AdvertiserName 广告账户名称
@@ -22,4 +25,10 @@ type Suspension struct {
 	// SuspensionReason 仅当 status 为 STATUS_LIMIT 时返回本字段。
 	// 广告账户暂时停用的原因。
 	SuspensionReason string `json:"suspension_reasion,omitempty"`
+	// SubscriptionID Subscription ID
+	SubscriptionID string `json:"subscription_id,omitempty"`
+}
+
+func (e AdAccountSuspensionEntity) Entity() enum.SubscribeEntity {
+	return enum.SubscribeEntity_AD_ACCOUNT_SUSPENSION
 }

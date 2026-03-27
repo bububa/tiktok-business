@@ -1,9 +1,12 @@
 package webhook
 
-import "github.com/bububa/tiktok-business/model"
+import (
+	"github.com/bububa/tiktok-business/enum"
+	"github.com/bububa/tiktok-business/model"
+)
 
-// RejectEntity 广告审核状态
-type RejectEntity struct {
+// AdgroupEntity 广告审核状态
+type AdgroupEntity struct {
 	// LogID 日志 ID
 	LogID string `json:"log_id,omitempty"`
 	// AdvID 广告主 ID
@@ -16,10 +19,22 @@ type RejectEntity struct {
 	AdgroupID string `json:"adgroup_id,omitempty"`
 	// AdgroupName 广告组名称
 	AdgroupName string `json:"adgroup_name,omitempty"`
+	// RejectReason 拒审原因
+	RejectReason string `json:"reject_reason,omitempty"`
+}
+
+func (e AdgroupEntity) Entity() enum.SubscribeEntity {
+	return enum.SubscribeEntity_AD_GROUP
+}
+
+type AdEntity struct {
+	AdgroupEntity
 	// AdID 广告 ID
 	AdID string `json:"ad_id,omitempty"`
 	// AdName 广告名称
 	AdName string `json:"ad_name,omitempty"`
-	// RejectReason 拒审原因
-	RejectReason string `json:"reject_reason,omitempty"`
+}
+
+func (e AdEntity) Entity() enum.SubscribeEntity {
+	return enum.SubscribeEntity_AD
 }
