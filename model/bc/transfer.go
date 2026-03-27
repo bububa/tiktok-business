@@ -20,6 +20,10 @@ type TransferRequest struct {
 	// AdvertiserID Required when transfer_level is set to ADVERTISER or not specified.
 	// Ad account ID.
 	AdvertiserID string `json:"advertiser_id,omitempty"`
+	// PaymentPortfolioID Required if multiple Payment Portfolios belong to the same client as the Business Center (bc_id).
+	// The ID of the Payment Portfolio.
+	// To retrieve the list of Payment Portfolios that belong to the same client as the Business Center, use /payment_portfolio/get/.
+	PaymentPortfolioID string `json:"payment_portfolio_id,omitempty"`
 	// TransferType How you'd like to process payments for an ad account or the Business Center.
 	// Enum values:
 	// RECHARGE: Recharge money to an ad account or increase the credit balance of a Business Center.
@@ -94,4 +98,19 @@ type TransactionInfo struct {
 	// GRANT: voucher.
 	// CREDIT: credit.
 	TransactionType enum.BillingType `json:"transaction_type,omitempty"`
+	// PayeeAccount Information about the payee account.
+	PayeeAccount *TransactionAccount `json:"payee_account,omitempty"`
+	// RemitterAccount Information about the remitter account.
+	RemitterAccount *TransactionAccount `json:"remitter_account,omitempty"`
+}
+
+type TransactionAccount struct {
+	// AccountType The type of the payee/remitter account.
+	// Enum values:
+	// BC: Business Center.
+	// ADVERTISER: ad account.
+	// PORTFOLIO: Payment Portfolio.
+	AccountType string `json:"account_type,omitempty"`
+	// AccountID The ID of the payee/remitter account.
+	AccountID string `json:"account_id,omitempty"`
 }

@@ -9,12 +9,18 @@ import (
 type BalanceGetRequest struct {
 	// BcID Business Center ID
 	BcID string `json:"bc_id,omitempty"`
+	// PaymentPortfolioID The ID of the Payment Portfolio.
+	// To retrieve the list of Payment Portfolios that belong to the same client as the Business Center, use /payment_portfolio/get/.
+	PaymentPortfolioID string `json:"payment_portfolio_id,omitempty"`
 }
 
 // Encode implements GetRequest
 func (r *BalanceGetRequest) Encode() string {
 	values := util.NewURLValues()
 	values.Set("bc_id", r.BcID)
+	if r.PaymentPortfolioID != "" {
+		values.Set("payment_portfolio_id", r.PaymentPortfolioID)
+	}
 	ret := values.Encode()
 	util.ReleaseURLValues(values)
 	return ret
@@ -47,4 +53,9 @@ type BalanceGetResult struct {
 	GrantBalance float64 `json:"grant_balance,omitempty"`
 	// ValidGrantBalance Business Center valid coupon/voucher balance, rounded to two decimal places
 	ValidGrantBalance float64 `json:"valid_grant_balance,omitempty"`
+	// PaymentPortfolioType The type of the Payment Portfolio.
+	// Enum values:
+	// SHARED: Advanced Payment Portfolio. For Advanced Payment Portfolios, funds are centrally managed and jointly used by all linked ad accounts.
+	// NON_SHARED: Standard Payment Portfolio. For Standard Payment Portfolios, funds are individually managed for each linked ad account.
+	PaymentPortfolioType string `json:"payment_portfolio_type,omitempty"`
 }

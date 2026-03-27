@@ -9,14 +9,18 @@ type Subscription struct {
 	// SubscriptionID 订阅 ID。
 	SubscriptionID string `json:"subscription_id,omitempty"`
 	// SubscribeEntity 订阅对象。
-	// 枚举值:
-	// AD_ACCOUNT_SUSPENSION：广告账户的暂时停用状态。
-	// LEAD：线索。
-	// AD_GROUP：广告组的审核状态。
-	// AD：广告的审核状态。
-	// TCM_SPARK_ADS：上传至某个 TCM 工作流程 2.0 订单的视频的 Spark Ads 授权状态。
-	// CREATIVE_FATIGUE：单个广告、广告组中所有广告或广告账户下所有广告的疲劳状态。
-	SubscribeEntity string `json:"subscribe_entity,omitempty"`
+	// Enum values:
+	// REPORT_DATA_CHANGE: the data change in any of the reporting metrics spend, impressions, clicks, and video_play_actions for one or more ad accounts. You need to specify advertiser_ids simultaneously. To find the detailed description for these reporting metrics, see Basic reports > Supported metrics.
+	// Note: To use the REPORT_DATA_CHANGE value, ensure that you have enabled the Reporting > Consolidated Report permission for your developer app.
+	// AD_ACCOUNT_SUSPENSION: the suspension statuses of ad accounts.
+	// LEAD: leads.
+	// TikTok is committed to providing "at least once delivery" for webhooks. Consequently, it’s possible that webhook endpoints may receive duplicate events. To mitigate potential issues, incorporate safeguards against processing duplicate events by designing your event handling to be idempotent.
+	// AD_GROUP: the review status of an ad group.
+	// AD: the review status of an ad.
+	// TCM_VIDEOS: the linking of a TikTok video to a TTO campaign.
+	// CREATIVE_FATIGUE: the fatigue status of an ad, ads within an ad group, or ads within an advertiser account.
+	// API_SERVICE_STATUS: the status of API service.
+	SubscribeEntity enum.SubscribeEntity `json:"subscribe_entity,omitempty"`
 	// CallbackURL 回调链接。
 	CallbackURL string `json:"callback_url,omitempty"`
 	// SubscriptionDetail 订阅内容
@@ -68,6 +72,16 @@ type SubscriptionDetail struct {
 	// 最大数量：100。
 	// 注意：您需对该广告账户有访问权限。若想获取您有访问权限的广告账户列表，可使用 /bc/asset/get/。将 asset_type 设置为 ADVERTISER 并选择 advertiser_role 为 ADMIN、OPERATOR 或 ANALYST 的广告账户。
 	AdvertiserIDs []string `json:"advertiser_ids,omitempty"`
+	// NotifyFrequency Valid when subscribe_entity is REPORT_DATA_CHANGE.
+	// The frequency of the notification.
+	// If the reporting metric data for the ad accounts that you're subscribed to has changed within the last notification timeframe, you will receive at most one webhook notification.
+	// Enum values:
+	// 5_MINUTE: every five minutes.
+	// 15_MINUTE: every 15 minutes.
+	// 30_MINUTE: every 30 minutes.
+	// 60_MINUTE: every 60 minutes.
+	// Default value: 5_MINUTE.
+	NotifyFrequency string `json:"notify_frequency,omitempty"`
 	// AdvertiserID 当subscribe_entity为 AD_GROUP，AD，LEAD或CREATIVE_FATIGUE时生效。
 	// 广告主 ID。
 	// 订阅广告组或广告的审核状态时必填（subscribe_entity为AD_GROUP, 或 AD）。
@@ -100,11 +114,8 @@ type SubscriptionDetail struct {
 	// subscribe_entity为 AD时必填。
 	// 若您将subscribe_entity设置为 CREATIVE_FATIGUE，且同时传入advertiser_id和ad_id，您将订阅所指定的广告的疲劳状态。
 	AdID string `json:"ad_id,omitempty"`
-	// TcmAccountID subscribe_entity为 TCM_SPARK_ADS时必填。
-	// TikTok Creator Marketplace账户ID。
-	TcmAccountID string `json:"tcm_account_id,omitempty"`
-	// VideoID subscribe_entity为 TCM_SPARK_ADS时必填。
-	// 上传至某一 TCM 工作流程 2.0 订单的视频的 ID。
-	// 若想获取上传至某一 TCM 工作流程 2.0 订单的视频的 ID 列表，可使用/tcm/order/get/v2/或/tcm/report/get/v2/。
-	VideoID string `json:"video_id,omitempty"`
+	// TTOTMCAccountID Required when subscribe_entity is TCM_VIDEOS.
+	// The ID of a TTO Creator Marketplace account.
+	// To obtain the IDs of the accounts that you can access via Access-Token, use /tto/oauth2/tcm/.
+	TTOTMCAccountID string `json:"tto_tmc_account_id,omitempty"`
 }

@@ -16,6 +16,15 @@ type Metrics struct {
 	// AdvertiserID 账户ID
 	// 广告主、推广系列、广告组、广告层级支持。
 	AdvertiserID string `json:"advertiser_id,omitempty"`
+	// CampaignAutomationType Campaign automation type.
+	// Enum values:
+	// MANUAL: Manual Campaigns.
+	// SMART_PLUS: Smart+ Campaigns.
+	// UPGRADED_SMART_PLUS: Upgraded Smart+ Campaigns. To learn more about Upgraded Smart+ Campaigns, see Upgraded Smart+ Campaign.
+	// When campaign_automation_type is UPGRADED_SMART_PLUS, the returned ad_id_v2 is the ID of the Upgraded Smart+ Ad.
+	// UPGRADED_SMART_PLUS_CREATIVE: Upgraded Smart+ Campaigns. To learn more about Upgraded Smart+ Campaigns, see Upgraded Smart+ Campaign.
+	// When campaign_automation_type is UPGRADED_SMART_PLUS_CREATIVE, the returned ad_id is the ID of a creative in the Upgraded Smart+ Ad.
+	CampaignAutomationType enum.CampaignAutomationType `json:"campaign_automation_type,omitempty"`
 	// CampaignName 推广系列名称
 	// 推广系列、广告组、广告层级支持。
 	CampaignName string `json:"campaign_name,omitempty"`
@@ -120,6 +129,12 @@ type Metrics struct {
 	// AdName 广告名称
 	// 仅广告层级支持。
 	AdName string `json:"ad_name,omitempty"`
+	// AdIDV2 The types of data you can get include:
+	// the ad IDs of Manual Ads.
+	// the ad IDs of Smart+ Campaigns.
+	// the ad IDs of Upgraded Smart+ Ads.
+	// You cannot use it together with the dimension ad_id, the filter ad_ids, or the attribute metric ad_id.
+	AdIDV2 string `json:"ad_id_v2,omitempty"`
 	// AdID 广告ID
 	// 广告层级支持。
 	AdID string `json:"ad_id,omitempty"`
@@ -1446,6 +1461,44 @@ type Metrics struct {
 	CostPerIxProductClickCount model.Float64 `json:"cost_per_ix_product_click_count,omitempty"`
 	// IxProductClickCountRate 商品点击率 (TikTok) (%)
 	IxProductClickCountRate model.Float64 `json:"ix_product_click_count_rate,omitempty"`
+	// OnsiteUniqueSubscribe The number of unique subscribe events on TikTok, attributed to your ads
+	OnsiteUniqueSubscribe model.Int64 `json:"onsite_unique_subscribe,omitempty"`
+	// OnsiteCostPerUniqueSubscribe The average cost of each unique subscribe event, attributed to your ads
+	OnsiteCostPerUniqueSubscrbe model.Float64 `json:"onsite_cost_per_unique_subscribe,omitempty"`
+	// OnsiteSubscribeRate The percentage of subscribe events on TikTok attributed to your ads out of the number of clicks your ads received
+	OnsiteSubscribeRate model.Float64 `json:"onsite_subscribe_rate,omitempty"`
+	// OnsiteTotalSubscribe The number of subscribe events on TikTok attributed to your ads
+	OnsiteTotalSubscribe model.Int64 `json:"onsite_total_subscribe,omitempty"`
+	// OnsiteCostPerTotalSubscribe The average cost per subscribe event on TikTok attributed to your ads
+	OnsiteCostPerTotalSubscribe model.Float64 `json:"onsite_cost_per_total_subscribe,omitempty"`
+	// OnsiteValuePerSubscribe The average value per subscribe event on TikTok attributed to your ads
+	OnsiteValuePerSubscribe model.Float64 `json:"onsite_value_per_subscribe,omitempty"`
+	// OnsiteTotalSubscribeValue The total value of subscribe events on TikTok attributed to your ads
+	OnsiteTotalSubscribeValue model.Float64 `json:"onsite_total_subscribe_value,omitempty"`
+	// OnsiteSubscribeValueDay0 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay0 model.Float64 `json:"onsite_subscribe_value_day0,omitempty"`
+	// OnsiteSubscribeValueDay1 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay1 model.Float64 `json:"onsite_subscribe_value_day1,omitempty"`
+	// OnsiteSubscribeValueDay2 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay2 model.Float64 `json:"onsite_subscribe_value_day2,omitempty"`
+	// OnsiteSubscribeValueDay3 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay3 model.Float64 `json:"onsite_subscribe_value_day3,omitempty"`
+	// OnsiteSubscribeValueDay4 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay4 model.Float64 `json:"onsite_subscribe_value_day4,omitempty"`
+	// OnsiteSubscribeValueDay5 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay5 model.Float64 `json:"onsite_subscribe_value_day5,omitempty"`
+	// OnsiteSubscribeValueDay6 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay6 model.Float64 `json:"onsite_subscribe_value_day6,omitempty"`
+	// OnsiteSubscribeValueDay13 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay13 model.Float64 `json:"onsite_subscribe_value_day13,omitempty"`
+	// OnsiteSubscribeValueDay20 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay20 model.Float64 `json:"onsite_subscribe_value_day20,omitempty"`
+	// OnsiteSubscribeValueDay27 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay27 model.Float64 `json:"onsite_subscribe_value_day27,omitempty"`
+	// OnsiteSubscribeValueDay29 The total value of all subscribe events that occur within 24 hours of a click.
+	OnsiteSubscribeValueDay29 model.Float64 `json:"onsite_subscribe_value_day29,omitempty"`
+	// OnsiteAdImpressionAdRevenueROAS The return on ad spend (ROAS) from ad revenue.
+	OnsiteAdImpressionAdRevenueROAS model.Float64 `json:"onsite_ad_impression_ad_revenue_roas,omitempty"`
 	//
 	// 线下指标
 	// OfflineTotalCRMEvents CRM 事件数
