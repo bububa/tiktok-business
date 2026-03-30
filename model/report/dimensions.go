@@ -13,7 +13,22 @@ type Dimensions struct {
 	CampaignID string `json:"campaign_id,omitempty"`
 	// AdgroupID 广告组ID。当dimensions包含 adgroup_id 时返回
 	AdgroupID string `json:"adgroup_id,omitempty"`
-	// AdID 广告ID。当dimensions包含 ad_id 时返回
+	// AdIDV2 Group by Ad ID.
+	// The types of data you can get include:
+	// the ad level data for Manual Ads
+	// the ad level data for Smart+ Campaigns
+	// the ad (asset group) level data for Upgraded Smart+ Ads
+	// Note:
+	// You cannot use it together with the dimension ad_id, the filter ad_ids, or the attribute metric ad_id.
+	AdIDV2 string `json:"ad_id_v2,omitempty"`
+	// AdID Group by Ad ID.
+	// The types of data you can get include:
+	// the ad level data for Manual Ads
+	// the ad level data for Smart+ Campaigns
+	// the creative level data for Upgraded Smart+ Ads
+	// Note:
+	// By default, the ad_status filter is applied and defaults to STATUS_NOT_DELETE in synchronous audience reports. If you want to get breakdown data for all ads, including the deleted ones via synchronous audience reports, you need to set ad_status to STATUS_ALL.
+	// Reporting data for Branded Mission ads is exclusively accessible when you query the advertiser level data using the advertiser_id dimension. Queries using the campaign_id, adgroup_id, or ad_id dimension will not return Branded Mission ad data.
 	AdID string `json:"ad_id,omitempty"`
 	// MaterialID 素材 ID
 	MaterialID string `json:"material_id,omitempty"`
@@ -67,6 +82,11 @@ type Dimensions struct {
 	AC enum.NetworkType `json:"ac,omitempty"`
 	// Age 受众年龄区间。详见枚举值-广告管理-受众年龄区间
 	Age enum.Age `json:"age,omitempty"`
+	// DmaID Group by Designated Market Area (DMA).
+	// Only U.S. has DMAs.
+	// For available DMAs, see Appendix - Location IDs.
+	// Note: In synchronous audience reports, the value of 0 for dma_id represents "Unknown".
+	DmaID string `json:"dma_id,omitempty"`
 	// CountryCode 受众国家或地区代码。详见附录-地区代码
 	CountryCode string `json:"country_code,omitempty"`
 	// InterestCategory 一级兴趣分类

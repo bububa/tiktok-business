@@ -241,6 +241,19 @@ type AdConfiguration struct {
 	// ProductInfo Product information.
 	// This information will be used in different ad variations to create personalized ad delivery with the goal of improving ad performance. Based on past data, ads with complete information often have more clicks and conversions. Results may vary.
 	ProductInfo *ProductInfo `json:"product_info,omitempty"`
+	// ProductInfoEnabled The product information mode.
+	// Enum values:
+	// UNSET: To disable product information mode.
+	// NON_CATALOG: To enable the non-catalog version of product information.
+	// CATALOG: To enable the catalog version of product information.
+	// Default value: UNSET.
+	// To learn about the scenarios where you need to set this parameter, see Available product information settings in Upgraded Smart+ Campaigns.
+	// Note:
+	// This field will automatically be set to CATALOG when the following conditions are both met at the campaign level:
+	// app_promotion_type is MINIS.
+	// catalog_enabled is true.
+	// This field can only be set to UNSET when an Inventory Card portfolio is specified through card_id in Upgraded Smart+ Automotive Ads.
+	ProductInfoEnabled string `json:"product_info_enabled,omitempty"`
 	// CallToActionID The ID of the call-to-action portfolio to use in your ad
 	CallToActionID string `json:"call_to_action_id,omitempty"`
 	// PhoneInfo Returned only when promotion_type is set to LEAD_GEN_CLICK_TO_CALL at the ad group level.
@@ -253,8 +266,101 @@ type AdConfiguration struct {
 
 // ProductInfo Product information.
 type ProductInfo struct {
+	// ProductTitles A list of product names.
+	// Size range: 0-1.
+	// Length limit for each product name: 40 characters and cannot contain emoji. Each word in Chinese or Japanese counts as two characters, while each letter in English counts as one character.
+	// If you don't provide a product name, a default name will be used so that the name won't appear blank.
+	ProductTitles []string `json:"product_titles,omitempty"`
+	// ProductImageList A list of product images.
+	// Size range: 0-10.
+	// If you don't provide a product image, a generic image will be used so that the image won't appear blank.
+	ProductImageList []ProductImage `json:"product_image_list,omitempty"`
 	// SellingPoints A list of selling points
 	SellingPoints []string `json:"selling_points,omitempty"`
+	// CatalogTagList Valid in any of the following scenarios:
+	// Scenario 1: At the campaign level objective_type is WEB_CONVERSIONS and catalog_type is ECOMMERCE.
+	// Scenario 2:
+	// At the campaign level objective_type is LEAD_GENERATION and catalog_enabled is true.
+	// At the ad group level an Auto-Inventory catalog is specified through catalog_id.
+	// Details of the product information for catalog ads.
+	// For scenario 1, the specified product information will be automatically displayed from your catalog to drive results. The enum values are:
+	// PRICE: Price.
+	// STRIKETHROUGH_PRICE: Strikethrough price.
+	// DISCOUNT: Discount.
+	// FREE_SHIPPING: Free shipping.
+	// Default value: ["PRICE", "STRIKETHROUGH_PRICE", "DISCOUNT", "FREE_SHIPPING"].
+	// Max size: 4.
+	// For scenario 2, the corresponding text for the specified product information will be displayed on the inventory card. The enum values are:
+	// DEALER_NAME: Dealer name.
+	// CURRENT_MILEAGE: Current mileage.
+	// LEAD_PRICE: Price.
+	// LEAD_SALE_PRICE: Sale price.
+	// EXTERIOR_COLOR: Exterior color.
+	// TRIM: Trim.
+	// ADDRESS_CITY: City.
+	// VEHICLE_STATE: Vehicle state.
+	// Max size: 2 for primary catalog tags (DEALER_NAME,CURRENT_MILEAGE,EXTERIOR_COLOR,TRIM,ADDRESS_CITY,VEHICLE_STATE) and 2 for secondary catalog tags (LEAD_PRICE,LEAD_SALE_PRICE).
+	CatalogTagList []string `json:"catalog_tag_list,omitempty"`
+	// PromoInfoList Valid only for regular Upgraded Smart+ Web Campaigns.
+	// Details of promo codes and offers.
+	// Your offer details for promo codes, offers, or events will be highlighted to boost engagement and ad performance. Promo codes require shoppers to enter a code at checkout. Offers apply automatically and no code is needed.
+	// Max size: 10.
+	PromoInfoList []PromoInfo `json:"promo_info_list,omitempty"`
+}
+
+type ProductImage struct {
+	// WebURI The image ID of a product image.
+	// Specifications requirements:
+	// Image format: .jpg, .png, .jpeg, or .webp.
+	// File size: no more than 5 MB
+	// Image size: no limit.
+	// Recommend image resolution: 800 x 800 pixels.
+	// To obtain the image ID, use the /file/image/ad/search/ or /file/image/ad/upload/ endpoint.
+	WebURI string `json:"web_uri,omitempty"`
+}
+
+type PromoInfo struct {
+	// DiscountType Required when promo_info_list is specified.
+	// Discount type.
+	// Enum values:
+	// PERCENTAGE: Percentage off discount.
+	// CASH: Cash off discount.
+	DiscountType string `json:"discount_type,omitempty"`
+	// DiscountValue Required when promo_info_list is specified.
+	// Discount value.
+	// When discount_type is PERCENTAGE, specify an integer between 1-100.
+	// When discount_type is CASH, specify a float greater than 0.
+	DiscountValue float64 `json:"discount_value,omitempty"`
+	// DiscountCurrency Required when discount_type is CASH.
+	// Discount currency.
+	// For enum values, see List of values for discount_currency or minimum_purchase_currency.
+	DiscountCurrency string `json:"discount_currency,omitempty"`
+	// PromoCode The promo code.
+	// For promo codes that require shoppers to enter a code at checkout, specify the code through this field.
+	// For offers that apply automatically, omit this field.
+	// Length limit: 30 characters long and cannot contain emoji. Each word in Chinese or Japanese counts as two characters, while each letter in English counts as one character.
+	// Note: Promo codes exclusive to TikTok often perform best.
+	PromoCode string `json:"promo_code,omitempty"`
+	// MinimumPurchaseType Minimum purchase type.
+	// Enum values:
+	// QUANTITY: Minimum quantity.
+	// SUBTOTAL: Minimum subtotal.
+	MinimumPurchaseType string `json:"minimum_purchase_type,omitempty"`
+	// MinimumPurchaseValue Required when minimum_purchase_type is specified.
+	// Minimum purchase value.
+	// When minimum_purchase_type is QUANTITY, specify an integer that is 0 or greater.
+	// When minimum_purchase_type is SUBTOTAL, specify a float greater than 0.
+	MinimumPurchaseValue *float64 `json:"minimum_purchase_value,omitempty"`
+	// MinimumPurchaseCurrency Required when minimum_purchase_type is SUBTOTAL.
+	// Minimum purchase currency.
+	// For enum values, see List of values for discount_currency or minimum_purchase_currency.
+	MinimumPurchaseCurrency string `json:"minimum_purchase_currency,omitempty"`
+	// ValidStartTime Valid start time (UTC+0) for the promo code or offer, in the format of YYYY-MM-DD HH:MM:SS
+	ValidStartTime model.DateTime `json:"valid_start_time,omitempty"`
+	// ValidEndTime Valid end time (UTC+0) for the promo code or offer, in the format of YYYY-MM-DD HH:MM:SS.
+	// The valid_end_time should be later than the current time.
+	// If you specify valid_end_time, provide valid_start_time at the same time.
+	ValidEndTime model.DateTime `json:"valid_end_time,omitempty"`
 }
 
 // PhoneInfo Details of WhatsApp or Zalo phone number
