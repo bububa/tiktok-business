@@ -325,6 +325,46 @@ type Targeting struct {
 	Gender enum.AudienceGender `json:"gender,omitempty"`
 	// AudienceIDs A list of audience IDs
 	AudienceIDs []string `json:"audience_ids,omitempty"`
+	// ShoppingAdsRetargetingType Valid only when the following conditions are all met:
+	// At the campaign level:
+	// 	objective_type is WEB_CONVERSION
+	// 	sales_destination is WEB_AND_APP
+	// 	catalog_type is ECOMMERCE
+	// At the ad group level: targeting_optimization_mode is MANUAL.
+	// The retargeting type.
+	// Enum values:
+	// LAB1: Retargeting audiences who viewed products or added products to cart but didn't purchase products.
+	// LAB2: Retargeting audiences who added products to cart but didn't purchase products.
+	// LAB3: Retargeting audiences using custom combination.
+	// OFF: No retargeting.
+	// Default value: OFF.
+	ShoppingAdsRetargetingType enum.ShoppingAdsRetargetingType `json:"shopping_ads_retargeting_type,omitempty"`
+	// ShoppingAdsRetargetingActionsDays Required when shopping_ads_retargeting_type is LAB1 or LAB2.
+	// The valid time range for the specified audience action. Audiences who have completed the specified action within the time range will be retargeted.
+	// Value range: 1, 2, 3, 7, 14, 30, 60, 90, 180.
+	ShoppingAdsRetargetingActionsDays int `json:"shopping_ads_retargeting_actions_days,omitempty"`
+	// IncludedCustomActions When shopping_ads_retargeting_type is LAB3, you need to specify either included_custom_actions or excluded_custom_actions.
+	// Details of the catalog audience to include.
+	// Catalog audience is based on people's interactions with specific products and often drives better performance than custom audience.
+	IncludedCustomActions []TargetingCustomAction `json:"included_custom_actions,omitempty"`
+	// ExcludedCustomActions When shopping_ads_retargeting_type is LAB3, you need to specify either included_custom_actions or excluded_custom_actions.
+	// Details of the catalog audience to exclude.
+	// Improve ad performance by excluding products that people have already interacted with, ensuring they only see relevant ads from your brand.
+	ExcludedCustomActions []TargetingCustomAction `json:"excluded_custom_actions,omitempty"`
+	// ShoppingAdsRetargetingCustomAudienceRelation valid only when the following conditions are both met:
+	// shopping_ads_retargeting_type is set to LAB1, LAB2, or LAB3.
+	// audience_ids is specified.
+	//
+	// The logical relation between the retargeting audience specified by shopping_ads_retargeting_type and the custom audience specified by audience_ids.
+	//
+	// Enum values:
+	// OR: To combine the retargeting audience and the custom audience to create the targeted audience. The ad group will target anyone in catalog or custom audiences.
+	// AND: To intersect between the retargeting audience and the custom audience to create the targeted audience. The ad group will target individuals who belong to both the retargeting audience and the custom audience.
+	//
+	// If this field is not set, the targeted audience will consist of individuals who belong to both the retargeting audience and the custom audience.
+	//
+	// Note: Once set, this field cannot be updated to a null value.
+	ShoppingAdsRetargetingCustomAudienceRelation enum.FilterSetOperator `json:"shopping_ads_retargeting_custom_audience_relation,omitempty"`
 	// IncludedPangleAudiencePackageIDs IDs of the Pangle audiences that you want to include
 	IncludedPangleAudiencePackageIDs []string `json:"included_pangle_audience_package_ids,omitempty"`
 	// ExcludedPangleAudiencePackageIDs IDs of the Pangle audiences that you want to exclude.
@@ -380,4 +420,17 @@ type Targeting struct {
 	BrandSafetyType enum.BrandSafetyType `json:"brand_safety_type,omitempty"`
 	// CategoryExcludeIDs 内容排除类别ID
 	CategoryExcludeIDs []string `json:"category_exclude_ids,omitempty"`
+}
+
+// TargetingCustomAction When shopping_ads_retargeting_type is LAB3, you need to specify either included_custom_actions or excluded_custom_actions.
+type TargetingCustomAction struct {
+	// Code The custom action used to filter out the audiences.
+	// Enum values:
+	// VIEW_PRODUCT: The audience viewed the product.
+	// ADD_TO_CART: The audience added the product to the cart.
+	// PURCHASE: The audience purchased the product.
+	Code enum.TargetingCustomActionCode `json:"code,omitempty"`
+	// Days The time range used to filter out the audiences that completed the specified action.
+	// Value range: 1-180.
+	Days int `json:"days,omitempty"`
 }
