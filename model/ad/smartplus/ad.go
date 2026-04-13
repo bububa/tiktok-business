@@ -356,11 +356,11 @@ type PromoInfo struct {
 	// For enum values, see List of values for discount_currency or minimum_purchase_currency.
 	MinimumPurchaseCurrency string `json:"minimum_purchase_currency,omitempty"`
 	// ValidStartTime Valid start time (UTC+0) for the promo code or offer, in the format of YYYY-MM-DD HH:MM:SS
-	ValidStartTime model.DateTime `json:"valid_start_time,omitempty"`
+	ValidStartTime model.DateTime `json:"valid_start_time,omitzero"`
 	// ValidEndTime Valid end time (UTC+0) for the promo code or offer, in the format of YYYY-MM-DD HH:MM:SS.
 	// The valid_end_time should be later than the current time.
 	// If you specify valid_end_time, provide valid_start_time at the same time.
-	ValidEndTime model.DateTime `json:"valid_end_time,omitempty"`
+	ValidEndTime model.DateTime `json:"valid_end_time,omitzero"`
 }
 
 // PhoneInfo Details of WhatsApp or Zalo phone number
@@ -381,6 +381,24 @@ type TrackingInfo struct {
 	ClickTrackingURL *string `json:"click_tracking_url,omitempty"`
 	// TrackingAppID The ID of the app that is measured
 	TrackingAppID *string `json:"tracking_app_id,omitempty"`
+	// TrackingPixelID Valid only when the following conditions are both met at the campaign level:
+	// objective_type is APP_PROMOTION.
+	// app_promotion_type is APP_INSTALL or APP_RETARGETING.
+	// The ID of the pixel for tracking the actions people take on your website, such as page views, add to cart, purchases, and more.
+	// If pixel_id is already set at the ad group level, this tracking_pixel_id must match it for tracking website events.
+	// If pixel_id is not set at the ad group level, you may specify any pixel ID for tracking website events.
+	TrackingPixelID *string `json:"tracking_pixel_id,omitempty"`
+	// TrackingOfflineEventSetIDs Valid only when the following conditions are both met at the campaign level:
+	// objective_type is APP_PROMOTION.
+	// app_promotion_type is APP_INSTALL or APP_RETARGETING.
+	// A list of Offline Event set IDs for tracking customer actions that happen in-person, such as in-store purchases or live event attendance.
+	// Max size: 50.
+	// See here to learn more about how to create and manage Offline Event sets.
+	// Note:
+	// For a new ad, existing auto-tracking Offline Event sets have to be tracked. You can choose to omit or provide this field.
+	// If you omit this field, it automatically includes all existing auto-tracking Offline Event set IDs within your ad account.
+	// If you provide this field, you need to specify all existing auto-tracking Offline Event set IDs. Adding non-auto-tracking Offline Event set IDs is optional. To find existing auto-tracking Offline Event sets within an ad account, call /offline/get/ and select sets where auto_tracking is true.
+	TrackingOfflineEventSetIDs []string `json:"tracking_offline_event_set_ids,omitempty"`
 	// TrackingMessageEventSetID The ID of the message event set that you want to measure in the Instant Messaging Ad.
 	TrackingMessageEventSetID *string `json:"tracking_message_event_set_id,omitempty"`
 	// AppTrackingInfoList Details of Third-party tracking settings
