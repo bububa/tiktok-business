@@ -418,6 +418,21 @@ type Metrics struct {
 	// TtPlaylistVisitRate 播放列表页面访问率
 	// 付费广告在推广期间带来的播放列表页面访问数占广告展示数的比率。
 	TtPlaylistVisitRate model.Float64 `json:"tt_playlist_visit_rate,omitempty"`
+	// CostPerConsideration Average cost per consideration audience from your ad.
+	// Note: If you want to use this metric, you can specify any of the following dimension groupings in the dimensions field of the request:
+	// one ID dimension ( advertiser_id, campaign_id, adgroup_id, ad_id , or ad_id_v2 )
+	// one ID dimension + stat_time_day
+	CostPerConsideration model.Float64 `json:"cost_per_consideration,omitempty"`
+	// NewConsiderationRate Percentage of consideration audience acquired from all ad impressions.
+	// Note: If you want to use this metric, you can specify any of the following dimension groupings in the dimensions field of the request:
+	// one ID dimension ( advertiser_id, campaign_id, adgroup_id, ad_id , or ad_id_v2 )
+	// one ID dimension + stat_time_day
+	NewConsiderationRate model.Float64 `json:"new_consideration_rate,omitempty"`
+	// NewConsiderationSize Number of acquired consideration audience your ad resulted in.
+	// Note: If you want to use this metric, you can specify any of the following dimension groupings in the dimensions field of the request:
+	// one ID dimension ( advertiser_id, campaign_id, adgroup_id, ad_id , or ad_id_v2 )
+	// one ID dimension + stat_time_day
+	NewConsiderationSize model.Int64 `json:"new_consideration_size,omitempty"`
 	// EarnedPageVideoViews 获得的页面视频播放量
 	// 用户在单个 TikTok 应用会话中观看您的广告后，您所设置的 TikTok 页面中的视频开始播放的次数。每次视频展示的播放次数会单独统计，且不包括重播次数。
 	EarnedPageVideoViews model.Int64 `json:"earned_page_video_views,omitempty"`
