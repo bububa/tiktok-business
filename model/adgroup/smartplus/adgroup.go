@@ -306,6 +306,7 @@ type Targeting struct {
 	ZipcodeIDs []string `json:"zipcode_ids,omitempty"`
 	// SpcAudienceAge The age group that the ad group targets.
 	// Enum values:
+	// ALL: all age groups.
 	// OVER_EIGHTEEN: 18+.
 	// OVER_TWENTY_FIVE: 25+.
 	SpcAudienceAge string `json:"spc_audience_age,omitempty"`
