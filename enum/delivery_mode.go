@@ -10,6 +10,8 @@ const (
 	DeliveryMode_SCHEDULE DeliveryMode = "SCHEDULE"
 	// DeliveryMode_SEQUENCE：顺序投放。为广告设置特定的投放顺序。
 	DeliveryMode_SEQUENCE DeliveryMode = "SEQUENCE"
+	// DeliveryMode_VIEW_OPTIMIZE: View optimized delivery. Your ads are distributed to maximize view-through rate (VTR), with more impressions allocated to ads predicted to achieve higher VTR.
+	DeliveryMode_VIEW_OPTIMIZE DeliveryMode = "VIEW_OPTIMIZE"
 	// DeliveryMode_OPTIMIZE：优选投放。
 	DeliveryMode_OPTIMIZE DeliveryMode = "OPTIMIZE"
 )

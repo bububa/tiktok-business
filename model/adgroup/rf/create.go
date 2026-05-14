@@ -125,6 +125,8 @@ type CreateRequest struct {
 	// STANDARD：标准投放。每个广告均匀投放，预计会获得大致相同的访问量。
 	// SCHEDULE：计划投放。为每个广告设置投放的特定时间段。若您设置为此值，您需同时传入对象数组schedules。
 	// SEQUENCE：顺序投放。为广告设置特定的投放顺序。若您设置为此值，您需同时传入字段 expected_orders 。
+	// VIEW_OPTIMIZE: View optimized delivery. Your ads are distributed to maximize view-through rate (VTR), with more impressions allocated to ads predicted to achieve higher VTR.
+	//   This value is only available for the 6s view-through rate (View+) optimization goal with optimization_goal as REACH and cpv_video_duration as SIX_SECONDS.
 	// OPTIMIZE（已废弃）：优选投放。
 	// 默认值：STANDARD。
 	DeliveryMode enum.DeliveryMode `json:"delivery_mode,omitempty"`
