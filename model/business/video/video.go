@@ -11,6 +11,17 @@ type Video struct {
 	// 示例：6995316737801538821
 	// 更新时间：实时
 	ItemID string `json:"item_id,omitempty"`
+	// MediaType The type of the post.
+	// Enum values:
+	// VIDEO: a video post.
+	// PHOTO: a photo or text post.
+	MediaType string `json:"media_type,omitempty"`
+	// IsAd Whether the post is being used in an ad.
+	// A post can be promoted via Spark Ads Push or Spark Ads Pull. Learn more about Spark Ads.
+	// Supported values:
+	// true: The post is used in an ad.
+	// false: The post is not used in an ad.
+	IsAd bool `json:"is_ad,omitempty"`
 	// ThumbnailURL 视频内容缩略图的临时 URL。
 	// 过期日期和时间以 Epoch/Unix 时间格式包含在x-expires查询参数中，以秒为单位。
 	// 示例：https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/75dec21d63500917fb6ec8bc59415156~c5_300x300.jpeg?x-expires=1614099600&x-signature=PmK%2BWs3LzSzRL2tYs%2FZx7EjG3Gk%3D
