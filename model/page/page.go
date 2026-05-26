@@ -25,6 +25,19 @@ type Page struct {
 	Title string `json:"title,omitempty"`
 	// PreviewURL 预览链接（可投放时返回，草稿状态时为空）
 	PreviewURL string `json:"preview_url,omitempty"`
+	// TemplateID The ID for the page's template. It indicates the specific template type associated with this page.
+	TemplateID string `json:"template_id,omitempty"`
+	// TemplateName The name of the template type that the page uses.
+	TemplateName string `json:"template_name,omitempty"`
+	// SupportedObjectives Returned only when the following conditions are both met:
+	// The page is associated with a template_id.
+	// The corresponding template is compatible with certain objectives.
+	// A list of campaign objectives compatible with this page template.
+	// Enum values: APP_PROMOTION, WEB_CONVERSIONS, LEAD_GENERATION, TRAFFIC, REACH, VIDEO_VIEWS, ENGAGEMENT, PRODUCT_SALES, RF_REACH.
+	// For a detailed explanation of enum values, see Enumeration-Advertising Objective.
+	// Note:
+	// Even with a supported objective, you can only use the page if it is compatible with all other campaign settings.
+	SupportedObjectives []enum.ObjectiveType `json:"supported_objectives,omitempty"`
 	// Thumbnail 页面预览图片
 	Thumbnail string `json:"thumbnail,omitempty"`
 	// AppID 仅为所有应用介绍页和指定了应用的自定义 TikTok 即时体验页面返回本字段。
@@ -53,8 +66,6 @@ type Page struct {
 	// TransferStatus 页面是否转移到商务中心。
 	// 枚举值: UNSET,TRANSFERRED。
 	TransferStatus string `json:"transfer_status,omitempty"`
-	// TemplateID 页面模板 ID
-	TemplateID string `json:"template_id,omitempty"`
 	// UserID 创建页面的用户 ID
 	UserID string `json:"user_id,omitempty"`
 	// IsAssociated 商品橱窗页是否已被关联至广告（商品橱窗页不能重复使用，每个页面只能关联一个广告）
