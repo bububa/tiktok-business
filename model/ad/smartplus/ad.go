@@ -375,6 +375,39 @@ type PhoneInfo struct {
 
 // TrackingInfo Tracking information
 type TrackingInfo struct {
+	// ViewabilityPostbidPartner Valid only in regular Upgraded Smart+ Web Campaigns and Upgraded Smart+ E-commerce Catalog Ads.
+	// Post-bid third-party viewability measurement partner.
+	// Enum values: DOUBLE_VERIFY, IAS, ZEFR.
+	// Note:
+	// Post-bid third-party viewability measurement is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	// See Brand safety to learn about the supported advertising objectives, supported markets, and the general introduction of post-bid measurement.
+	// When you pass in both brand_safety_postbid_partner and viewability_postbid_partner:
+	// If you set either of these two fields as IAS, you need to specify both as IAS, and assign the same value (the wrapped VAST URL that you obtain from the measurement partner IAS) to brand_safety_vast_url and viewability_vast_url.
+	// If you set either of these two fields as ZEFR, you need to specify both as ZEFR.
+	// If you set two different post-bid measurement partners, only the post-bid brand safety measurement setting will become valid.
+	ViewabilityPostbidPartner *enum.ViewabilityPostbidPartner `json:"viewability_postbid_partner,omitempty"`
+	// ViewabilityVastURL Required when viewability_postbid_partner is IAS.
+	// The wrapped VAST URL used by the post-bid third-party partner to measure viewability. You need to get the URL from the measurement partner IAS.
+	// Note:
+	// Post-bid third-party viewability measurement is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	// When you set both brand_safety_postbid_partner and viewability_postbid_partner as IAS, brand_safety_vast_url should be the same as viewability_vast_url.
+	ViewabilityVastURL *string `json:"viewability_vast_url,omitempty"`
+	// BrandSafetyPostbidPartner Valid only in regular Upgraded Smart+ Web Campaigns and Upgraded Smart+ E-commerce Catalog Ads.
+	// Post-bid third-party brand safety measurement partner.
+	// Enum values: DOUBLE_VERIFY, IAS, ZEFR.
+	// Note:
+	// Post-bid third-party brand safety measurement is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	// See Brand safety to learn about the supported advertising objectives, supported markets, and the general introduction of post-bid measurement.
+	// When you pass in both brand_safety_postbid_partner and viewability_postbid_partner:
+	// If you set either of these two fields as IAS, you need to specify both as IAS, and assign the same value (the wrapped VAST URL that you obtain from the measurement partner IAS) to brand_safety_vast_url and viewability_vast_url.
+	// If you set two different post-bid measurement partners, only the post-bid brand safety measurement setting will become valid.
+	BrandSafetyPostbidPartner *enum.ViewabilityPostbidPartner `json:"brand_safety_postbid_partner,omitempty"`
+	// BrandSafetyVastURL Required when brand_safety_postbid_partner is IAS.
+	// The wrapped VAST URL used by the post-bid third-party partner to measure brand safety. You need to get the URL from the measurement partner IAS.
+	// Note:
+	// Post-bid third-party brand safety measurement is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	// When you set both brand_safety_postbid_partner and viewability_postbid_partner as IAS, brand_safety_vast_url should be the same as viewability_vast_url.
+	BrandSafetyVastURL *string `json:"brand_safety_vast_url,omitempty"`
 	// ImpressionTrackingURL Default Impression Tracking URL
 	ImpressionTrackingURL *string `json:"impression_tracking_url,omitempty"`
 	// ClickTrackingURL Click Tracking URL
