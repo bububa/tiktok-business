@@ -162,7 +162,7 @@ type Metrics struct {
 	MobileAppID string `json:"mobile_app_id,omitempty"`
 	// ImageMode 样式
 	// 仅广告层级均支持。
-	ImageMode enum.AdFormat `json:"ad_format,omitempty"`
+	ImageMode enum.AdFormat `json:"image_mode,omitempty"`
 	// Currency 货币
 	// 货币代码，比如USD。请注意如果要使用currency作为指标，则请求中的dimensions字段必须包含adgroup_id/ad_id/campaign_id/advertiser_id。
 	Currency string `json:"currency,omitempty"`
@@ -677,7 +677,7 @@ type Metrics struct {
 	TotalNextDayOpen model.Int64 `json:"total_next_day_open,omitempty"`
 	// CostPerTotalNextDayOpen 次日留存平均成本
 	// 次日留存的平均成本。
-	CostPerTotalNextDayOpen model.Int64 `json:"cost_per_total_next_day_open,omitempty"`
+	CostPerTotalNextDayOpen model.Float64 `json:"cost_per_total_next_day_open,omitempty"`
 	// Day7Retention 去重 7 日留存数
 	// 来自移动应用、作为应用事件统计并归因于广告的去重 7 日留存数。
 	Day7Retention model.Int64 `json:"day7_retention,omitempty"`
@@ -1287,7 +1287,7 @@ type Metrics struct {
 	// OnsiteCostPerUniquePurchase 去重付费平均成本
 	OnsiteCostPerUniquePurchase model.Float64 `json:"onsite_cost_per_unique_purchase,omitempty"`
 	// OnsiteTotalPurchaseValueDay0 第 0 天付费价值
-	OnsiteTotalPurchaseValueDay0 model.Int64 `json:"onsite_total_purchase_value_day0,omitempty"`
+	OnsiteTotalPurchaseValueDay0 model.Float64 `json:"onsite_total_purchase_value_day0,omitempty"`
 	// OnsiteTotalPurchaseValueDay6 第 6 天付费价值
 	OnsiteTotalPurchaseValueDay6 model.Float64 `json:"onsite_total_purchase_value_day6,omitempty"`
 	// OnsiteTotalPurchaseValueDay13 第 13 天付费价值
@@ -1455,7 +1455,7 @@ type Metrics struct {
 	// OnsiteDestinationVisits 目标页面访问数 (TikTok)
 	OnsiteDestinationVisits model.Int64 `json:"onsite_destination_visits,omitempty"`
 	// CostPerOnsiteDestinationVisit 目标页面访问平均成本 (TikTok)
-	CostPerOnsiteDestinationVisit model.Float64 `json:"cost_per_onsite_destionation_visit,omitempty"`
+	CostPerOnsiteDestinationVisit model.Float64 `json:"cost_per_onsite_destination_visit,omitempty"`
 	// OnsiteDestinationVisitRate 目标页面访问率 (TikTok) (%)
 	OnsiteDestinationVisitRate model.Float64 `json:"onsite_destination_visit_rate,omitempty"`
 	// IxPageViewCount 网页浏览量 (TikTok)
@@ -1514,6 +1514,196 @@ type Metrics struct {
 	OnsiteSubscribeValueDay29 model.Float64 `json:"onsite_subscribe_value_day29,omitempty"`
 	// OnsiteAdImpressionAdRevenueROAS The return on ad spend (ROAS) from ad revenue.
 	OnsiteAdImpressionAdRevenueROAS model.Float64 `json:"onsite_ad_impression_ad_revenue_roas,omitempty"`
+	//
+	// Native Growth 指标
+	// NativeGrowthPurchaseROAS Native Growth purchase ROAS (TikTok)
+	NativeGrowthPurchaseROAS model.Float64 `json:"native_growth_purchase_roas,omitempty"`
+	// NativeGrowthTotalPurchaseEventCount Native Growth total purchase (TikTok)
+	NativeGrowthTotalPurchaseEventCount model.Int64 `json:"native_growth_total_purchase_event_count,omitempty"`
+	// NativeGrowthUniquePurchase Native Growth unique purchase (TikTok)
+	NativeGrowthUniquePurchase model.Int64 `json:"native_growth_unique_purchase,omitempty"`
+	// NativeGrowthCostPerUniquePurchase Native Growth cost per unique purchase (TikTok)
+	NativeGrowthCostPerUniquePurchase model.Float64 `json:"native_growth_cost_per_unique_purchase,omitempty"`
+	// NativeGrowthCostPerPurchase Native Growth cost per purchase (TikTok)
+	NativeGrowthCostPerPurchase model.Float64 `json:"native_growth_cost_per_purchase,omitempty"`
+	// NativeGrowthPurchaseRate Native Growth purchase rate (TikTok)
+	NativeGrowthPurchaseRate model.Float64 `json:"native_growth_purchase_rate,omitempty"`
+	// NativeGrowthValuePerPurchase Native Growth value per purchase (TikTok)
+	NativeGrowthValuePerPurchase model.Float64 `json:"native_growth_value_per_purchase,omitempty"`
+	// NativeGrowthTotalPurchaseValue Native Growth total purchase value (TikTok)
+	NativeGrowthTotalPurchaseValue model.Float64 `json:"native_growth_total_purchase_value,omitempty"`
+	// NativeGrowthPurchaseEventCountD0 Native Growth day 0 purchase
+	NativeGrowthPurchaseEventCountD0 model.Int64 `json:"native_growth_purchase_event_count_d0,omitempty"`
+	// NativeGrowthPurchaseValueD0 Native Growth day 0 purchase value
+	NativeGrowthPurchaseValueD0 model.Float64 `json:"native_growth_purchase_value_d0,omitempty"`
+	// NativeGrowthPurchaseValueD1 Native Growth day 1 purchase value
+	NativeGrowthPurchaseValueD1 model.Float64 `json:"native_growth_purchase_value_d1,omitempty"`
+	// NativeGrowthPurchaseValueD2 Native Growth day 2 purchase value
+	NativeGrowthPurchaseValueD2 model.Float64 `json:"native_growth_purchase_value_d2,omitempty"`
+	// NativeGrowthPurchaseValueD3 Native Growth day 3 purchase value
+	NativeGrowthPurchaseValueD3 model.Float64 `json:"native_growth_purchase_value_d3,omitempty"`
+	// NativeGrowthPurchaseValueD4 Native Growth day 4 purchase value
+	NativeGrowthPurchaseValueD4 model.Float64 `json:"native_growth_purchase_value_d4,omitempty"`
+	// NativeGrowthPurchaseValueD5 Native Growth day 5 purchase value
+	NativeGrowthPurchaseValueD5 model.Float64 `json:"native_growth_purchase_value_d5,omitempty"`
+	// NativeGrowthPurchaseValueD6 Native Growth day 6 purchase value
+	NativeGrowthPurchaseValueD6 model.Float64 `json:"native_growth_purchase_value_d6,omitempty"`
+	// NativeGrowthPurchaseValueD13 Native Growth day 13 purchase value
+	NativeGrowthPurchaseValueD13 model.Float64 `json:"native_growth_purchase_value_d13,omitempty"`
+	// NativeGrowthPurchaseValueD20 Native Growth day 20 purchase value
+	NativeGrowthPurchaseValueD20 model.Float64 `json:"native_growth_purchase_value_d20,omitempty"`
+	// NativeGrowthPurchaseValueD27 Native Growth day 27 purchase value
+	NativeGrowthPurchaseValueD27 model.Float64 `json:"native_growth_purchase_value_d27,omitempty"`
+	// NativeGrowthPurchaseValueD29 Native Growth day 29 purchase value
+	NativeGrowthPurchaseValueD29 model.Float64 `json:"native_growth_purchase_value_d29,omitempty"`
+	// NativeGrowthPurchaseValueD31 Native Growth day 31 purchase value
+	NativeGrowthPurchaseValueD31 model.Float64 `json:"native_growth_purchase_value_d31,omitempty"`
+	// NativeGrowthPurchaseROASD0 Native Growth day 0 purchase ROAS
+	NativeGrowthPurchaseROASD0 model.Float64 `json:"native_growth_purchase_roas_d0,omitempty"`
+	// NativeGrowthPurchaseROASD1 Native Growth day 1 purchase ROAS
+	NativeGrowthPurchaseROASD1 model.Float64 `json:"native_growth_purchase_roas_d1,omitempty"`
+	// NativeGrowthPurchaseROASD2 Native Growth day 2 purchase ROAS
+	NativeGrowthPurchaseROASD2 model.Float64 `json:"native_growth_purchase_roas_d2,omitempty"`
+	// NativeGrowthPurchaseROASD3 Native Growth day 3 purchase ROAS
+	NativeGrowthPurchaseROASD3 model.Float64 `json:"native_growth_purchase_roas_d3,omitempty"`
+	// NativeGrowthPurchaseROASD4 Native Growth day 4 purchase ROAS
+	NativeGrowthPurchaseROASD4 model.Float64 `json:"native_growth_purchase_roas_d4,omitempty"`
+	// NativeGrowthPurchaseROASD5 Native Growth day 5 purchase ROAS
+	NativeGrowthPurchaseROASD5 model.Float64 `json:"native_growth_purchase_roas_d5,omitempty"`
+	// NativeGrowthPurchaseROASD6 Native Growth day 6 purchase ROAS
+	NativeGrowthPurchaseROASD6 model.Float64 `json:"native_growth_purchase_roas_d6,omitempty"`
+	// NativeGrowthPurchaseROASD13 Native Growth day 13 purchase ROAS
+	NativeGrowthPurchaseROASD13 model.Float64 `json:"native_growth_purchase_roas_d13,omitempty"`
+	// NativeGrowthPurchaseROASD20 Native Growth day 20 purchase ROAS
+	NativeGrowthPurchaseROASD20 model.Float64 `json:"native_growth_purchase_roas_d20,omitempty"`
+	// NativeGrowthPurchaseROASD27 Native Growth day 27 purchase ROAS
+	NativeGrowthPurchaseROASD27 model.Float64 `json:"native_growth_purchase_roas_d27,omitempty"`
+	// NativeGrowthPurchaseROASD29 Native Growth day 29 purchase ROAS
+	NativeGrowthPurchaseROASD29 model.Float64 `json:"native_growth_purchase_roas_d29,omitempty"`
+	// NativeGrowthPurchaseROASD31 Native Growth day 31 purchase ROAS
+	NativeGrowthPurchaseROASD31 model.Float64 `json:"native_growth_purchase_roas_d31,omitempty"`
+	// NativeGrowthActiveByConversionTime Native Growth active by conversion time (TikTok)
+	NativeGrowthActiveByConversionTime model.Int64 `json:"native_growth_active_by_conversion_time,omitempty"`
+	// NativeGrowthCostPerActiveByConversionTime Native Growth cost per active by conversion time (TikTok)
+	NativeGrowthCostPerActiveByConversionTime model.Float64 `json:"native_growth_cost_per_active_by_conversion_time,omitempty"`
+	// NativeGrowthActive Native Growth active (TikTok)
+	NativeGrowthActive model.Int64 `json:"native_growth_active,omitempty"`
+	// NativeGrowthCostPerActive Native Growth cost per active (TikTok)
+	NativeGrowthCostPerActive model.Float64 `json:"native_growth_cost_per_active,omitempty"`
+	// NativeGrowthUniqueLaunchApp Native Growth unique launch
+	NativeGrowthUniqueLaunchApp model.Int64 `json:"native_growth_unique_launch_app,omitempty"`
+	// NativeGrowthCostPerUniqueLaunchApp Native Growth cost per unique launch
+	NativeGrowthCostPerUniqueLaunchApp model.Float64 `json:"native_growth_cost_per_unique_launch_app,omitempty"`
+	// NativeGrowthLaunchRate Native Growth launch Rate (%)
+	NativeGrowthLaunchRate model.Float64 `json:"native_growth_launch_rate,omitempty"`
+	// NativeGrowthTotalLaunchEventCount Native Growth total launch
+	NativeGrowthTotalLaunchEventCount model.Int64 `json:"native_growth_total_launch_event_count,omitempty"`
+	// NativeGrowthCostPerLaunchApp Native Growth cost per launch
+	NativeGrowthCostPerLaunchApp model.Float64 `json:"native_growth_cost_per_launch_app,omitempty"`
+	// NativeGrowthUniqueAdImpressionEvent Native Growth unique ad impression event
+	NativeGrowthUniqueAdImpressionEvent model.Int64 `json:"native_growth_unique_ad_impression_event,omitempty"`
+	// NativeGrowthCostPerUniqueAdImpressionEvent Native Growth cost per unique ad impression event
+	NativeGrowthCostPerUniqueAdImpressionEvent model.Float64 `json:"native_growth_cost_per_unique_ad_impression_event,omitempty"`
+	// NativeGrowthAdImpressionEventRate Native Growth ad impression event rate
+	NativeGrowthAdImpressionEventRate model.Float64 `json:"native_growth_ad_impression_event_rate,omitempty"`
+	// NativeGrowthTotalAdImpressionEventCount Native Growth total ad impression events
+	NativeGrowthTotalAdImpressionEventCount model.Int64 `json:"native_growth_total_ad_impression_event_count,omitempty"`
+	// NativeGrowthCostPerAdImpressionEvent Native Growth cost per ad impression event
+	NativeGrowthCostPerAdImpressionEvent model.Float64 `json:"native_growth_cost_per_ad_impression_event,omitempty"`
+	// NativeGrowthTotalAdImpressionValue Native Growth total ad impression value
+	NativeGrowthTotalAdImpressionValue model.Float64 `json:"native_growth_total_ad_impression_value,omitempty"`
+	// NativeGrowthValuePerAdImpressionEvent Native Growth value per ad impression event
+	NativeGrowthValuePerAdImpressionEvent model.Float64 `json:"native_growth_value_per_ad_impression_event,omitempty"`
+	// NativeGrowthAdRevenueROAS Native Growth ad revenue ROAS
+	NativeGrowthAdRevenueROAS model.Float64 `json:"native_growth_ad_revenue_roas,omitempty"`
+	// NativeGrowthAdRevenueEventCountD0 Native Growth day 0 ad revenue
+	NativeGrowthAdRevenueEventCountD0 model.Int64 `json:"native_growth_ad_revenue_event_count_d0,omitempty"`
+	// NativeGrowthAdRevenueValueD0 Native Growth day 0 ad revenue value
+	NativeGrowthAdRevenueValueD0 model.Float64 `json:"native_growth_ad_revenue_value_d0,omitempty"`
+	// NativeGrowthAdRevenueValueD1 Native Growth day 1 ad revenue value
+	NativeGrowthAdRevenueValueD1 model.Float64 `json:"native_growth_ad_revenue_value_d1,omitempty"`
+	// NativeGrowthAdRevenueValueD2 Native Growth day 2 ad revenue value
+	NativeGrowthAdRevenueValueD2 model.Float64 `json:"native_growth_ad_revenue_value_d2,omitempty"`
+	// NativeGrowthAdRevenueValueD3 Native Growth day 3 ad revenue value
+	NativeGrowthAdRevenueValueD3 model.Float64 `json:"native_growth_ad_revenue_value_d3,omitempty"`
+	// NativeGrowthAdRevenueValueD4 Native Growth day 4 ad revenue value
+	NativeGrowthAdRevenueValueD4 model.Float64 `json:"native_growth_ad_revenue_value_d4,omitempty"`
+	// NativeGrowthAdRevenueValueD5 Native Growth day 5 ad revenue value
+	NativeGrowthAdRevenueValueD5 model.Float64 `json:"native_growth_ad_revenue_value_d5,omitempty"`
+	// NativeGrowthAdRevenueValueD6 Native Growth day 6 ad revenue value
+	NativeGrowthAdRevenueValueD6 model.Float64 `json:"native_growth_ad_revenue_value_d6,omitempty"`
+	// NativeGrowthAdRevenueValueD13 Native Growth day 13 ad revenue value
+	NativeGrowthAdRevenueValueD13 model.Float64 `json:"native_growth_ad_revenue_value_d13,omitempty"`
+	// NativeGrowthAdRevenueValueD20 Native Growth day 20 ad revenue value
+	NativeGrowthAdRevenueValueD20 model.Float64 `json:"native_growth_ad_revenue_value_d20,omitempty"`
+	// NativeGrowthAdRevenueValueD27 Native Growth day 27 ad revenue value
+	NativeGrowthAdRevenueValueD27 model.Float64 `json:"native_growth_ad_revenue_value_d27,omitempty"`
+	// NativeGrowthAdRevenueValueD29 Native Growth day 29 ad revenue value
+	NativeGrowthAdRevenueValueD29 model.Float64 `json:"native_growth_ad_revenue_value_d29,omitempty"`
+	// NativeGrowthAdRevenueValueD31 Native Growth day 31 ad revenue value
+	NativeGrowthAdRevenueValueD31 model.Float64 `json:"native_growth_ad_revenue_value_d31,omitempty"`
+	// NativeGrowthAdRevenueROASD0 Native Growth day 0 ad revenue ROAS
+	NativeGrowthAdRevenueROASD0 model.Float64 `json:"native_growth_ad_revenue_roas_d0,omitempty"`
+	// NativeGrowthAdRevenueROASD1 Native Growth day 1 ad revenue ROAS
+	NativeGrowthAdRevenueROASD1 model.Float64 `json:"native_growth_ad_revenue_roas_d1,omitempty"`
+	// NativeGrowthAdRevenueROASD2 Native Growth day 2 ad revenue ROAS
+	NativeGrowthAdRevenueROASD2 model.Float64 `json:"native_growth_ad_revenue_roas_d2,omitempty"`
+	// NativeGrowthAdRevenueROASD3 Native Growth day 3 ad revenue ROAS
+	NativeGrowthAdRevenueROASD3 model.Float64 `json:"native_growth_ad_revenue_roas_d3,omitempty"`
+	// NativeGrowthAdRevenueROASD4 Native Growth day 4 ad revenue ROAS
+	NativeGrowthAdRevenueROASD4 model.Float64 `json:"native_growth_ad_revenue_roas_d4,omitempty"`
+	// NativeGrowthAdRevenueROASD5 Native Growth day 5 ad revenue ROAS
+	NativeGrowthAdRevenueROASD5 model.Float64 `json:"native_growth_ad_revenue_roas_d5,omitempty"`
+	// NativeGrowthAdRevenueROASD6 Native Growth day 6 ad revenue ROAS
+	NativeGrowthAdRevenueROASD6 model.Float64 `json:"native_growth_ad_revenue_roas_d6,omitempty"`
+	// NativeGrowthAdRevenueROASD13 Native Growth day 13 ad revenue ROAS
+	NativeGrowthAdRevenueROASD13 model.Float64 `json:"native_growth_ad_revenue_roas_d13,omitempty"`
+	// NativeGrowthAdRevenueROASD20 Native Growth day 20 ad revenue ROAS
+	NativeGrowthAdRevenueROASD20 model.Float64 `json:"native_growth_ad_revenue_roas_d20,omitempty"`
+	// NativeGrowthAdRevenueROASD27 Native Growth day 27 ad revenue ROAS
+	NativeGrowthAdRevenueROASD27 model.Float64 `json:"native_growth_ad_revenue_roas_d27,omitempty"`
+	// NativeGrowthAdRevenueROASD29 Native Growth day 29 ad revenue ROAS
+	NativeGrowthAdRevenueROASD29 model.Float64 `json:"native_growth_ad_revenue_roas_d29,omitempty"`
+	// NativeGrowthAdRevenueROASD31 Native Growth day 31 ad revenue ROAS
+	NativeGrowthAdRevenueROASD31 model.Float64 `json:"native_growth_ad_revenue_roas_d31,omitempty"`
+	// NativeGrowthUniqueSubscribeCount Native Growth unique subscribe
+	NativeGrowthUniqueSubscribeCount model.Int64 `json:"native_growth_unique_subscribe_count,omitempty"`
+	// NativeGrowthCostPerUniqueSubscribe Native Growth cost per unique subscribe
+	NativeGrowthCostPerUniqueSubscribe model.Float64 `json:"native_growth_cost_per_unique_subscribe,omitempty"`
+	// NativeGrowthSubscribeRate Native Growth subscribe rate (%)
+	NativeGrowthSubscribeRate model.Float64 `json:"native_growth_subscribe_rate,omitempty"`
+	// NativeGrowthTotalSubscribeEventCount Native Growth total subscribe
+	NativeGrowthTotalSubscribeEventCount model.Int64 `json:"native_growth_total_subscribe_event_count,omitempty"`
+	// NativeGrowthCostPerSubscribe Native Growth cost per subscribe
+	NativeGrowthCostPerSubscribe model.Float64 `json:"native_growth_cost_per_subscribe,omitempty"`
+	// NativeGrowthValuePerSubscribe Native Growth value per subscribe
+	NativeGrowthValuePerSubscribe model.Float64 `json:"native_growth_value_per_subscribe,omitempty"`
+	// NativeGrowthTotalSubscribeValue Native Growth total subscribe value
+	NativeGrowthTotalSubscribeValue model.Float64 `json:"native_growth_total_subscribe_value,omitempty"`
+	// NativeGrowthSubscribeValueD0 Native Growth day 0 subscribe value
+	NativeGrowthSubscribeValueD0 model.Float64 `json:"native_growth_subscribe_value_d0,omitempty"`
+	// NativeGrowthSubscribeValueD1 Native Growth day 1 subscribe value
+	NativeGrowthSubscribeValueD1 model.Float64 `json:"native_growth_subscribe_value_d1,omitempty"`
+	// NativeGrowthSubscribeValueD2 Native Growth day 2 subscribe value
+	NativeGrowthSubscribeValueD2 model.Float64 `json:"native_growth_subscribe_value_d2,omitempty"`
+	// NativeGrowthSubscribeValueD3 Native Growth day 3 subscribe value
+	NativeGrowthSubscribeValueD3 model.Float64 `json:"native_growth_subscribe_value_d3,omitempty"`
+	// NativeGrowthSubscribeValueD4 Native Growth day 4 subscribe value
+	NativeGrowthSubscribeValueD4 model.Float64 `json:"native_growth_subscribe_value_d4,omitempty"`
+	// NativeGrowthSubscribeValueD5 Native Growth day 5 subscribe value
+	NativeGrowthSubscribeValueD5 model.Float64 `json:"native_growth_subscribe_value_d5,omitempty"`
+	// NativeGrowthSubscribeValueD6 Native Growth day 6 subscribe value
+	NativeGrowthSubscribeValueD6 model.Float64 `json:"native_growth_subscribe_value_d6,omitempty"`
+	// NativeGrowthSubscribeValueD13 Native Growth day 13 subscribe value
+	NativeGrowthSubscribeValueD13 model.Float64 `json:"native_growth_subscribe_value_d13,omitempty"`
+	// NativeGrowthSubscribeValueD20 Native Growth day 20 subscribe value
+	NativeGrowthSubscribeValueD20 model.Float64 `json:"native_growth_subscribe_value_d20,omitempty"`
+	// NativeGrowthSubscribeValueD27 Native Growth day 27 subscribe value
+	NativeGrowthSubscribeValueD27 model.Float64 `json:"native_growth_subscribe_value_d27,omitempty"`
+	// NativeGrowthSubscribeValueD29 Native Growth day 29 subscribe value
+	NativeGrowthSubscribeValueD29 model.Float64 `json:"native_growth_subscribe_value_d29,omitempty"`
+	// NativeGrowthSubscribeValueD31 Native Growth day 31 subscribe value
+	NativeGrowthSubscribeValueD31 model.Float64 `json:"native_growth_subscribe_value_d31,omitempty"`
 	//
 	// 线下指标
 	// OfflineTotalCRMEvents CRM 事件数
