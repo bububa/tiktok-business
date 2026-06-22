@@ -463,13 +463,15 @@ type AppTrackingInfo struct {
 
 // CatalogCreativeInfo The ad is an Upgraded Smart+ E-commerce Catalog Ad.
 type CatalogCreativeInfo struct {
-	// CatalogMediaSettings The types of creatives from your E-commerce catalog to use in the ad.
-	// Enum values:
+	// CatalogMediaSettings The types of creatives from your E-commerce or entertainment catalog to use in the ad.
+	// Enum values for an Upgraded Smart+ E-commerce Catalog Ad:
 	// VIDEO: Video.
 	// IMAGE: Image.
-	// TEMPLATE_VIDEO: Video templates. If you include this value in catalog_media_settings, you can optionally specify catalog_template_video_id at the same time.
-	// If catalog_template_video_id is not specified, all video templates and video URLs from your catalog will be used to generate the ad.
-	// If catalog_template_video_id is specified, the selected video template will be used to generate the ad.
+	// TEMPLATE_VIDEO: Video templates.
+	// Enum values for an Upgraded Smart+ Streaming Ad:
+	// VIDEO: Video.
+	// TEMPLATE_VIDEO: Video templates.
+	// MULTI_SHOW: Multi-Show. Multi-Show Experience is an auto-play video carousel experience designed to drive user exploration and engagement across a breadth of personally-relevant title offerings within your content library. Multi-Show Experience consists of 4 video tiles delivered from your catalog. Each tile's clip plays sequentially (starting in the upper left-hand corner), and offers you the ability to assign a corresponding title-specific landing page.
 	CatalogMediaSettings []enum.CatalogMediaSetting `json:"catalog_media_settings,omitempty"`
 	// CatalogTemplateVideoID Valid only when TEMPLATE_VIDEO is included in catalog_media_settings.
 	// The ID of a video template in your catalog to use in the ad.
