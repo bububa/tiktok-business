@@ -90,6 +90,13 @@ type ItemInfo struct {
 	// CarouselInfo 照片帖子信息。
 	// 注意：item_type 为 VIDEO 时，本字段值为 null
 	CarouselInfo *CarouselInfo `json:"carousel_info,omitempty"`
+	// ExcludeAdsonly Whether to exclude ads only posts from the results.
+	// Ads-only posts are those you publish from a TikTok account as ads, which remain hidden from the public on the account's profile page.
+	// Supported values:
+	// false: To retrieve both organic and ads only posts.
+	// true: To retrieve a maximum of 500 most recent organic posts.
+	// Default value: false.
+	ExcludeAdsonly bool `json:"exclude_adsonly,omitempty"`
 }
 
 // CarouselInfo 照片帖子信息。
