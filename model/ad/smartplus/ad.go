@@ -301,6 +301,16 @@ type ProductInfo struct {
 	// VEHICLE_STATE: Vehicle state.
 	// Max size: 2 for primary catalog tags (DEALER_NAME,CURRENT_MILEAGE,EXTERIOR_COLOR,TRIM,ADDRESS_CITY,VEHICLE_STATE) and 2 for secondary catalog tags (LEAD_PRICE,LEAD_SALE_PRICE).
 	CatalogTagList []string `json:"catalog_tag_list,omitempty"`
+	// ProductCardType The product card display type.
+	// Enum values:
+	// PRODUCT_CARD: Product Card.
+	// PRODUCT_TILE: Product Tiles.
+	// PRODUCT_INFO_CARD: Info Card.
+	// PRODUCT_SHOWCASE_TILE: Showcase Tiles.
+	// ANCHOR: Anchor.
+	// CAROUSEL_LABEL: Carousel label.
+	// Note: If you want to disable the product card, set this field to [].
+	ProductCardType []enum.ProductCardType `json:"product_card_type,omitempty"`
 	// PromoInfoList Valid only for regular Upgraded Smart+ Web Campaigns.
 	// Details of promo codes and offers.
 	// Your offer details for promo codes, offers, or events will be highlighted to boost engagement and ad performance. Promo codes require shoppers to enter a code at checkout. Offers apply automatically and no code is needed.
