@@ -37,6 +37,8 @@ type Ad struct {
 	ModifyTime model.DateTime `json:"modify_time,omitzero"`
 	// CreativeList A list of creatives
 	CreativeList []Creative `json:"creative_list,omitempty"`
+	// PlayableList A list of playables
+	PlayableList []Playable `json:"playable_list,omitempty"`
 	// AdTextList A list of ad texts.
 	// Ad texts are shown to your audience as part of your ad creatives, to deliver the message you intend to communicate to them.
 	AdTextList []AdText `json:"ad_text_list,omitempty"`
@@ -301,6 +303,16 @@ type ProductInfo struct {
 	// VEHICLE_STATE: Vehicle state.
 	// Max size: 2 for primary catalog tags (DEALER_NAME,CURRENT_MILEAGE,EXTERIOR_COLOR,TRIM,ADDRESS_CITY,VEHICLE_STATE) and 2 for secondary catalog tags (LEAD_PRICE,LEAD_SALE_PRICE).
 	CatalogTagList []string `json:"catalog_tag_list,omitempty"`
+	// ProductCardType The product card display type.
+	// Enum values:
+	// PRODUCT_CARD: Product Card.
+	// PRODUCT_TILE: Product Tiles.
+	// PRODUCT_INFO_CARD: Info Card.
+	// PRODUCT_SHOWCASE_TILE: Showcase Tiles.
+	// ANCHOR: Anchor.
+	// CAROUSEL_LABEL: Carousel label.
+	// Note: If you want to disable the product card, set this field to [].
+	ProductCardType []enum.ProductCardType `json:"product_card_type,omitempty"`
 	// PromoInfoList Valid only for regular Upgraded Smart+ Web Campaigns.
 	// Details of promo codes and offers.
 	// Your offer details for promo codes, offers, or events will be highlighted to boost engagement and ad performance. Promo codes require shoppers to enter a code at checkout. Offers apply automatically and no code is needed.
@@ -478,4 +490,12 @@ type CatalogCreativeInfo struct {
 	// To obtain the IDs of video templates (video packages) in your catalog, use /catalog/video_package/get/.
 	// To learn about how to create video packages on TikTok Ads Manager, see How to create video packages in a Catalog.
 	CatalogTemplateVideoID string `json:"catalog_template_video_id,omitempty"`
+}
+
+type Playable struct {
+	// PlayableURL The URL of the playable.
+	// To upload playables to the Creative Library of your ad account and obtain the playable URLs, see Upload playables.
+	// To obtain the URLs of existing playables within your ad account, use /playable/get/.
+	// Note: If you want to create Playable Ads using TikTok-only placement (with placement_type as PLACEMENT_TYPE_NORMAL and placements as ["PLACEMENT_TIKTOK"]), ensure the playables are not horizontal. To verify the orientation of your playable, use /playable/get/ and confirm that the playable_orientation is either BOTH or PORTRAIT.
+	PlayablleURL string `json:"playable_url,omitempty"`
 }

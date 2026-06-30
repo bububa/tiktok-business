@@ -260,6 +260,11 @@ type Adgroup struct {
 	// 当 placement_type 为 PLACEMENT_TYPE_NORMAL（手动版位）时，本字段通常将返回您在请求中通过placements字段指定的版位。
 	// 唯一的例外是您在请求中通过 placements 字段指定了 PLACEMENT_GLOBAL_APP_BUNDLE 版位 ，但是您未申请 PLACEMENT_GLOBAL_APP_BUNDLE 的白名单，则本字段的返回值中将筛除PLACEMENT_GLOBAL_APP_BUNDLE 。例如，若您在请求中将 placements 设置为["PLACEMENT_TIKTOK", "PLACEMENT_GLOBAL_APP_BUNDLE"]，但是未申请全球化应用组合版位的白名单，本字段的返回值将为["PLACEMENT_TIKTOK"]。
 	Placements []enum.Placement `json:"placements,omitempty"`
+	// TiktokSubplacements he subplacements within TikTok for your ads, allowing you to choose where your ads will appear.
+	// Enum values:
+	// LEMON8: Lemon8, a community app for lifestyle content, focusing on real-life experiences, tips, guides, and product reviews. By including Lemon8 as a subplacement, your ads will appear in its For You feed, Search feed, and Immersive Video feed. Learn more about Lemon8 for Performance Auction.
+	// PINE_DRAMA: PineDrama, an app for watching short-form dramas. Ads will be placed on recommendation pages, within episode streams, and more. Learn more about PineDrama for Performance Auction.
+	TiktokSubplacements []enum.TiktokSubplacement `json:"tiktok_subplacements,omitempty"`
 	// SearchResultEnabled 是否在搜索广告中展示您的广告，即当用户在 TikTok上搜索您的业务相关信息时，系统是否向他们展示您的广告。
 	SearchResultEnabled bool `json:"search_result_enabled,omitempty"`
 	// CommentDisabled 是否允许用户在TikTok上评论您的广告
