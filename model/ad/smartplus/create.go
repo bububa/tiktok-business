@@ -22,6 +22,21 @@ type CreateRequest struct {
 	// CreativeList A list of creatives.
 	// Size range: 1-50
 	CreativeList []Creative `json:"creative_list,omitempty"`
+	// PlayableList Valid only in any of the following scenarios:
+	// Scenario 1:
+	// At the campaign level, objective_type is APP_PROMOTION and app_promotion_type is APP_INSTALL.
+	// At the ad group level, the placement is not Global Apple Bundle-only (with placement_type as PLACEMENT_TYPE_NORMAL and placements as ["PLACEMENT_GLOBAL_APP_BUNDLE"]) .
+	// At the ad level, ad_format is SINGLE_VIDEO and a video or video post is specified.
+	// Scenario 2:
+	// At the campaign level, objective_type is APP_PROMOTION and app_promotion_type is MINIS.
+	// At the ad group level:
+	// promotion_type is MINI_GAME.
+	// The placement is not Global Apple Bundle-only (with placement_type as PLACEMENT_TYPE_NORMAL and placements as ["PLACEMENT_GLOBAL_APP_BUNDLE"]) .
+	// At the ad level, ad_format is SINGLE_VIDEO and a video or video post is specified.
+	// The list of playables.
+	// Max size: 5.
+	// Note: The Playable Ad is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	PlayableList []Playable `json:"playable_list,omitempty"`
 	// AdTextList A list of ad texts.
 	// Ad texts are shown to your audience as part of your ad creatives, to deliver the message you intend to communicate to them.
 	AdTextList []AdText `json:"ad_text_list,omitempty"`

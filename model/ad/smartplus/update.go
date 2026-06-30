@@ -17,6 +17,8 @@ type UpdateRequest struct {
 	// CreativeList A list of creatives.
 	// Size range: 1-50
 	CreativeList []Creative `json:"creative_list,omitempty"`
+	// PlayableList A list of playables
+	PlayableList []Playable `json:"playable_list,omitempty"`
 	// AdTextList A list of ad texts.
 	// Ad texts are shown to your audience as part of your ad creatives, to deliver the message you intend to communicate to them.
 	AdTextList []AdText `json:"ad_text_list,omitempty"`
