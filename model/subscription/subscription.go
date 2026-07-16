@@ -1,6 +1,10 @@
 package subscription
 
-import "github.com/bububa/tiktok-business/enum"
+import (
+	"encoding/json"
+
+	"github.com/bububa/tiktok-business/enum"
+)
 
 // Subscription 订阅信息
 type Subscription struct {
@@ -114,8 +118,23 @@ type SubscriptionDetail struct {
 	// subscribe_entity为 AD时必填。
 	// 若您将subscribe_entity设置为 CREATIVE_FATIGUE，且同时传入advertiser_id和ad_id，您将订阅所指定的广告的疲劳状态。
 	AdID string `json:"ad_id,omitempty"`
-	// TTOTMCAccountID Required when subscribe_entity is TCM_VIDEOS.
+	// TTOTCMAccountID is required when subscribe_entity is TCM_VIDEOS.
 	// The ID of a TTO Creator Marketplace account.
 	// To obtain the IDs of the accounts that you can access via Access-Token, use /tto/oauth2/tcm/.
-	TTOTMCAccountID string `json:"tto_tmc_account_id,omitempty"`
+	TTOTCMAccountID string `json:"tto_tcm_account_id,omitempty"`
+	// TTOTMCAccountID is retained for source compatibility with the former typo.
+	// Deprecated: use TTOTCMAccountID.
+	TTOTMCAccountID string `json:"-"`
+}
+
+func (d SubscriptionDetail) MarshalJSON() ([]byte, error) {
+	type alias SubscriptionDetail
+	accountID := d.TTOTCMAccountID
+	if accountID == "" {
+		accountID = d.TTOTMCAccountID
+	}
+	return json.Marshal(struct {
+		alias
+		TTOTCMAccountID string `json:"tto_tcm_account_id,omitempty"`
+	}{alias: alias(d), TTOTCMAccountID: accountID})
 }

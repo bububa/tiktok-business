@@ -43,6 +43,8 @@ type Video struct {
 	AuthStatus enum.TTVideoAuthStatus `json:"auth_status,omitempty"`
 	// AuthStatusUpdateTime auth_status（授权状态）最后一次更新的时间。例如，auth_status从WAITING变为ACCEPTED的时间。
 	AuthStatusUpdateTime model.DateTime `json:"auth_status_update_time,omitzero"`
+	// AuthStatusUpdatedTime is the field returned by the current API.
+	AuthStatusUpdatedTime model.DateTime `json:"auth_status_updated_time,omitzero"`
 	// NumRemainingRequest 请求Spark Ads授权的剩余次数。在授权请求被拒绝或批准前，您最多剩余30次请求授权的机会
 	NumRemainingRequest int `json:"num_remaining_request,omitempty"`
 	// RequestedAuthorizationDays 您申请授权时指定授权的有效期（按天计），或申请更新已批准授权的有效期。枚举值: 7, 30, 60, 365。

@@ -13,10 +13,25 @@ type ApplyRequest struct {
 	// 枚举值：7、30、60、365。默认值：30。
 	// 注意：本字段可在申请授权时指定授权的有效期，或用于申请更新已批准授权的有效期。
 	// 实际有效期可能不同于您申请的有效期，因为创作者在批准申请时可自行选择任意有效期（7, 30, 60, 365）。
-	AuthorizedDays int `json:"authorized_days,omitempty"`
+	// AuthorizationDays is the authorization validity period in days.
+	AuthorizationDays int `json:"authorization_days,omitempty"`
+	// AuthorizedDays is retained for source compatibility. Use AuthorizationDays.
+	// Deprecated: use AuthorizationDays.
+	AuthorizedDays int `json:"-"`
+	// Action is EXTEND when extending an existing authorization.
+	Action string `json:"action,omitempty"`
 }
 
 // Encode implements PostRequest
 func (r *ApplyRequest) Encode() []byte {
-	return util.JSONMarshal(r)
+	days := r.AuthorizationDays
+	if days == 0 {
+		days = r.AuthorizedDays
+	}
+	return util.JSONMarshal(struct {
+		VideoID           string `json:"video_id,omitempty"`
+		TCMAccountID      string `json:"tcm_account_id,omitempty"`
+		AuthorizationDays int    `json:"authorization_days,omitempty"`
+		Action            string `json:"action,omitempty"`
+	}{r.VideoID, r.TCMAccountID, days, r.Action})
 }

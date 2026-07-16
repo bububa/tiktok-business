@@ -69,6 +69,12 @@ type Metrics struct {
 	CommentsOrganic model.Int64 `json:"comments_organic,omitempty"`
 	// CommentsPaid 付费流量评论数
 	CommentsPaid model.Int64 `json:"comments_paid,omitempty"`
+	// Favorites 收藏数
+	Favorites model.Int64 `json:"favorites,omitempty"`
+	// FavoritesOrganic 自然流量收藏数
+	FavoritesOrganic model.Int64 `json:"favorites_organic,omitempty"`
+	// FavoritesPaid 付费流量收藏数
+	FavoritesPaid model.Int64 `json:"favorites_paid,omitempty"`
 	// LifetimeGenderDistribution 视频播放量按性别的分布情况
 	LifetimeGenderDistribution []GenderDistribution `json:"lifetime_gender_distribution,omitempty"`
 	// LifetimeTopAgeDistribution 视频播放量按年龄组的分布情况
@@ -326,6 +332,12 @@ type DailyStat struct {
 	CommentsOrganic model.Int64 `json:"comments_organic,omitempty"`
 	// CommentsPaid 付费流量评论数
 	CommentsPaid model.Int64 `json:"comments_paid,omitempty"`
+	// Favorites 收藏数
+	Favorites model.Int64 `json:"favorites,omitempty"`
+	// FavoritesOrganic 自然流量收藏数
+	FavoritesOrganic model.Int64 `json:"favorites_organic,omitempty"`
+	// FavoritesPaid 付费流量收藏数
+	FavoritesPaid model.Int64 `json:"favorites_paid,omitempty"`
 	// Views 播放次数
 	Views model.Int64 `json:"views,omitempty"`
 	// VideoViewsOrganic 当日自然流量产生的视频播放量。
