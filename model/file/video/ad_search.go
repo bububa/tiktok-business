@@ -14,6 +14,12 @@ type AdSearchRequest struct {
 	AdvertiserID string `json:"advertiser_id,omitempty"`
 	// Filtering 筛选条件。本字段是筛选对象的数组
 	Filtering *AdSearchFilter `json:"filtering,omitempty"`
+	// SortField The sorting criteria for the video list.
+	// Enum values:
+	// CREATE_TIME: To sort the results by video creation time in descending order, returning the most recently created videos at the top of the list.
+	// MODIFY_TIME: To sort the results by the time the video was last updated in descending order, returning the most recently updated videos at the top of the list.
+	// Default value: CREATE_TIME.
+	SortField string `json:"sort_field,omitempty"`
 	// Page 当前页数。
 	// 默认值: 1。
 	// 取值范围：≥ 1。
@@ -67,6 +73,9 @@ func (r AdSearchRequest) Encode() string {
 	values.Set("advertiser_id", r.AdvertiserID)
 	if r.Filtering != nil {
 		values.Set("filtering", string(util.JSONMarshal(r.Filtering)))
+	}
+	if r.SortField != "" {
+		values.Set("sort_field", r.SortField)
 	}
 	if r.Page > 0 {
 		values.Set("page", strconv.Itoa(r.Page))
