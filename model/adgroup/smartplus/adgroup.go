@@ -101,6 +101,39 @@ type Adgroup struct {
 	// 深层漏斗优化事件。
 	// 示例： SHOPPING。
 	DeepFunnelOptimizationEvent enum.OptimizationEvent `json:"deep_funnel_optimization_event,omitempty"`
+	// AppAttributionSource Valid only when the following conditions are all met:
+	// At the campaign level, objective_type is APP_PROMOTION and app_promotion_type is APP_INSTALL or APP_RETARGETING.
+	// The mobile app is eligible for attribution source and data source configuration.
+	// To confirm this, use /app/list/ or /app/info/ and select an app_id where is_attribution_flex_enable returns true.
+	//
+	// Attribution source for your mobile app.
+	//
+	// The attribution source you choose will be used for optimization, bidding, and reporting.
+	//
+	// Enum values:
+	// MMP: MMP (mobile measurement partner) attribution. Signals from your selected MMP will be used for attribution.
+	// SAN: SAN (self-attribution network) attribution. Signals from TikTok SAN will be used for attribution. The exact value you can specify depends on your app (app_id) setup. To retrieve the available attribution and data source settings for your app, use /tool/available/attribution_source/.
+	//
+	// Note:
+	// Once set, this field cannot be updated.
+	// When CBO is enabled (budget_optimize_on is true) at the campaign level, this setting, if specified, must be the same across all ad groups within the same campaign.
+	// Attribution source and data source configuration for an app during Upgraded Smart+ Ad Group creation is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	AppAttributionSource enum.AppAttributionSource `json:"app_attribution_source,omitempty"`
+	// AppDataSource Data source for your app.
+	// The attribution signals you select will be used for reporting.
+	// Enum values:
+	// MMP: MMP signals. Signals from your MMP will be used for reporting.
+	// EVENT_SDK: App Events SDK signals. Signals from TikTok App Events SDK will be used for reporting.
+	// EVENT_API: Events API signals. Signals from TikTok Events API will be used for reporting.
+	//
+	// The exact value you can specify depends on your app (app_id) setup. To retrieve the available attribution and data source settings for your app, use /tool/available/attribution_source/.
+	//
+	// Note:
+	//
+	// Once set, this field cannot be updated.
+	// When CBO is enabled (budget_optimize_on is true) at the campaign level, this setting, if specified, must be the same across all ad groups within the same campaign.
+	// Attribution source and data source configuration for an app during Upgraded Smart+ Ad Group creation is currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	AppDataSource enum.AppDataSource `json:"app_data_source,omitempty"`
 	// IdentityID 当 shopping_ads_type 为 VIDEO 且 product_source 为 SHOWCASE 或 shopping_ads_type 为 LIVE 时返回。
 	// 认证身份 ID
 	IdentityID string `json:"identity_id,omitempty"`
