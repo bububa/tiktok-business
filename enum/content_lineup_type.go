@@ -8,4 +8,8 @@ const (
 	ContentLineupType_MAX_PULSE ContentLineupType = "MAX_PULSE"
 	// ContentLineupType_CUSTOM（类别分组：您的广告将在所选类别或季节性活动的热门内容前后展示。）
 	ContentLineupType_CUSTOM ContentLineupType = "CUSTOM"
+	// CATEGORY: Category lineups. Your ads will show next to top content from the categories you select.
+	ContentLineupType_CATEGORY ContentLineupType = "CATEGORY"
+	// SEASONAL: Seasonal lineups. Your ads will show next to top content from a seasonal event you select.
+	ContentLineupType_SEASONAL ContentLineupType = "SEASONAL"
 )
