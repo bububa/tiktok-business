@@ -74,6 +74,8 @@ type ContextualTag struct {
 	// 枚举值：
 	// MAX_PULSE（Max Pulse：您的广告将在 TikTok 上任意主题的热门内容前后展示。）
 	// CUSTOM（类别分组：您的广告将在所选类别或季节性活动的热门内容前后展示。）
+	// CATEGORY: Category lineups. Your ads will show next to top content from the categories you select.
+	// SEASONAL: Seasonal lineups. Your ads will show next to top content from a seasonal event you select.
 	// 注意：目前，您可以在 AE（阿联酋）、AU（澳大利亚）、BR（巴西）、CA（加拿大）、DE（德国）、ES（西班牙）、FR（法国）、GB（英国）、IT（意大利）、MX（墨西哥）、SA（沙特阿拉伯）、TR（土耳其） 和 US（美国）使用 Max Pulse，以及在US(美国）、CA（加拿大）、BR（巴西）、AU（澳大利亚）、GB（英国）、FR（法国）、IT（意大利）、ES（西班牙）、DE（德国）使用类别分组。Max Pulse 和类别分组为白名单功能。如果您想在上述市场使用该两种功能，请联系您的 TikTok 销售代表。
 	ContentLineupType enum.ContentLineupType `json:"content_lineup_type,omitempty"`
 	// Status 内容相关定向标签状态。枚举值: ONLINE, OFFLINE。仅上线状态（ status=ONLINE ）的标签可用于创建广告

@@ -50,3 +50,4 @@ bot.log
 
 # Generated repository snapshots
 repomix-output*.md
+.codegraph
