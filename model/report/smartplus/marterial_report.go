@@ -260,6 +260,23 @@ type Metrics struct {
 	// AdMaterialIDs An ad-specific material ID generated when a particular creative is used in an ad.
 	// This ID differs from the creative ID you receive when uploading the creative to your ad account’s Creative Library.
 	AdMaterialID []string `json:"ad_material_id,omitempty"`
+	// SmartPlusCreativeID A list of creative asset IDs associated with the Upgraded Smart+ Ad.
+	// When you query both smart_plus_creative_id and smart_plus_creative_name, the API pairs the IDs and names one-to-one based on their positional order within the ad. For example, an Upgraded Smart+ Ad with two creatives returns smart_plus_creative_id = ["{{creative_id_1}}", "{{creative_id_2}}"] and smart_plus_creative_name = ["{{creative_name_1}}", "{{creative_name_2}}"].
+	// This ID matches the creative ID you retrieve in the following two scenarios:
+	// The ad_id you receive from /ad/get/ when you omit the ad_ids_v2 filter.
+	// The ad_id metric you retrieve from /report/integrated/get/ when you set data_level to AUCTION_AD and include ad_id in dimensions.
+	// Note: This metric is only available for Upgraded Smart+ Creative Overview Reports when you set dimensions to ["smart_plus_ad_id", "main_material_id"].
+	SmartPlusCreativeID []string `json:"smart_plus_creative_id,omitempty"`
+	// SmartPlusCreativeName A list of creative asset names.
+	// When you query both smart_plus_creative_id and smart_plus_creative_name, the API pairs the IDs and names one-to-one based on their positional order within the ad. For example, an Upgraded Smart+ Ad with two creatives returns smart_plus_creative_id = ["{{creative_id_1}}", "{{creative_id_2}}"] and smart_plus_creative_name = ["{{creative_name_1}}", "{{creative_name_2}}"].
+	// Note: This metric is only available for Upgraded Smart+ Creative Overview Reports when you set dimensions to ["smart_plus_ad_id", "main_material_id"].
+	SmartPlusCreativeName []string `json:"smart_plus_creative_name,omitempty"`
+	// AdgroupName The name of the Upgraded Smart+ Ad Group associated with the ad.
+	// Note: This metric is only available for Upgraded Smart+ Creative Overview Reports when you exclude advertiser_id from dimensions.
+	AdgroupName string `json:"adgroup_name,omitempty"`
+	// CampaignName The name of the Upgraded Smart+ Campaign associated with the ad.
+	// Note: This metric is only available for Upgraded Smart+ Creative Overview Reports when you exclude both advertiser_id and campaign_id from dimensions.
+	CampaignName string `json:"campaign_name,omitempty"`
 	// MultiName A combination of setting names based on the setting dimensions (ad_text_entity_ids, call_to_action_entity_ids, and interactive_add_on_entity_ids) specified in the request.
 	// For instance, if you specify the dimensions ad_text_entity_ids and call_to_action_entity_ids in the request, the multi_name will be {ad_text_name}_{call_to_action_name}.
 	// Example: Video1_Adtext1_CTA1.
