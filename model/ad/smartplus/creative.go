@@ -7,6 +7,11 @@ type Creative struct {
 	// AdMaterialID An ad-specific material ID generated when a particular creative is used in an ad.
 	// This ID differs from the creative ID you receive when uploading the creative to your ad account’s Creative Library.
 	AdMaterialID string `json:"ad_material_id,omitempty"`
+	// SmartPlusCreativeID The ID of the creative in the Upgraded Smart+ Ad.
+	// This ID is the same as the creative ID you retrieve in the following scenarios:
+	// The ad_id you receive from /ad/get/ when you do not specify the ad_ids_v2 filter.
+	// The ad_id metric you retrieve from /report/integrated/get/ when you set data_level to AUCTION_AD and include ad_id in dimensions.
+	SmartPlusCreativeID string `json:"smart_plus_creative_id,omitempty"`
 	// MaterialOperationStatus The status of the creative.
 	// Enum values:
 	// ENABLE: The creative is enabled (in 'ON' status).
