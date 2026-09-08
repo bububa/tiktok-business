@@ -30,6 +30,14 @@ type GetRequest struct {
 	// 不支持重复的SKU ID。
 	// product_ids和sku_ids 不可同时指定。
 	SkuIDs []string `json:"sku_ids,omitempty"`
+	// SeriesIDs IDs of the short drama series that you want to filter.
+	// Max size: 1,000.
+	// Length limit: 100 characters for each short drama series ID.
+	// Note:
+	// Duplicate short drama series IDs are not supported.
+	// product_ids and series_ids cannot be specified at the same time.
+	// conditions and series_ids cannot be specified at the same time.
+	SeriesIDs []string `json:"series_ids,omitempty"`
 	// ProductSetIDs 通过商品系列ID获取商品。最大数量：100
 	ProductSetIDs []string `json:"product_set_ids,omitempty"`
 	// Order 排序选项。如果传入了SKU ID或者商品ID对结果进行筛选，则排序设置无效。
