@@ -28,6 +28,12 @@ type CreativeInfo struct {
 	MaterialName string `json:"material_name,omitempty"`
 	// VideoInfo Video information
 	VideoInfo *VideoInfo `json:"video_info,omitempty"`
+	// ThumbnailMode he mode of the video thumbnail.
+	// The thumbnail will be shown as the first image on a search results page. Thumbnails are critical for catching your audience's attention and driving clicks.
+	// Enum values:
+	// AUTOMATIC: Smart thumbnail. The system will show a different frame from your video customized for different audiences to closely match what they're searching for and what they're most likely to tap. The video cover specified through image_info will be used as the fallback video thumbnail if no matching thumbnails are found.
+	// MANUAL: Manual thumbnail. The video cover specified through image_info will be used as the video thumbnail.
+	ThumbnailMode enum.ThumbnailMode `json:"thumbnail_mode,omitempty"`
 	// ImageInfo Image information
 	ImageInfo []ImageInfo `json:"image_info,omitempty"`
 	// MusicInfo Music information

@@ -36,6 +36,18 @@ type UpdateRequest struct {
 	// Important: When multiple ad groups are present within your campaign, updating the roas_bid for one ad group will automatically update the bid_price for all other ad groups under the same campaign with the new value.
 	// Note: When CBO is enabled (budget_optimize_on is true) at the campaign level, this setting, if specified, must be the same across all ad groups within the same campaign.
 	RoasBid float64 `json:"roas_bid,omitempty"`
+	// AutomatedKeywordsEnabled Valid only when at the campaign level is_search_campaign is true.
+	// Whether to enable automated keywords and let the system find relevant keywords to expand reach and improve results.
+	// Supported values: true, false.
+	AutomatedKeywordsEnabled *bool `json:"automated_keywords_enabled,omitempty"`
+	// SearchKeywords Valid only when at the campaign level is_search_campaign is true.
+	// A list of search keywords, that is, words or phrases that are used to match your ads with the terms people are searching for.
+	// Max size: 1,000.
+	// To confirm whether an Upgraded Smart+ Campaign is a Search Ads Campaign, call /smart_plus/campaign/get/ and check the is_search_campaign returned for the campaign.
+	// To learn more about how to create Search Ads Campaigns, see Create Upgraded Smart+ Search Ads Campaigns.
+	// Note:
+	// Once the search keywords or the targeted locations are updated, the keywords will go into the review process again.
+	SearchKeywords []SearchKeyword `json:"search_keywords,omitempty"`
 	// CommentDisabled 是否允许用户在TikTok上评论您的广告
 	CommentDisabled *bool `json:"comment_disabled,omitempty"`
 	// ShareDisabled 本广告组中的广告是否禁止分享到第三方平台

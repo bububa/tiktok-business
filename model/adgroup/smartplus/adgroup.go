@@ -227,6 +227,12 @@ type Adgroup struct {
 	BillingEvent enum.BillingEvent `json:"billing_event,omitempty"`
 	// Pacing 广告投放速度类型。您可以选择PACING_MODE_SMOOTH（在预定的时间内平均分配预算）和PACING_MODE_FAST（尽快消耗预算并产出结果）。当您开启推广系列预算优化（budget_optimize_on）时，该字段将自动设置为PACING_MODE_SMOOTH。否则您需要填写该字段。
 	Pacing enum.PacingMode `json:"pacing,omitempty"`
+	// AutomatedKeywordsEnabled Whether to enable automated keywords and let the system find relevant keywords to expand reach and improve results.
+	// Supported values: true, false.
+	AutomatedKeywordsEnabled bool `json:"automated_keywords_enabled,omitempty"`
+	// SearchKeywords Returned only for Search Ads Campaigns.
+	// A list of search keywords, that is, words or phrases that are used to match your ads with the terms people are searching for.
+	SearchKeywords []SearchKeyword `json:"search_keywords,omitempty"`
 	// BudgetMode 广告预算类型。如果开启了推广系列预算优化(budget_optimize_on)， 将返回BUDGET_MODE_INFINITE。枚举值及设置详见预算
 	BudgetMode enum.BudgetMode `json:"budget_mode,omitempty"`
 	// BudgetAutoAdjustStrategy Returned only when the following conditions are both met:

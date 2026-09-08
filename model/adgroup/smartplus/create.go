@@ -265,6 +265,19 @@ type CreateRequest struct {
 	// BillingEvent 计费事件。
 	// 枚举值: 详见枚举值-计费事件
 	BillingEvent enum.BillingEvent `json:"billing_event,omitempty"`
+	// AutomatedKeywordsEnabled Valid only when at the campaign level is_search_campaign is true.
+	// Whether to enable automated keywords and let the system find relevant keywords to expand reach and improve results.
+	// Supported values: true, false.
+	// Default value: false.
+	// Enabling automated keywords is recommended as it complements your manually specified keywords by discovering new opportunities and targeting high-intent search queries that you might have missed.
+	AutomatedKeywordsEnabled bool `json:"automated_keywords_enabled,omitempty"`
+	// SearchKeywords Required for Search Ads Campaigns (is_search_campaign is true at the campaign level).
+	// Not supported for non-Search Ads Campaigns (is_search_campaign is false at the campaign level).
+	// A list of search keywords, that is, words or phrases that are used to match your ads with the terms people are searching for.
+	// Max size: 1,000.
+	// To confirm whether an Upgraded Smart+ Campaign is a Search Ads Campaign, call /smart_plus/campaign/get/ and check the is_search_campaign returned for the campaign.
+	// To learn more about how to create Search Ads Campaigns, see Create Upgraded Smart+ Search Ads Campaigns.
+	SearchKeywords []SearchKeyword `json:"search_keywords,omitempty"`
 	// TargetingOptimizationMode Audience targeting optimization mode.
 	// Enum values:
 	// MANUAL: Custom targeting. You can use custom targeting settings to precisely control who sees your ads. This may limit delivery and impact campaign performance.

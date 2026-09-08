@@ -50,6 +50,17 @@ type CreateRequest struct {
 	// Learn more about how to create Upgraded Smart+ Ads with Website and App Optimization.
 	// Note: Once set, this field cannot be updated.
 	SalesDestination enum.SalesDestination `json:"sales_destination,omitempty"`
+	// IsSearchCampaign Valid only when objective_type is APP_PROMOTION, WEB_CONVERSIONS, or LEAD_GENERATION.
+	// Whether to create a Search Ads Campaign.
+	// With Search Ads Campaigns, you set up your campaign to target ads in TikTok search results. Search Ads Campaigns reach those in your audience actively looking for products or information related to your brand. You'll use relevant keywords and search terms to help guide audiences to your ads.
+	// Supported values: true, false.
+	// Default value: false.
+	// To learn more about how to create Search Ads Campaigns, see Create Upgraded Smart+ Search Ads Campaigns.
+	// Note:
+	// Upgraded Smart+ Search Ads Campaigns are currently an allowlist-only feature. If you would like to access it, please contact your TikTok representative.
+	// When is_search_campaign is true, you can only set budget_optimize_on to false.
+	// Once set, this field cannot be updated.
+	IsSearchCampaign bool `json:"is_search_campaign,omitempty"`
 	// CatalogEnabled Valid only when objective_type is WEB_CONVERSIONS or LEAD_GENERATION.
 	// Whether to use catalog in the campaign.
 	// Supported values: true, false.

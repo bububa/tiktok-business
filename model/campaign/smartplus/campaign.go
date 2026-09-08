@@ -59,6 +59,10 @@ type Campaign struct {
 	// CampaignAppProfilePageState Indicates the status of the App Profile Page.
 	// Enum values: ON, OFF.
 	CampaignAppProfilePageState enum.AppProfilePageState `json:"campaign_app_profile_page_state,omitempty"`
+	// IsSearchCampaign Whether the campaign is a Search Ads Campaign.
+	// With Search Ads Campaigns, you set up your campaign to target ads in TikTok search results. Search Ads Campaigns reach those in your audience actively looking for products or information related to your brand. You'll use relevant keywords and search terms to help guide audiences to your ads.
+	// Supported values: true, false.
+	IsSearchCampaign bool `json:"is_search_campaign,omitempty"`
 	// CatalogEnabled Whether to use your catalog to automatically advertise relevant products or services to people based on their unique interests, intent and actions.
 	// Supported values: true, false.
 	CatalogEnabled bool `json:"catalog_enabled,omitempty"`
