@@ -61,4 +61,11 @@ type CatalogConf struct {
 	Currency string `json:"currency,omitempty"`
 	// Channel 商品库创建渠道。枚举值: PARTNER: 第三方合作伙伴; CLIENT: 直客广告主
 	Channel string `json:"channel,omitempty"`
+	// AdditionalConfigList Valid only when catalog_type is MINI_SERIES.
+	// Details of additional targeting regions.
+	// No max size.
+	// Note:
+	// Once set, this field cannot be updated.
+	// If you want to target multiple regions through mini series catalogs, specify the additional targeting regions through additional_config_list during catalog creation. Then upload short drama series that target multiple regions.
+	AdditionalConfigList []CatalogConf `json:"additional_config_list,omitempty"`
 }

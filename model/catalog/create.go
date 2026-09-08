@@ -13,19 +13,25 @@ type CreateRequest struct {
 	// Name 商品库名称。
 	// 长度限制：128 字符。
 	Name string `json:"name,omitempty"`
-	// CatalogType 商品库类型。
-	// 枚举值：
-	// ECOM：电商商品库。
-	// HOTEL：酒店商品库。
-	// FLIGHT：航班商品库。
-	// DESTINATION：目的地商品库。
-	// ENTERTAINMENT：娱乐商品库。
-	// MINI_SERIES：短剧商品库。
-	// 注意：
+	// CatalogType Catalog type.
+	// Enum values:
+	// ECOM: E-commerce catalog.
+	// HOTEL: hotel catalog.
+	// FLIGHT: flight catalog.
+	// DESTINATION: destination catalog.
+	// ENTERTAINMENT: entertainment catalog.
+	// AUTO_VEHICLE: Auto-Inventory catalog.
+	// When catalog_type is AUTO_MODEL, see List of region codes and currencies for Auto-Inventory and Auto-Model catalogs to find out the supported region_code and currency values.
+	// AUTO_MODEL: Auto-Model catalog.
+	// When catalog_type is AUTO_MODEL, see List of region codes and currencies for Auto-Inventory and Auto-Model catalogs to find out the supported region_code and currency values.
+	// MINI_SERIES: mini series catalog.
+	// GENERIC: generic catalog.
+	// ONLINE_TO_OFFLINE: online-to-offline catalog.
+	// When catalog_type is ONLINE_TO_OFFLINE, see List of region codes and currencies for online-to-offline catalogs to find out the supported region_code and currency values.
+	// Note:
 	//
-	// 旅游类商品库（酒店商品库、航班商品库和目的地商品库）目前在 Alpha 测试阶段，是仅向受邀开发者开放的白名单功能。如需使用此功能，请联系您的TikTok销售代表，但无法保证申请就能入选。
-	// 娱乐商品库目前在 Alpha 测试阶段，是仅向受邀开发者开放的白名单功能。如需使用此功能，请联系您的 TikTok 销售代表，但无法保证申请就能入选。
-	// 短剧商品库目前在测试阶段，是仅向受邀开发者开放的白名单功能。如需使用此功能，请联系您的 TikTok 销售代表，但无法保证申请就能入选。
+	// The entertainment catalog is currently an allowlist-only feature and is invitation-only because this catalog type is under Alpha Testing. If you would like to access it, please contact your TikTok representative. However, acceptance into the Alpha Test is not guaranteed.
+	// The mini series catalog is currently an allowlist-only feature and is invitation-only because the catalog type is under testing. If you would like to access it, please contact your TikTok representative. However, acceptance into the test is not guaranteed.
 	CatalogType enum.CatalogType `json:"catalog_type,omitempty"`
 	// CatalogConf 商品库配置信息
 	CatalogConf *CatalogConf `json:"catalog_conf,omitempty"`

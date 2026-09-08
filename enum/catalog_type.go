@@ -14,8 +14,16 @@ const (
 	CatalogType_DESTINATION CatalogType = "DESTINATION"
 	// CatalogType_ENTERTAINMENT：娱乐商品库。
 	CatalogType_ENTERTAINMENT CatalogType = "ENTERTAINMENT"
+	// CatalogType_AUTO_VEHICLE: Auto-Inventory catalog.
+	CatalogType_AUTO_VEHICLE CatalogType = "AUTO_VEHICLE"
+	// CatalogType_AUTO_MODEL: Auto-Model catalog.
+	CatalogType_AUTO_MODEL CatalogType = "AUTO_MODEL"
 	// CatalogType_MINI_SERIES：短剧商品库。
 	CatalogType_MINI_SERIES CatalogType = "MINI_SERIES"
+	// CatalogType_GENERIC: generic catalog.
+	CatalogType_GENERIC CatalogType = "GENERIC"
+	// CatalogType_ONLINE_TO_OFFLINE: online-to-offline catalog.
+	CatalogType_ONLINE_TO_OFFLINE CatalogType = "ONLINE_TO_OFFLINE"
 	// CatalogType_ECOMMERCE: e-commerce
 	CatalogType_ECOMMERCE CatalogType = "ECOMMERCE"
 	// CatalogType_TRAVEL_ENTERTAINMENT: travel and entertainment.
